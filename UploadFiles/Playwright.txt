@@ -1,0 +1,223 @@
+PLAYWRIGHT:
+----------
+
+Definition : open-source automation framework that is used for testing web applications.
+we can also automate APIs and which will also support browser based application in the mobile.
+
+Application Supported - web browser apps, mobile web apps , API
+Language Supported - JS, TypeScript , Java, Python , .Net(C#)
+Browsers:  3 browsers, chromium, firefox and webkit 
+
+Features:
+----------
+Built-in repoters, custom reports
+CI, CD, Docker integarion
+Parellel Tetsing
+Auto wait
+Built-in Assertions
+Multi tab & multi window
+Frames and shadow DOM
+Test parameterization
+Emulate mobile devices : what are the application we are testing on browser same application we can easily test on mobile.
+No flaky tests
+Playwright inspector.
+
+
+Installing Playwright : npm init playwright@latest
+
+playwright.config is where you can add configuration for Playwright 
+including modifying which browsers you would like to run Playwright on.
+
+Running the Playwright Test : npx playwright test
+
+HTML Test Reports : npx playwright show-report
+
+Running the Example Test in UI Mode : npx playwright test --ui
+
+only on Desktop chrome : npx playwright test --project=chromium
+
+runs the files in a specific file :  npx playwright test example
+
+run the specific file in Headed mode : npx playwright test HomePage.spec.js  --project=chromium --headed
+
+step by step execution : npx playwright test HomePage.spec.js  --project=chromium --headed --debug
+
+
+Writing tests
+--------------
+import { test, expect } from '@playwright/test';
+
+test('Home Page', async ({page})=>{
+
+     await  page.goto("https://www.saucedemo.com/")
+
+     const pageTitle = await  page.title();
+     console.log("page title is: "+ pageTitle);
+
+     await  expect(page).toHaveTitle('Swag Labs') ;
+
+test()-block to write test. accept 2 parameter.
+1-title of the test
+2-ananymous function: will use some Fixtures provided by the playwright. pages will be represented with Fixtures.Fixtures are functions that provide a predefined setup.
+({page})- contains so many functions through them we can automate the web pages.
+ page.goto()- opens the url on the browser
+async- js is asynchronized programming language. execution will not depends on previous test execution.
+to handle promise.
+async keyword makes a function return a promise.
+await keyword makes a function wait for the promise.
+here page.goto() will wait till the page is loaded.
+
+
+Locating Web Elements:
+---------------------
+propert
+css
+xpath
+
+locate single element:
+----------------------
+link/button:
+await page.locator('locator').click();
+await page.click('Locator');
+
+inputbox:
+---------
+await page.locator('locator').fill('value');
+await page.locator('locator').type('value');
+
+await page.fill('locator', 'value');
+await page.type('locator', 'value');
+
+Locate Multiple element:
+------------------------
+const elements = await page.$$(locator)
+
+
+
+textContent()- get the text of the elements.
+
+page.getByRole() to locate by explicit and implicit accessibility attributes.
+page.getByText() to locate by text content. inner text
+page.getByLabel() to locate a form control by associated label's text.
+page.getByPlaceholder() to locate an input by placeholder.
+page.getByAltText() to locate an element, usually image, by its text alternative.
+page.getByTitle() to locate an element by its title attribute.
+page.getByTestId() to locate an element based on its data-testid attribute (other attributes can be configured).
+
+page.getByRole():when you have link/button and you want to perform some actions on the element.Actionable elements.
+
+Filtering Locators 
+------------------
+await page.locator('li').filter({ hasText : 'To DoAdd a card'}).getByTestId('list-add-card-button').click()
+
+  await page.getByTestId('list-card-composer-textarea').fill('data');
+  await page.getByTestId('list-card-composer-cancel-button').click();
+  await page.getByTestId('card-name').click();
+
+
+
+
+
+
+
+
+Assertion:
+----------
+used to perform certain validations on the web-page.
+
+HARD ASSERTION:  if any assertion got failed rest of the code will noy be executed.
+-------------    if hard assertion fails it terminate the code.
+
+expect(page).toHaveURL()          - page conatins proper url or not.
+expect(page).toHaveTitle()        - page has title
+expect('locator').toBeVisible()   - element is visible
+expect('locator').toBeEnabled()   - Control is enabled
+expect('locator').toBeDisabled()  - Element is disabled
+expect('locator').toBeChecked()   -Radio/ checkBox is checked
+expect('locator').toHaveAttribute -ELement has attribute 
+expect('locator').toHaveText()    -element matches text //full text
+expect('locator').toContainText() -element contains text //partial text
+expect('locator').tohaveValue()   -input has a value
+expect('locator').toHaveCount()   -list of element has given length
+
+SOFT ASSERTION : failed soft assertions do not terminate test execution, but mark the test as failed.
+--------------
+
+Count items in a list
+-----------------------
+Use the count assertion to ensure that the list has 3 items: await expect(page.getByRole('listitem')).toHaveCount(3);
+
+Get a specific item
+------------------
+Get by text:
+Use the page.getByText() method to locate an element in a list by its text content and then click on it.
+await page.getByText('orange').click();
+
+
+Filter by text:
+Use the locator.filter() to locate a specific item in a list.
+await page
+    .getByRole('listitem')
+    .filter({ hasText: 'orange' })
+    .click();
+
+
+Get by test id:
+Use the page.getByTestId() method to locate an element in a list. You may need to modify the html and add a test id if you don't already have a test id.
+await page.getByTestId('orange').click();
+
+Get by nth item:
+If you have a list of identical elements, and the only way to distinguish between them is the order, you can choose a specific element from a list with:
+locator.first(), 
+locator.last() 
+locator.nth(index).
+const banana = await page.getByRole('listitem').nth(1);
+
+
+
+Page Object Model: framework or a pattern in which  we have to maintain the page elements in separate file.
+
+
+Hooks
+-----------
+Playwright Hooks
+    beforeEach: This hook is executed before each individual test.
+    afterEach: This hook is executed after each individual test.
+    beforeAll: This hook is executed once before any of the tests start running.
+    afterAll: This hook is executed once after all the tests have been run.
+
+
+
+//single checkbox
+await page. locator("//input [@id= 'monday' and @type=' checkbox'1").check();
+  //await page. check("//input [@id= 'monday' and @type='checkbox'1");
+expect (await page. locator("//input [@id= 'monday' and @type='checkbox'1")).toBeChecked();
+expect (await page. locator("//input [@id= 'monday' and @type= 'checkbox'1") ).isChecked())to8eTruthyl);
+expect(await page. locator( ("//input [@id= 'sunday' and @type=' 'checkbox'1").
+
+
+
+//Multiple checkboxes
+const checkboxLocators=
+                "//input [@id= 'monday' and @type='checkbox'1",
+                "//input [@id= sunday and @type= 'checkbox'l",
+                "//input [@id= 'saturday' and @type= checkbox'1"
+             ]
+for(const locator of checkboxLocators) // select multiple checkboxes
+    await page. locator(locator) .check();
+
+ for(const locator of checkboxLocators) // unselect multiple checkboxes which are already selected
+   {                       
+     if (await page. locator(locator) .isChecked( () ){
+     await page. locator(locator).uncheck();
+     }
+  }
+
+
+
+
+
+
+
+
+
