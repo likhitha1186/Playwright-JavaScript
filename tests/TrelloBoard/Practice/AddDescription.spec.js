@@ -23,9 +23,10 @@ test('Add Description', async ({ page }) => {
     await page.getByTestId('list-composer-add-list-button').click();
     await page.locator("//li[@data-testid='list-wrapper'][2]//li").first().click();
     await page.getByText('Add a more detailed description…').click();
-    await page.locator("//button[@aria-label='Bold Ctrl+B']").click();
+    await page.locator("//button[@aria-label='Bold Ctrl+B']").click(); //select bold
     await page.locator("//div[@class='akEditor css-1cx6zwm']//div[@data-testid='click-wrapper']").type('GOAL : ');
     await page.keyboard.press('Enter');
+    await page.waitForTimeout(2000)
     await page.locator("//span[@class='css-70qvj9']").click()
     await page.locator("//p[normalize-space()='Normal text']").click();
     await page.locator("//div[@class='akEditor css-1cx6zwm']//div[@data-testid='click-wrapper']").type('Is a critical phase in software development where the application is made available to users in a production environment..');
@@ -39,5 +40,3 @@ test('Add Description', async ({ page }) => {
     await page.getByTestId('description-save-button').click();
     await page.close()
 });
-
-

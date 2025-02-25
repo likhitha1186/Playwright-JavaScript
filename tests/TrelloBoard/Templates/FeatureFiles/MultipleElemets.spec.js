@@ -18,16 +18,19 @@ export async function HandlingBoardLength(BoardList) {
 }
 
 export async function HandlingCardElements(allCards, cardName, page) {
-    for (let card of allCards) {
+    const elements = await allCards.all();
+    for (let card of elements) {
         const cardTitle = await card.textContent();
         if (cardTitle === cardName) {
-            await  card.click()
-            await page.waitForTimeout(1000)
+            await page.waitForTimeout(2000);
+            await card.click();
+            await page.waitForTimeout(2000);
             return card;
         }
     }
     return null;
 }
+
 
 export async function HandlingTemplateElements(templates, targetTitle) {
     for (let temp of templates) {
@@ -39,4 +42,16 @@ export async function HandlingTemplateElements(templates, targetTitle) {
         }
     }
     return null;
+}
+
+export async  function HandlingLabelsElements(allLabels, targetLabel, CreateNewLabel, TitleField, CreateButton){
+    for (const label of await allLabels.all()) {
+        if ((await label.textContent()) === targetLabel) {
+            await label.click();
+            return;
+        }
+    }
+    await CreateNewLabel.click();
+    await TitleField.fill(targetLabel);
+    await CreateButton.click();
 }

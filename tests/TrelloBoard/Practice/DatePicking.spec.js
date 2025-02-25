@@ -33,7 +33,7 @@ test('Adding Due Date', async ({ page }) => {
     const month ='May 2025', date = '19';
     while (true){
         const currentMonth = await page.locator('.css-1b2rkmw').textContent()
-        if( currentMonth == month){
+        if( currentMonth === month){
             break;
         }
         await page.click("//div[@class='atlaskit-portal-container']//button[2]//span[1]//span[1]")

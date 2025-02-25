@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { Loginpage } from '../../Pages/LoginPage.js';
-import path from "node:path";
 
 test('Upload a file ', async ({ page }) => {
     const login = new Loginpage(page);
@@ -28,6 +27,7 @@ test('Upload a file ', async ({ page }) => {
     //     path.join(process.cwd(), '/UploadFiles/Playwright.txt'),
     //     path.join(process.cwd(),'/UploadFiles/trello.PNG')
     // ]);
+   // await page.getByText('Choose a file').setInputFiles(__dirname, '/UploadFiles/Playwright.txt')
     await page.getByText('Choose a file').setInputFiles( 'C:/Users/likhithap/WebstormProjects/PlaywrightAutomation/UploadFiles/Playwright.txt')
     await page.waitForTimeout(5000)
     await page.close();
