@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { Loginpage } from '../../Pages/LoginPage.js';
+import { Loginpage } from '../../../Pages/LoginPage.js';
 import { text } from 'node:stream/consumers';
 
 test('Add Board and List in Agile Template', async ({ page }) => {

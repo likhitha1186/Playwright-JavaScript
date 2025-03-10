@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { Loginpage } from '../../Pages/LoginPage.js';
+import { Loginpage } from '../../../Pages/LoginPage.js';
 
 test('Selecting Random Template', async ({ page }) => {
   const login = new Loginpage(page);

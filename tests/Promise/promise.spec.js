@@ -2,11 +2,6 @@
 //     console.log("Hello");
 //   }
 
-const { rejects } = require("assert");
-const { Console, error } = require("console");
-const { promises } = require("dns");
-const { resolve } = require("path");
-
 //   function mySecond() {
 //     console.log("Goodbye");                                          //Regular function
 //   }

@@ -1,4 +1,4 @@
-import { HandlingTemplateElements } from "../HelperFiles/HandlingMultipleElement.spec.js"
+import { HandlingTemplateElements } from "../HelperFiles/HandlingMultipleElement.js"
 
 export class TemplatesPage {
     constructor(page) {

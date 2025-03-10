@@ -4,7 +4,7 @@ import { Board } from '../Pages/CreateBoardPage.js';
 import {
   generateRandomBoardName, generateRandomCardName,
   generateRandomListName,
-} from '../HelperFiles/RandomNameGenerator.spec.js';
+} from '../HelperFiles/RandomNameGenerator.js';
 
 let page, boardname, listname, cardname ;
 let cardNames = [];
@@ -52,7 +52,7 @@ test('Adding multiple cards to the board', async () => {
   const numberOfCards = 4;
 
   for (let i = 1; i <= numberOfCards; i++) {
-     cardname = generateRandomCardName();
+    cardname = generateRandomCardName();
     await board.addCard(cardname);
     cardNames.push(cardname);
     console.log(`Successfully added ${cardname} card`);

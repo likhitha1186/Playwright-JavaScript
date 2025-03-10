@@ -1,7 +1,3 @@
-import { test, expect } from '@playwright/test';
-import {Page} from "@playwright/test";
-
-
 export class Loginpage {
 
     constructor(page) {

@@ -4,7 +4,7 @@ import { Board } from '../Pages/CreateBoardPage.js';
 import {
     generateRandomBoardName, generateRandomCardName,
     generateRandomListName,
-} from '../HelperFiles/RandomNameGenerator.spec.js';
+} from '../HelperFiles/RandomNameGenerator.js';
 
 let page, boardname, listname, cardname;
 

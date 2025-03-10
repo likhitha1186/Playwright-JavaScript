@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { Loginpage } from '../../Pages/LoginPage.js';
+import { Loginpage } from '../../../Pages/LoginPage.js';
 
 test('Create Agile Template', async ({ page }) => {
   const login = new Loginpage(page);

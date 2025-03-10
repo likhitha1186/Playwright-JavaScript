@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import {HandlingBoardElements, HandlingCardElements, HandlingBoardLength} from "../HelperFiles/HandlingMultipleElement.spec.js";
+import {HandlingBoardElements, HandlingCardElements, HandlingBoardLength} from "../HelperFiles/HandlingMultipleElement.js";
 
 export class Board {
   constructor(page) {
@@ -52,4 +52,19 @@ export class Board {
       await this.page.getByTestId('move-card-popover-move-button').click()
   }
 
+  async deleteBoard(){
+      await this.page.getByTestId('open-boards-link').click();
+      await this.page.waitForTimeout(2000);
+      await this.page.locator("//button[normalize-space()='View closed boards']").click();
+      await this.page.waitForTimeout(2000);
+
+      const  deleteButtons = await this.page.$$('//button[contains(text(), "Delete")]');
+      console.log(`Total  closed boards: ${deleteButtons.length}`)
+      for (const button of deleteButtons) {
+          await button.click();
+          const confirmButton = this.page.locator("//button[@data-testid='close-board-delete-board-confirm-button']");
+          await confirmButton.click();
+          console.log('Confirmed deletion.');
+      }
+  }
 }

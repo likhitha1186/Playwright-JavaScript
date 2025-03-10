@@ -13,7 +13,7 @@ test('Date Picker', async ({ page }) => {
     const currentMonth = await page
       .locator('.ui-datepicker-month')
       .textContent();
-    if (currentYear == year && currentMonth == month) {
+    if (currentYear === year && currentMonth === month) {
       break;
     }
     await page.locator("[title='Next']").click(); //next button

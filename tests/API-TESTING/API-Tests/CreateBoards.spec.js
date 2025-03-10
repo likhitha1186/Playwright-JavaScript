@@ -1,5 +1,5 @@
 import {test, expect} from "@playwright/test";
-import {createBoards} from "../HelpersFile/Helpers.spec.js"
+import {createBoards} from "../HelpersFile/Helpers.js"
 
 const { baseURL, name, apiKey, token } = createBoards();
 

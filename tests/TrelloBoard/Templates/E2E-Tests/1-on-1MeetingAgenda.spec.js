@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { Login } from '../../../Pages/Login1Page.js'
+import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
 import {OneOnOneMeetingAgendaTemplate} from "../Page/OneOnOneMeetingAgendaPage.js";
 import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.spec.js"
@@ -42,11 +42,11 @@ test('Add a card in Info list', async () => {
 
 });
 
-// test('Click existing card', async () => {
-//     const actions = new OneOnOneMeetingAgendaTemplate(page);
-//     const cardIndex=0;
-//     await actions.performActionOnOldCard(cardIndex);
-//     console.log(`Successfully clicked the card: ${cardname}`);
-//     console.log(`Successfully performed specified actions on : ${cardname}`);
-// });
+test('Click existing card', async () => {
+    const actions = new OneOnOneMeetingAgendaTemplate(page);
+    const cardIndex=0;
+    await actions.performActionOnOldCard(cardIndex);
+    console.log(`Successfully clicked the card: ${cardname}`);
+    console.log(`Successfully performed specified actions on : ${cardname}`);
+});
 

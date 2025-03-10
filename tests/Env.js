@@ -17,12 +17,14 @@ export function Credentials() {
             baseURL: process.env.DEV_URL,
             username: process.env.DEV_USERNAME,
             password: process.env.DEV_PASSWORD,
+            url : process.env.DEV1_URL,
         },
         test: {
             name: 'Playwright',
             baseURL: process.env.TEST_URL,
             username: process.env.TEST_USERNAME,
             password: process.env.TEST_PASSWORD,
+            url : process.env.TEST1_URL,
         }
     };
 

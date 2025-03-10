@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { Login } from '../../../Pages/Login1Page.js'
+import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
 
 let page;
