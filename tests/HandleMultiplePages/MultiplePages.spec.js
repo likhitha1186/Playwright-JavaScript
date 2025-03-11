@@ -1,22 +1,23 @@
-import {test, expect, chromium} from "@playwright/test";
-import {Credentials} from "../Env.js";
+import { test, expect } from '@playwright/test';
 
-const credential = Credentials()
-test('handle multiple pages', async () => {
-    const browser = await chromium.launch();
-    const context = await browser.newContext();
+test('handle multiple window', async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('https://the-internet.herokuapp.com/windows');
+  const title = await page.title();
+  console.log(title);
 
-    const page1 = await context.newPage();
-    const allPages = context.pages();
+  const pagePromise = context.waitForEvent('page');
 
-    console.log("number of windows created : ",  allPages.length)
+  await page.locator("[href*='windows']").click();
+  const newPage = await pagePromise;
+  await expect(newPage).toHaveTitle('New Window');
 
-    await page1.goto(credential.url);
-    await page1.setViewportSize({ width: 1920, height: 1040 });
+  //  Promise.all([
+  //     await page.locator("[href*='windows']").click(),
+  //      await page.waitForLoadState()
+  // ])
 
-
-    const page1Title  =  await page1.title();
-    console.log("Page1: ", page1Title);
-    await page1.waitForTimeout(2000);
-
+  await page.bringToFront();
+  await page.waitForTimeout(3000);
 });

@@ -34,7 +34,7 @@ test.describe.serial("Board CRUD operation", () => {
 
         const response = await request.get(`${baseURL}/boards/${boardId}/actions?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
-        console.log(await response.json());
+      console.log(await response.json());
     });
 
     test("Update a Board", async ({ request }) => {
