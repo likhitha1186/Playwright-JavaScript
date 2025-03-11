@@ -38,4 +38,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
-//C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\playwright.config.js
