@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
-import { createBoards } from "../HelpersFile/helpers.js";
+import { getTrelloParams } from '../HelperFiles/helpers.js';
 
-const { baseURL, name, apiKey, token } = createBoards();
+
+const { baseURL, name, apiKey, token } = getTrelloParams();
 let boardId, boardName;
 
 test.describe('Board CRUD operation', () => {

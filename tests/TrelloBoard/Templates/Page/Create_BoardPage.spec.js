@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { HandlingBoardElements, HandlingCardElements, HandlingBoardLength } from "../FeatureFiles/MultipleElemets.spec.js";
+import { HandlingBoardElements, HandlingCardElements, HandlingBoardLength } from "../FeatureFiles/MultipleElements.js";
 
 export class Board {
     constructor(page) {

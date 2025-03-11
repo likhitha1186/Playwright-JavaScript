@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
 import {OneOnOneMeetingAgendaTemplate} from "../Page/OneOnOneMeetingAgendaPage.js";
-import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.spec.js"
+import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.js"
 
 let page, cardname;
 

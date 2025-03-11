@@ -1,4 +1,4 @@
-import {HandlingCardElements, HandlingLabelsElements} from "../FeatureFiles/MultipleElemets.spec.js";
+import {HandlingCardElements, HandlingLabelsElements} from "../FeatureFiles/MultipleElements.js";
 
 
 export class OneOnOneMeetingAgendaTemplate {

@@ -1,4 +1,4 @@
-import { HandlingTemplateElements } from "../FeatureFiles/MultipleElemets.spec.js"
+import { HandlingTemplateElements } from "../FeatureFiles/MultipleElements.js"
 
 export class TemplatesPage {
     constructor(page) {
