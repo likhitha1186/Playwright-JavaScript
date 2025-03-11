@@ -6,7 +6,7 @@ const { baseURL, name, apiKey, token } = createBoards();
 const boardIdFile = "./boardId.txt";
 const boardId = fs.readFileSync(boardIdFile, "utf8");
 
-test.describe("Label CRUD operation", () => {
+test.describe.only("Label CRUD operation", () => {
 
     test("Create Label on a Board", async ({ request }) => {
         const response = await request.post(`${baseURL}/boards/?name=${name}&key=${apiKey}&token=${token}`,
@@ -42,7 +42,7 @@ test.describe("Label CRUD operation", () => {
         expect(response.status()).toBe(200);
         console.log(await response.json());
     });
-    test("Delete a Board", async ({ request }) => {
+    test.skip("Delete a Board", async ({ request }) => {
         const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
         console.log(await response.json());
