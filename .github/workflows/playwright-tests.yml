@@ -29,8 +29,8 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test --config=tests/library/playwright.config.js --project=chromium-*
-
+        run:  npx playwright test --config=./playwright.config.js --project=chromium
+        
       - name: Upload Playwright Test Report
         if: always() # Upload report even if tests fail
         uses: actions/upload-artifact@v4
