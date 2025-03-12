@@ -35,3 +35,10 @@ export function createLabels() {
         baseURL: process.env.BASE_URL,
     };
 }
+export function deleteTrello() {
+    return {
+        apiKey: process.env.API_KEY,
+        token: process.env.TOKEN,
+        baseURL: process.env.BASE_URL,
+    };
+}

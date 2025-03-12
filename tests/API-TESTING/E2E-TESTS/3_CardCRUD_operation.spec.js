@@ -33,7 +33,6 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.get(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Update a card", async ({request}) => {
@@ -47,7 +46,6 @@ test.describe.serial("Cards CRUD operation", () => {
         });
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test.skip("Delete a Card", async ({request}) => {
@@ -56,7 +54,6 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Get a field on a Card", async ({request}) => {
@@ -67,7 +64,6 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.get(`${baseURL}/cards/${cardId}/${filedName}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Get Actions on a Card", async ({request}) => {
@@ -76,7 +72,6 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.get(`${baseURL}/cards/${cardId}/actions?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Create Attachment On Card", async ({request}) => {
@@ -107,7 +102,6 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.get(`${baseURL}/cards/${cardId}/attachments/${attachmentID}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Get the Board the Card is on", async ({request}) => {
@@ -118,7 +112,6 @@ test.describe.serial("Cards CRUD operation", () => {
         expect(response.status()).toBe(200);
         let res = await response.json();
         expect(res.name).toEqual(boardName)
-        console.log(await response.json());
     });
 
 
