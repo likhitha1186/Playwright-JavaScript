@@ -9,28 +9,31 @@ const { boardId, cardId, labelId } = boardData;
 
 
 test.describe.serial("Delete CRUD operation", () => {
+  test("Delete a Label", async ({ request }) => {
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
 
-  test("Delete a Board", async ({ request }) => {
-  //  const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    // const { labelId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
-    const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
+    const response = await request.delete(`${baseURL}/labels/${labelId}?key=${apiKey}&token=${token}`);
     expect(response.status()).toBe(200);
 
   });
-
   test("Delete a Card", async ({request}) => {
-   // const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
+
+    // const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
     const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
 
     expect(response.status()).toBe(200);
   });
 
+  test("Delete a Board", async ({ request }) => {
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Waits for 2 seconds
 
-  test("Delete a Label", async ({ request }) => {
-   // const { labelId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    //  const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
-    const response = await request.delete(`${baseURL}/labels/${labelId}?key=${apiKey}&token=${token}`);
+    const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
     expect(response.status()).toBe(200);
 
   });

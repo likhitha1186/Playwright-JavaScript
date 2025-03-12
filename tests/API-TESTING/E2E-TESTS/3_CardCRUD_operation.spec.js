@@ -6,11 +6,12 @@ import {generateRandomFieldName} from "../HelpersFile/GeneratingRandomNames.js";
 const { baseURL, CardName, apiKey, token } = createCards();
 const boardDataFile = "./boardData.json";
 const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-const { boardId, boardName, listId,listName } = boardData;
-let attachmentID;
+const {  boardName, listId,listName } = boardData;
+
 
 test.describe.serial("Cards CRUD operation", () => {
     test("Create a new card", async ({request}) => {
+        await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
         const response = await request.post(`${baseURL}/cards?name=${CardName}&idList=${listId}&key=${apiKey}&token=${token}`, {
             headers: {Accept: "application/json"},
         });
@@ -81,7 +82,6 @@ test.describe.serial("Cards CRUD operation", () => {
         });
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
         let res = await response.json();
         boardData.attachmentID = res.id;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
