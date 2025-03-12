@@ -31,7 +31,6 @@ test.describe.serial("List CRUD operation", () => {
         const response = await request.get(`${baseURL}/lists/${listId}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Update the properties of a List", async ({ request }) => {
@@ -45,7 +44,6 @@ test.describe.serial("List CRUD operation", () => {
         });
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Get the board a list is on", async ({ request }) => {
@@ -54,7 +52,6 @@ test.describe.serial("List CRUD operation", () => {
         const response = await request.get(`${baseURL}/lists/${listId}/board?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("Get the Actions on a List", async ({ request }) => {
@@ -63,7 +60,6 @@ test.describe.serial("List CRUD operation", () => {
         const response = await request.get(`${baseURL}/lists/${listId}/actions?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 
     test("List the cards in a list", async ({ request }) => {
@@ -72,6 +68,5 @@ test.describe.serial("List CRUD operation", () => {
         const response = await request.get(`${baseURL}/lists/${listId}/cards?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
-        console.log(await response.json());
     });
 });
