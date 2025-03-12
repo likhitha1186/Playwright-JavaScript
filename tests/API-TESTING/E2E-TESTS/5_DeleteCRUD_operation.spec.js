@@ -4,29 +4,31 @@ import fs from "fs";
 
 const { baseURL, apiKey, token } = deleteTrello();
 const boardDataFile = "./boardData.json";
+const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+const { boardId, cardId, labelId } = boardData;
 
 
 test.describe.serial("Delete CRUD operation", () => {
 
   test("Delete a Board", async ({ request }) => {
-    const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  //  const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
     const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
     expect(response.status()).toBe(200);
 
   });
 
-  test("Delete a Card", async ({ request }) => {
-    const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  test("Delete a Card", async ({request}) => {
+   // const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
     const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
-    expect(response.status()).toBe(200);
 
+    expect(response.status()).toBe(200);
   });
 
 
   test("Delete a Label", async ({ request }) => {
-    const { labelId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+   // const { labelId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
     const response = await request.delete(`${baseURL}/labels/${labelId}?key=${apiKey}&token=${token}`);
     expect(response.status()).toBe(200);
