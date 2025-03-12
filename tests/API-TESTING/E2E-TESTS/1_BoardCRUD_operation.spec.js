@@ -26,7 +26,7 @@ test.describe.serial("Board CRUD operation", () => {
 
         const response = await request.get(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
-        console.log(await response.json());
+
     });
 
     test("Get Actions of a Board", async ({ request }) => {
@@ -34,7 +34,7 @@ test.describe.serial("Board CRUD operation", () => {
 
         const response = await request.get(`${baseURL}/boards/${boardId}/actions?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
-      console.log(await response.json());
+
     });
 
     test("Update a Board", async ({ request }) => {
@@ -47,7 +47,7 @@ test.describe.serial("Board CRUD operation", () => {
             }
         });
         expect(response.status()).toBe(200);
-        console.log(await response.json());
+
     });
 
     test.skip("Delete a Board", async ({ request }) => {
@@ -55,6 +55,6 @@ test.describe.serial("Board CRUD operation", () => {
 
         const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
-        console.log("Deleted Board: " + boardId);
+
     });
 });
