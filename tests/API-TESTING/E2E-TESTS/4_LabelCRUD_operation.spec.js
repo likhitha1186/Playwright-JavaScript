@@ -15,7 +15,6 @@ test.describe.serial("Label CRUD operation", () => {
         const response = await request.post(`${baseURL}/labels/?name=${LabelName}&color=red&idBoard=${boardId}&key=${apiKey}&token=${token}`, {
             headers: { Accept: "application/json" },
         });
-
         expect(response.status()).toBe(200);
         let res = await response.json();
         const labelId = res.id;

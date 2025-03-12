@@ -5,8 +5,7 @@ import fs from "fs";
 const { baseURL, BoardName, apiKey, token } = createBoards();
 const boardDataFile = "./boardData.json";
 
-console.log("\n### Scenario: Board CRUD operation ###"); // Scenario Title
-
+console.log("\n### Scenario: Board CRUD operation ###"); 
 test.describe.serial("Board CRUD operation", () => {
     test("Create Trello Board", async ({ request }) => {
         console.log("1) Running: Create Trello Board...");
@@ -30,7 +29,9 @@ test.describe.serial("Board CRUD operation", () => {
 
         const response = await request.get(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+
         console.log(` 2. Get Trello Board`);
+
     });
 
     test("Get Actions of a Board", async ({ request }) => {
@@ -40,6 +41,8 @@ test.describe.serial("Board CRUD operation", () => {
         const response = await request.get(`${baseURL}/boards/${boardId}/actions?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
         console.log(` 3. Get Actions of a Board`);
+
+
     });
 
     test("Update a Board", async ({ request }) => {
@@ -54,5 +57,7 @@ test.describe.serial("Board CRUD operation", () => {
         });
         expect(response.status()).toBe(200);
         console.log(` 4. Update a Board`);
+
+
     });
 });

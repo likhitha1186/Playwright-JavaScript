@@ -14,6 +14,7 @@ console.log("\n### Scenario: Cards CRUD operation ###"); // Scenario Title
 test.describe.serial("Cards CRUD operation", () => {
     test("Create a new card", async ({ request }) => {
         console.log("1) Running: Create a new card...");
+        await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
         const response = await request.post(`${baseURL}/cards?name=${CardName}&idList=${listId}&key=${apiKey}&token=${token}`, {
             headers: { Accept: "application/json" },
         });
@@ -26,10 +27,9 @@ test.describe.serial("Cards CRUD operation", () => {
         boardData.cardId = cardId;
         boardData.cardName = cardName;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
+        console.log(`Created Card: ${cardName} on List: ${listName} (Board: ${boardName})`);
 
-        console.log(` 1. Created Card: ${cardName} on List: ${listName} (Board: ${boardName})`);
-    });
-
+    })
     test("Get a card by its ID", async ({ request }) => {
         console.log("2) Running: Get a card by its ID...");
         const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
@@ -52,17 +52,9 @@ test.describe.serial("Cards CRUD operation", () => {
         });
 
         expect(response.status()).toBe(200);
+
         console.log(` 3. Updated card with ID: ${cardId}`);
     });
-
-    test.skip("Delete a Card", async ({ request }) => {
-        console.log("4) Skipping: Delete a Card...");
-        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-
-        const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
-
-        expect(response.status()).toBe(200);
-        console.log(` 4. Deleted card with ID: ${cardId}`);
     });
 
     test("Get a field on a Card", async ({ request }) => {
@@ -74,6 +66,7 @@ test.describe.serial("Cards CRUD operation", () => {
 
         expect(response.status()).toBe(200);
         console.log(` 5. Retrieved field '${fieldName}' from card with ID: ${cardId}`);
+
     });
 
     test("Get Actions on a Card", async ({ request }) => {
@@ -114,6 +107,7 @@ test.describe.serial("Cards CRUD operation", () => {
         const response = await request.get(`${baseURL}/cards/${cardId}/attachments/${attachmentID}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
+
         console.log(` 8. Retrieved attachment with ID: ${attachmentID} from card: ${cardId}`);
     });
 
@@ -127,5 +121,7 @@ test.describe.serial("Cards CRUD operation", () => {
         let res = await response.json();
         expect(res.name).toEqual(boardName);
         console.log(` 9. Verified card ${cardId} is on board: ${boardName}`);
+        expect(res.name).toEqual(boardName)
+
     });
 });
