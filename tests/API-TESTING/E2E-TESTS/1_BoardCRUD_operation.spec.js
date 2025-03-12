@@ -49,12 +49,4 @@ test.describe.serial("Board CRUD operation", () => {
         expect(response.status()).toBe(200);
 
     });
-
-    test.skip("Delete a Board", async ({ request }) => {
-        const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-
-        const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
-        expect(response.status()).toBe(200);
-
-    });
 });
