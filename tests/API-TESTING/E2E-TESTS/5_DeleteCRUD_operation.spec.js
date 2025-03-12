@@ -6,7 +6,7 @@ const { baseURL, apiKey, token } = deleteTrello();
 const boardDataFile = "./boardData.json";
 
 
-test.describe.serial("Board CRUD operation", () => {
+test.describe.serial("Delete CRUD operation", () => {
 
   test("Delete a Board", async ({ request }) => {
     const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
