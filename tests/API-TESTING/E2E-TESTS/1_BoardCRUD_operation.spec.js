@@ -5,7 +5,7 @@ import fs from "fs";
 const { baseURL, BoardName, apiKey, token } = createBoards();
 const boardDataFile = "./boardData.json";
 
-test.describe.only("Board CRUD operation", () => {
+test.describe.serial("Board CRUD operation", () => {
     test("Create Trello Board", async ({ request }) => {
         const response = await request.post(`${baseURL}/boards/?name=${BoardName}&key=${apiKey}&token=${token}`, {
             headers: { Accept: "application/json" },

@@ -1,53 +1,32 @@
 import { test, expect } from "@playwright/test";
-import { createBoards } from "../HelpersFile/Helpers.js";
+import { createBoards, createLabels } from '../HelpersFile/Helpers.js';
 import fs from "fs";
 
-const { baseURL, name, apiKey, token } = createBoards();
-const boardIdFile = "./boardId.txt";
-const boardId = fs.readFileSync(boardIdFile, "utf8");
+const { baseURL, LabelName, apiKey, token } = createLabels();
+const boardDataFile = "./boardData.json";
+const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+const { boardId, boardName,cardName, listId,listName } = boardData;
 
-test.describe.only("Label CRUD operation", () => {
+test.describe.serial("Label CRUD operation", () => {
 
     test("Create Label on a Board", async ({ request }) => {
-        const response = await request.post(`${baseURL}/boards/?name=${name}&key=${apiKey}&token=${token}`,
+        const response = await request.post(`${baseURL}/labels/?name=${LabelName}&color=red&idBoard=${boardId}&key=${apiKey}&token=${token}`,
             {
                 headers: { Accept: "application/json" },
             }
         );
         expect(response.status()).toBe(200);
         let res = await response.json();
-        const boardId = res.id;
-        const boardName = res.name;
+        const labelId = res.id;
+        const labelName = res.name;
 
-        fs.writeFileSync(boardIdFile, boardId);
-        console.log(`Created Board: ${boardId}, ${boardName}`);
-    });
-    test("Get Trello Board", async ({ request }) => {
-        const response = await request.get(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
-        expect(response.status()).toBe(200);
-        console.log(await response.json());
-    });
-    test("Get Actions of a Board", async ({ request }) => {
-        const response = await request.get(`${baseURL}/boards/${boardId}/actions?key=${apiKey}&token=${token}`);
-        expect(response.status()).toBe(200);
-        console.log(await response.json());
-    });
-    test("Update a Board", async ({ request }) => {
-        const response = await request.put(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`,
-            {
-                data : {
-                    "prefs/background": "purple"
-                }
-            });
-        expect(response.status()).toBe(200);
-        console.log(await response.json());
-    });
-    test.skip("Delete a Board", async ({ request }) => {
-        const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
-        expect(response.status()).toBe(200);
-        console.log(await response.json());
-    });
+        boardData.labelId = labelId;
+        boardData.labelName =labelName;
 
+        fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
+        console.log(`Created label:${labelName} on card: ${cardName} (Board: ${boardName})`);
+        console.log(await response.json());
+    });
 
 
 });

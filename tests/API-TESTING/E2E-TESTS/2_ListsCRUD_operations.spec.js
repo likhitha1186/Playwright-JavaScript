@@ -7,7 +7,7 @@ const boardDataFile = "./boardData.json";
 const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 const { boardId, boardName } = boardData;
 
-test.describe.only("List CRUD operation", () => {
+test.describe.serial("List CRUD operation", () => {
     test("Create a new List on a Board", async ({ request }) => {
         const response = await request.post(`${baseURL}/lists?name=${ListName}&idBoard=${boardId}&key=${apiKey}&token=${token}`, {
             headers: { Accept: "application/json" },
