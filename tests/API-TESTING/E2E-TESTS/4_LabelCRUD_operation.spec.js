@@ -26,5 +26,4 @@ test.describe.serial("Label CRUD operation", () => {
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
         console.log(`Created label:${labelName} on card: ${cardName} (Board: ${boardName})`);
     });
-
 });

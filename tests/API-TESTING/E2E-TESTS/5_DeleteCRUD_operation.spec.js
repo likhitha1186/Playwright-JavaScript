@@ -18,6 +18,7 @@ test.describe.serial("Delete CRUD operation", () => {
   test("Delete a Card", async ({request}) => {
     await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
     const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
+
     expect(response.status()).toBe(200);
   });
 
@@ -26,5 +27,4 @@ test.describe.serial("Delete CRUD operation", () => {
     const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
     expect(response.status()).toBe(200);
   });
-
 });

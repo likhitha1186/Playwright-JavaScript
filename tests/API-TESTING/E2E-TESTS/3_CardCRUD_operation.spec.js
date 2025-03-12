@@ -47,7 +47,6 @@ test.describe.serial("Cards CRUD operation", () => {
     test("Get a field on a Card", async ({request}) => {
         const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const filedName = generateRandomFieldName();
-        console.log(filedName)
         const response = await request.get(`${baseURL}/cards/${cardId}/${filedName}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
     });
@@ -89,5 +88,4 @@ test.describe.serial("Cards CRUD operation", () => {
         let res = await response.json();
         expect(res.name).toEqual(boardName)
     });
-
 });

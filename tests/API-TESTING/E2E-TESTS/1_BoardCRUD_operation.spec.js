@@ -23,6 +23,7 @@ test.describe.serial("List CRUD operation", () => {
         const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+
     });
 
     test("Get Actions of a Board", async ({ request }) => {
@@ -41,5 +42,4 @@ test.describe.serial("List CRUD operation", () => {
         });
         expect(response.status()).toBe(200);
     });
-
 });

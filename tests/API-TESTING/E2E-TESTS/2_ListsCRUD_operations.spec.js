@@ -59,5 +59,4 @@ test.describe.serial("List CRUD operation", () =>{
         const response = await request.get(`${baseURL}/lists/${listId}/cards?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
     });
-
 });
