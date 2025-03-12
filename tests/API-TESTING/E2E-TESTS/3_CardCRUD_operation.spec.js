@@ -24,7 +24,7 @@ test.describe.serial("Cards CRUD operation", () => {
         boardData.cardName = cardName;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
         console.log(`Created Card: ${cardName} on List: ${listName} (Board: ${boardName})`);
-        console.log(await response.json());
+
     })
 
     test("Get a card by its ID", async ({request}) => {
@@ -44,14 +44,6 @@ test.describe.serial("Cards CRUD operation", () => {
                 "desc": "Updated description at" + new Date().toISOString()
             }
         });
-
-        expect(response.status()).toBe(200);
-    });
-
-    test.skip("Delete a Card", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-
-        const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
     });

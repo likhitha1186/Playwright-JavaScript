@@ -22,7 +22,7 @@ test.describe.serial("List CRUD operation", () => {
         boardData.listName = listName;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
         console.log(`Created List: ${listId}, ${listName} on Board: ${boardName} (${boardId})`);
-        console.log(await response.json());
+
     })
 
     test("Get information about a List", async ({ request }) => {
