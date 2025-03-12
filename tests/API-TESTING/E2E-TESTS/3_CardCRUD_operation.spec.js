@@ -1,19 +1,22 @@
 import { test, expect } from "@playwright/test";
-import {createCards} from "../HelpersFile/Helpers.js";
+import { createCards } from "../HelpersFile/Helpers.js";
 import fs from "fs";
-import {generateRandomFieldName} from "../HelpersFile/GeneratingRandomNames.js";
+import { generateRandomFieldName } from "../HelpersFile/GeneratingRandomNames.js";
 
 const { baseURL, CardName, apiKey, token } = createCards();
 const boardDataFile = "./boardData.json";
 const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-const {  boardName, listId,listName } = boardData;
+const { boardId, boardName, listId, listName } = boardData;
 
+
+console.log("\n### Scenario: Cards CRUD operation ###"); // Scenario Title
 
 test.describe.serial("Cards CRUD operation", () => {
-    test("Create a new card", async ({request}) => {
+    test("Create a new card", async ({ request }) => {
+        console.log("1) Running: Create a new card...");
         await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
         const response = await request.post(`${baseURL}/cards?name=${CardName}&idList=${listId}&key=${apiKey}&token=${token}`, {
-            headers: {Accept: "application/json"},
+            headers: { Accept: "application/json" },
         });
         expect(response.status()).toBe(200);
         let res = await response.json();
@@ -27,58 +30,66 @@ test.describe.serial("Cards CRUD operation", () => {
         console.log(`Created Card: ${cardName} on List: ${listName} (Board: ${boardName})`);
 
     })
-
-    test("Get a card by its ID", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Get a card by its ID", async ({ request }) => {
+        console.log("2) Running: Get a card by its ID...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
         const response = await request.get(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
+        console.log(` 2. Retrieved card with ID: ${cardId}`);
     });
 
-    test("Update a card", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Update a card", async ({ request }) => {
+        console.log("3) Running: Update a card...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
         const response = await request.put(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`, {
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             data: {
-                "desc": "Updated description at" + new Date().toISOString()
-            }
+                "desc": "Updated description at " + new Date().toISOString(),
+            },
         });
 
         expect(response.status()).toBe(200);
+
+        console.log(` 3. Updated card with ID: ${cardId}`);
+    });
     });
 
-    test("Get a field on a Card", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
-        const filedName = generateRandomFieldName();
-        console.log(filedName)
+    test("Get a field on a Card", async ({ request }) => {
+        console.log("5) Running: Get a field on a Card...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+        const fieldName = generateRandomFieldName();
 
-        const response = await request.get(`${baseURL}/cards/${cardId}/${filedName}?key=${apiKey}&token=${token}`);
+        const response = await request.get(`${baseURL}/cards/${cardId}/${fieldName}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
+        console.log(` 5. Retrieved field '${fieldName}' from card with ID: ${cardId}`);
+
     });
 
-    test("Get Actions on a Card", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Get Actions on a Card", async ({ request }) => {
+        console.log("6) Running: Get Actions on a Card...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
         const response = await request.get(`${baseURL}/cards/${cardId}/actions?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
+        console.log(` 6. Retrieved actions for card with ID: ${cardId}`);
     });
 
-    test("Create Attachment On Card", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Create Attachment On Card", async ({ request }) => {
+        console.log("7) Running: Create Attachment On Card...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
-        const response = await request.post(`${baseURL}/cards/${cardId}/attachments?key=${apiKey}&token=${token}`,{
-            data:{
-                "name" : "trello-power-up",
-               // "file":"C:/Users/likhithap/Downloads/image-20240612-094206",
-                "mimeType" : "text/png",
-                "setCover" : "false",
-               "url": "https://trello.com/c/ccPN1tMZ/8-review-meetings"
-               // "url": "https://glitch.com/~trello-attachments-api"
-            }
+        const response = await request.post(`${baseURL}/cards/${cardId}/attachments?key=${apiKey}&token=${token}`, {
+            data: {
+                "name": "trello-power-up",
+                "mimeType": "text/png",
+                "setCover": "false",
+                "url": "https://trello.com/c/ccPN1tMZ/8-review-meetings",
+            },
         });
 
         expect(response.status()).toBe(200);
@@ -86,25 +97,31 @@ test.describe.serial("Cards CRUD operation", () => {
         boardData.attachmentID = res.id;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
 
+        console.log(` 7. Created attachment with ID: ${res.id} on card: ${cardId}`);
     });
 
-    test("Get an Attachment On Card", async ({request}) => {
-        const {cardId, attachmentID} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Get an Attachment On Card", async ({ request }) => {
+        console.log("8) Running: Get an Attachment On Card...");
+        const { cardId, attachmentID } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
         const response = await request.get(`${baseURL}/cards/${cardId}/attachments/${attachmentID}?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
+
+        console.log(` 8. Retrieved attachment with ID: ${attachmentID} from card: ${cardId}`);
     });
 
-    test("Get the Board the Card is on", async ({request}) => {
-        const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+    test("Get the Board the Card is on", async ({ request }) => {
+        console.log("9) Running: Get the Board the Card is on...");
+        const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 
         const response = await request.get(`${baseURL}/cards/${cardId}/board?key=${apiKey}&token=${token}`);
 
         expect(response.status()).toBe(200);
         let res = await response.json();
+        expect(res.name).toEqual(boardName);
+        console.log(` 9. Verified card ${cardId} is on board: ${boardName}`);
         expect(res.name).toEqual(boardName)
+
     });
-
-
 });
