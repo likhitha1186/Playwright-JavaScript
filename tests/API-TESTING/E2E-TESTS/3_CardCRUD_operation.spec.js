@@ -8,7 +8,8 @@ const boardDataFile = "./boardData.json";
 const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 const { boardId, boardName, listId,listName } = boardData;
 let attachmentID;
-test.describe.only("Cards CRUD operation", () => {
+
+test.describe.serial("Cards CRUD operation", () => {
     test("Create a new card", async ({request}) => {
         const response = await request.post(`${baseURL}/cards?name=${CardName}&idList=${listId}&key=${apiKey}&token=${token}`, {
             headers: {Accept: "application/json"},

@@ -11,10 +11,10 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,7 +29,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test --config=tests/library/playwright.config.js --project=chromium-*
+        run:  npx playwright test --config=./playwright.config.js --project=chromium
 
       - name: Upload Playwright Test Report
         if: always() # Upload report even if tests fail
@@ -38,4 +38,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
-//C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\playwright.config.js
