@@ -30,16 +30,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install chromium
 
-      - name: Run Playwright E2E Tests
-        run: |
-          npx playwright test ^
-            tests/API-TESTING/E2E-TESTS/1_BoardCRUD_operation.spec.js ^
-            tests/API-TESTING/E2E-TESTS/2_ListsCRUD_operations.spec.js ^
-            tests/API-TESTING/E2E-TESTS/3_CardCRUD_operation.spec.js ^
-            tests/API-TESTING/E2E-TESTS/4_LabelCRUD_operation.spec.js ^
-            tests/API-TESTING/E2E-TESTS/5_DeleteCRUD_operation.spec.js ^
-            tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js ^
-            --config=playwright.config.js --project=chromium
+      - name: Run Playwright Tests
+        run: npx playwright test tests/API-TESTING --config=playwright.config.js --project=chromium
 
       - name: Generate Allure Report
         run: |
