@@ -1,0 +1,4 @@
+Successfully added a Idea Tasks to the Info list
+Successfully found and clicked the card: Idea Tasks
+Successfully added Name to the: Idea Tasks
+Successfully added Task 1,Task 2,Task 3 to the  Idea Tasks
