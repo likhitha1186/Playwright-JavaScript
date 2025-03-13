@@ -17,21 +17,26 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4  # Fetches the repository code
+        uses: actions/checkout@v4 #it will get the code from the working-directory: and it can be used in subsequent step.
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 #stes the node.js in the env
+        with:
+          node-version: 18 #install latest node.js version.[long term support]
 
       - name: Install Dependencies
-        run: npm ci  # Installs project dependencies
+        run: npm ci  # Faster and ensures dependencies match package-lock.json
 
       - name: Install Playwright Browsers
-        run: npx playwright install chromium  # Installs only Chromium
+        run: npx playwright install chromium
 
       - name: Run Playwright Tests
-        run: npx playwright test --config=./playwright.config.js --project=chromium
+        run: npx playwright test --/tests/TrelloBoard/Templates/*.spec.js  --project=chromium
 
       - name: Upload Playwright Test Report
-        if: always()  # Ensures the report is uploaded even if tests fail
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report  # Artifact name
+          name: playwright-report  #artifact name
           path: playwright-report/
-          retention-days: 7  # Report retention duration
+          retention-days: 7
