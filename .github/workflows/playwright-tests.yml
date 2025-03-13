@@ -19,16 +19,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4  # Fetches the repository code
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18  # Installs Node.js 18 (LTS)
-
       - name: Install Dependencies
-        run: npm install  # Installs project dependencies
+        run: npm ci  # Installs project dependencies
 
       - name: Install Playwright Browsers
-        run: npx playwright install --chromium  # Installs Chromium for Playwright tests
+        run: npx playwright install chromium  # Installs only Chromium
 
       - name: Run Playwright Tests
         run: npx playwright test --config=./playwright.config.js --project=chromium
