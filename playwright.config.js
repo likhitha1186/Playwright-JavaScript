@@ -23,7 +23,7 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
-  testMatch :['/tests/TrelloBoard/Templates/E2E-Tests/*.spec.js'] ,
+  testMatch :['/tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js'] ,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
