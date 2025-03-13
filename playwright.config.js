@@ -23,7 +23,7 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
-  testMatch :['/tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js'] ,
+  testMatch :['/tests/API-TESTING/E2E-TESTS/*.spec.js'] ,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -38,7 +38,7 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless:!!process.env.CI,
+    headless:false,
     // downloadsPath: `${__dirname}/../downloads`,
     launchOptions: {
       // 1
