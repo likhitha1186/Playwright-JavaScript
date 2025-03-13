@@ -13,11 +13,6 @@ test('handle multiple window', async ({ browser }) => {
   const newPage = await pagePromise;
   await expect(newPage).toHaveTitle('New Window');
 
-  //  Promise.all([
-  //     await page.locator("[href*='windows']").click(),
-  //      await page.waitForLoadState()
-  // ])
-
   await page.bringToFront();
   await page.waitForTimeout(3000);
 });

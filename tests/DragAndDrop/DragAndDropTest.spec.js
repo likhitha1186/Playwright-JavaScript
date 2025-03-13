@@ -20,4 +20,3 @@ test('Drag And Drop', async ({page}) => {
         .getByRole('button', {name: 'Add a card'});
     await first.dragTo(second);
 });
-

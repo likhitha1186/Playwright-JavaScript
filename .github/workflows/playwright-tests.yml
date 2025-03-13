@@ -17,18 +17,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 #it will get the code from the working-directory: and it can be used in subsequent step.
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4 #stes the node.js in the env
         with:
-          node-version: 18
+          node-version: 18 #install latest node.js version.[long term support]
 
       - name: Install Dependencies
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --chromium
 
       - name: Run Playwright Tests
         run:  npx playwright test --config=./playwright.config.js --project=chromium
@@ -37,6 +37,6 @@ jobs:
         if: always() # Upload report even if tests fail
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report #artifact name
           path: playwright-report/
           retention-days: 7
