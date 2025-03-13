@@ -1,0 +1,56 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Delete CRUD operation >> Delete a Label
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\5_DeleteCRUD_operation.spec.js:12:3
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 401
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\5_DeleteCRUD_operation.spec.js:15:31
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from "@playwright/test";
+   2 | import { deleteTrello } from '../HelpersFile/Helpers.js';
+   3 | import fs from "fs";
+   4 |
+   5 | const { baseURL, apiKey, token } = deleteTrello();
+   6 | const boardDataFile = "./boardData.json";
+   7 | const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+   8 | const { boardId, cardId, labelId } = boardData;
+   9 |
+  10 |
+  11 | test.describe.serial("Delete CRUD operation", () => {
+  12 |   test("Delete a Label", async ({ request }) => {
+  13 |     await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
+  14 |     const response = await request.delete(`${baseURL}/labels/${labelId}?key=${apiKey}&token=${token}`);
+> 15 |     expect(response.status()).toBe(200);
+     |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  16 |
+  17 |   });
+  18 |   test("Delete a Card", async ({request}) => {
+  19 |     await new Promise(resolve => setTimeout(resolve, 3000)); // Waits for 2 seconds
+  20 |     const response = await request.delete(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
+  21 |
+  22 |     expect(response.status()).toBe(200);
+  23 |   });
+  24 |
+  25 |   test("Delete a Board", async ({ request }) => {
+  26 |     await new Promise(resolve => setTimeout(resolve, 2000)); // Waits for 2 seconds
+  27 |     const response = await request.delete(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
+  28 |     expect(response.status()).toBe(200);
+  29 |   });
+  30 | });
+```

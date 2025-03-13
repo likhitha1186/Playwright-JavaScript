@@ -1,11 +1,11 @@
 {
-  "boardId": "67d19d372ca815b2b9822364",
-  "boardName": "Sales Sprints",
-  "listId": "67d19d3bdc0682e3a0aba770",
-  "listName": "To Do",
-  "cardId": "67d19d407556d2563dad8685",
-  "cardName": "Support Workflow",
-  "attachmentID": "67d19d4318395ae5cb1eef39",
-  "labelId": "67d19d45a999413ce22cdcc7",
-  "labelName": "Paused"
+  "boardId": "67d2e490bfeeac76af9a4839",
+  "boardName": "Project Meetings",
+  "listId": "67d2e492ce9ad4719b7425f6",
+  "listName": "In Progress",
+  "cardId": "67d2e4977e0d875bd8f1d392",
+  "cardName": "Support Updates",
+  "attachmentID": "67d2e499ee7623c2518b3153",
+  "labelId": "67d2e49b44a0b37d387398ed",
+  "labelName": " Discuss"
 }

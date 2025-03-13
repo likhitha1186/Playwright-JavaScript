@@ -1,0 +1,88 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: List CRUD operation >> Create a new List on a Board
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\2_ListsCRUD_operations.spec.js:11:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 401
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\2_ListsCRUD_operations.spec.js:16:35
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from "@playwright/test";
+   2 | import { createLists } from "../HelpersFile/Helpers.js";
+   3 | import fs from "fs";
+   4 |
+   5 | const { baseURL, ListName, apiKey, token } = createLists();
+   6 | const boardDataFile = "./boardData.json";
+   7 | const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+   8 | const { boardId, boardName } = boardData;
+   9 |
+  10 | test.describe.serial("List CRUD operation", () =>{
+  11 |     test("Create a new List on a Board", async ({ request }) => {
+  12 |       //  await new Promise(resolve => setTimeout(resolve, 2000)); // Waits for 2 seconds
+  13 |         const response = await request.post(`${baseURL}/lists?name=${ListName}&idBoard=${boardId}&key=${apiKey}&token=${token}`, {
+  14 |             headers: { Accept: "application/json" },
+  15 |         });
+> 16 |         expect(response.status()).toBe(200);
+     |                                   ^ Error: expect(received).toBe(expected) // Object.is equality
+  17 |         let res = await response.json();
+  18 |         const listId = res.id;
+  19 |         const listName = res.name;
+  20 |
+  21 |         // Update boardData.json with the new List details
+  22 |         boardData.listId = listId;
+  23 |         boardData.listName = listName;
+  24 |         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
+  25 |         console.log(`Created List: ${listId}, ${listName} on Board: ${boardName} (${boardId})`);
+  26 |     })
+  27 |
+  28 |     test("Get information about a List", async ({ request }) => {
+  29 |         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  30 |         const response = await request.get(`${baseURL}/lists/${listId}?key=${apiKey}&token=${token}`);
+  31 |         expect(response.status()).toBe(200);
+  32 |     });
+  33 |
+  34 |     test("Update the properties of a List", async ({ request }) => {
+  35 |         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  36 |         const response = await request.put(`${baseURL}/lists/${listId}?key=${apiKey}&token=${token}`,{
+  37 |             headers: { "Content-Type": "application/json" },
+  38 |             data: {
+  39 |                 "pos" : "bottom"
+  40 |             }
+  41 |         });
+  42 |         expect(response.status()).toBe(200);
+  43 |     });
+  44 |
+  45 |     test("Get the board a list is on", async ({ request }) => {
+  46 |         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  47 |         const response = await request.get(`${baseURL}/lists/${listId}/board?key=${apiKey}&token=${token}`);
+  48 |         expect(response.status()).toBe(200);
+  49 |     });
+  50 |
+  51 |     test("Get the Actions on a List", async ({ request }) => {
+  52 |         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  53 |         const response = await request.get(`${baseURL}/lists/${listId}/actions?key=${apiKey}&token=${token}`);
+  54 |         expect(response.status()).toBe(200);
+  55 |     });
+  56 |
+  57 |     test("List the cards in a list", async ({ request }) => {
+  58 |         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+  59 |         const response = await request.get(`${baseURL}/lists/${listId}/cards?key=${apiKey}&token=${token}`);
+  60 |         expect(response.status()).toBe(200);
+  61 |     });
+  62 | });
+```

@@ -1,0 +1,55 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Label CRUD operation >> Create Label on a Board
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\4_LabelCRUD_operation.spec.js:11:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 401
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\API-TESTING\E2E-TESTS\4_LabelCRUD_operation.spec.js:18:35
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from "@playwright/test";
+   2 | import { createBoards, createLabels } from '../HelpersFile/Helpers.js';
+   3 | import fs from "fs";
+   4 |
+   5 | const { baseURL, LabelName, apiKey, token } = createLabels();
+   6 | const boardDataFile = "./boardData.json";
+   7 | const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
+   8 | const { boardId, boardName,cardName, listId,listName } = boardData;
+   9 |
+  10 | test.describe.serial("Label CRUD operation", () => {
+  11 |     test("Create Label on a Board", async ({ request }) => {
+  12 |        // await new Promise(resolve => setTimeout(resolve, 2000)); // Waits for 2 seconds
+  13 |         const response = await request.post(`${baseURL}/labels/?name=${LabelName}&color=red&idBoard=${boardId}&key=${apiKey}&token=${token}`,
+  14 |             {
+  15 |                 headers: { Accept: "application/json" },
+  16 |             }
+  17 |         );
+> 18 |         expect(response.status()).toBe(200);
+     |                                   ^ Error: expect(received).toBe(expected) // Object.is equality
+  19 |         let res = await response.json();
+  20 |         const labelId = res.id;
+  21 |         const labelName = res.name;
+  22 |
+  23 |         boardData.labelId = labelId;
+  24 |         boardData.labelName =labelName;
+  25 |
+  26 |         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
+  27 |         console.log(`Created label:${labelName} on card: ${cardName} (Board: ${boardName})`);
+  28 |     });
+  29 | });
+```
