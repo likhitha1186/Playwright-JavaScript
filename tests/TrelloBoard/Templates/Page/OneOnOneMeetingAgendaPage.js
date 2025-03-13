@@ -49,6 +49,7 @@ export class OneOnOneMeetingAgendaTemplate {
         this.fileAttachment = this.page.locator("//span[contains(text(), 'ScratchPaper.jpg')]");
         this.commentBox = this.page.locator("//textarea[@placeholder='Write a comment…']");
         this.hideDetailsButton = this.page.locator("//button[normalize-space()='Show details']");
+        this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
     }
 
     async addCardToInfoTopics(cardname) {
@@ -162,6 +163,9 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.addCheckList(addChecklistItems)
         await this.checkTheAddedCheckList()
         await this.addDates()
+    }
+    async closeOpenedCard(){
+      await this.closeCardButton.click()
     }
 
     // selecting already existing card

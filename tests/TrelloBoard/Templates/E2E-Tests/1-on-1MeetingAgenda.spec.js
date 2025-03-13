@@ -38,6 +38,7 @@ test('Add a card in Info list', async () => {
     console.log(`Successfully found and clicked the card: ${cardname}`);
     console.log(`Successfully added ${labelName} to the: ${cardname}`);
     console.log(`Successfully added ${addChecklistItems} to the  ${cardname}`);
+    await actions.closeOpenedCard()
     await page.waitForTimeout(1000);
 
 });
