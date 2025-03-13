@@ -17,8 +17,8 @@ export class Login {
   }
 
   async selectWorkspace(){
-        await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
-        await this.page.getByText("likhitha's workspace").click();
+        await this.page.locator("//span[normalize-space()='Workspaces']").click();
+        await this.page.locator("//ul[@data-testid='workspace-switcher-popover']//ul[1]//li[1]//a[1]").click();
   }
 
   async selectTemplates(){
