@@ -1,0 +1,4 @@
+Successfully added a Sales Solutions to the Info list
+Successfully found and clicked the card: Sales Solutions
+Successfully added  Discuss to the: Sales Solutions
+Successfully added Task 1,Task 2,Task 3 to the  Sales Solutions

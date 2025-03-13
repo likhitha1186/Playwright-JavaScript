@@ -1,6 +1,11 @@
 {
-  "boardId": "67d300d575d47f3cecfc30a2",
-  "boardName": "Support Project",
-  "listId": "67d300d91e16461e28cb2ee0",
-  "listName": "Testing"
+  "boardId": "67d303e7626f48b59619dafd",
+  "boardName": "Kanban Tasks",
+  "listId": "67d303e95596957ad65e865a",
+  "listName": "Waiting",
+  "cardId": "67d303efdc4f38cbce424de9",
+  "cardName": "Planning Problems",
+  "attachmentID": "67d303f10a66537e10a327fb",
+  "labelId": "67d303f362370a471dfb99fa",
+  "labelName": "Paused"
 }
