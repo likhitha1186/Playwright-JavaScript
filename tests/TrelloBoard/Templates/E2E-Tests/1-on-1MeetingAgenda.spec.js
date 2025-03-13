@@ -12,7 +12,7 @@ test.beforeAll(async ({ browser }) => {
     const loginPage = new Login(page);
     await loginPage.login('likhithapk.1186@gmail.com', 'Bq,f%7N9-46JiKT');
     console.log('Successfully logged in as Likhitha');
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(1000);
     await loginPage.selectWorkspace();
     console.log("Successfully Likhitha's workspace selected");
     await loginPage.selectTemplates()

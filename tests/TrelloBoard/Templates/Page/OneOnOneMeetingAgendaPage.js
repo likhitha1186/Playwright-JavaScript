@@ -134,9 +134,9 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.page.getByTestId('card-back-due-date-button').click();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).uncheck();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(2).check();
-        await this.page.getByRole('button', { name: '2, Sunday February' }).click();
+        await this.page.getByRole('button', { name: '4, Tuesday March 2025' }).click();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).check();
-        await this.page.getByRole('button', { name: '26, Wednesday February' }).click();
+        await this.page.getByRole('button', { name: '3, Thursday April 2025' }).click();
         this.page.locator("//div[@class='ZLkHQZu7HZZj5h']//button[1]").click()
     }
 

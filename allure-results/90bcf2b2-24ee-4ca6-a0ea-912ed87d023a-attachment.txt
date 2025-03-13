@@ -1,0 +1,4 @@
+Successfully added a Design Documentation to the Info list
+Successfully found and clicked the card: Design Documentation
+Successfully added Paused to the: Design Documentation
+Successfully added Task 1,Task 2,Task 3 to the  Design Documentation
