@@ -8,7 +8,7 @@ let page, cardname;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-
+    
     const loginPage = new Login(page);
     await loginPage.login('likhithapk.1186@gmail.com', 'Bq,f%7N9-46JiKT');
     console.log('Successfully logged in as Likhitha');
