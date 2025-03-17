@@ -36,8 +36,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install chromium
 
+      - name: Check Playwright Version
+        run: npx playwright --version
+
       - name: Run Playwright UI Test
-        run: npx playwright test tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium
+        run: npx playwright test tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium --headed
 
       - name: Generate Allure Report
         run: |
@@ -57,3 +60,10 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}
+
+      - name: Upload Playwright Trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+         name: playwright-trace
+         path: test-results/
