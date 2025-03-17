@@ -12,8 +12,8 @@ test.describe.serial("Board CRUD operation", () => {
         });
         expect(response.status()).toBe(200);
         let res = await response.json();
-        const boardId = res.id;
         const boardName = res.name;
+        const boardId = res.id;
 
         fs.writeFileSync(boardDataFile, JSON.stringify({ boardId, boardName }, null, 2));
         console.log(`Created Board: ${boardId}, ${boardName}`);
