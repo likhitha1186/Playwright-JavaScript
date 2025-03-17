@@ -1,0 +1,4 @@
+Successfully added a Retrospective Actions to the Info list
+Successfully found and clicked the card: Retrospective Actions
+Successfully added Name to the: Retrospective Actions
+Successfully added Task 1,Task 2,Task 3 to the  Retrospective Actions

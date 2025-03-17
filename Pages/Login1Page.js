@@ -15,19 +15,9 @@ export class Login {
   }
 
   async selectWorkspace(){
-    console.log("Waiting for workspace dropdown...");
-    await this.page.waitForSelector("//span[normalize-space()='Workspaces']", { timeout: 10000 });
-
-    console.log("Workspace dropdown found, clicking...");
-    await this.page.locator("//span[normalize-space()='Workspaces']").click();
-
-    console.log("Waiting for workspace list to appear...");
-    await this.page.waitForSelector("//ul[@data-testid='workspace-switcher-popover']//ul[1]//li[1]//a[1]", { timeout: 10000 });
-
-    console.log("Clicking first workspace...");
-    await this.page.locator("//ul[@data-testid='workspace-switcher-popover']//ul[1]//li[1]//a[1]").click();
+        await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+        await this.page.getByText("likhitha's workspace").click();
   }
-
 
   async selectTemplates(){
         await this.page.getByTestId('templates-menu').click();
