@@ -1,0 +1,2 @@
+Successfully clicked the card: Planning Onboarding
+Successfully performed specified actions on : Planning Onboarding

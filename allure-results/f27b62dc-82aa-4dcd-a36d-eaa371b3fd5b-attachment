@@ -1,0 +1,98 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Create a new Board
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\Trello.spec.js:11:1
+
+# Error details
+
+```
+Error: locator.click: Test timeout of 500000ms exceeded.
+Call log:
+  - waiting for getByLabel('Add board')
+
+    at Board.createBoard (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\CreateBoardPage.js:10:45)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\Trello.spec.js:13:27
+```
+
+# Test source
+
+```ts
+   1 | import { expect } from '@playwright/test';
+   2 | import {HandlingBoardElements, HandlingCardElements, HandlingBoardLength} from "../HelperFiles/HandlingMultipleElement.js";
+   3 |
+   4 | export class Board {
+   5 |   constructor(page) {
+   6 |     this.page = page;
+   7 |   }
+   8 |
+   9 |   async createBoard(Boardname) {
+> 10 |     await this.page.getByLabel('Add board').click();
+     |                                             ^ Error: locator.click: Test timeout of 500000ms exceeded.
+  11 |     await this.page.getByTestId('create-board-title-input').fill(Boardname);
+  12 |     await this.page.getByTestId('create-board-submit-button').click();
+  13 |     return Boardname;
+  14 |   }
+  15 |
+  16 |   async countBoard(){
+  17 |       const BoardList = await this.page.$$("//div[@data-testid='workspace-boards-and-views-lists']//div[3]//li");
+  18 |       return await  HandlingBoardLength(BoardList);
+  19 |
+  20 |   }
+  21 |
+  22 |   async findBoardElement(boardName) {
+  23 |     const allBoards = await this.page.$$("//div[@data-testid='workspace-boards-and-views-lists']//div[3]//li");
+  24 |     return await HandlingBoardElements(allBoards, boardName);
+  25 |   }
+  26 |
+  27 |   async addList(Listname){
+  28 |     await this.page.getByPlaceholder('Enter list name…').fill(Listname);
+  29 |     await this.page.getByTestId('list-composer-add-list-button').click();
+  30 |   }
+  31 |
+  32 |   async addCard(Cardname) {
+  33 |     const addCardButton = this.page.locator("//li[@data-testid='list-wrapper'][1]").getByTestId('list-add-card-button');
+  34 |     const textArea = this.page.getByTestId('list-card-composer-textarea');
+  35 |     await this.page.waitForTimeout(2000)
+  36 |     if ((await addCardButton.isVisible()))
+  37 |        await addCardButton.click();
+  38 |     await textArea.fill(Cardname);
+  39 |     await this.page.getByTestId('list-card-composer-add-card-button').click();
+  40 |
+  41 |   }
+  42 |  async openCard(cardName){
+  43 |     const allCards= await this.page.$$("//li[@data-testid='list-wrapper'][1]//li");
+  44 |     return await HandlingCardElements(allCards, cardName, this.page);
+  45 |   }
+  46 |
+  47 |   async performAction(cardName){
+  48 |       const inList = await this.page.locator("//span[@class='wl2C35O7dKV1wx']").click();
+  49 |       await this.page.locator("//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']").click();
+  50 |       const options = await this.page.$$("//div[@role='option']//li");
+  51 |       await options[0].click();
+  52 |       await this.page.getByTestId('move-card-popover-move-button').click()
+  53 |   }
+  54 |
+  55 |   async deleteBoard(){
+  56 |       await this.page.getByTestId('open-boards-link').click();
+  57 |       await this.page.waitForTimeout(2000);
+  58 |       await this.page.locator("//button[normalize-space()='View closed boards']").click();
+  59 |       await this.page.waitForTimeout(2000);
+  60 |
+  61 |       const  deleteButtons = await this.page.$$('//button[contains(text(), "Delete")]');
+  62 |       console.log(`Total  closed boards: ${deleteButtons.length}`)
+  63 |       for (const button of deleteButtons) {
+  64 |           await button.click();
+  65 |           const confirmButton = this.page.locator("//button[@data-testid='close-board-delete-board-confirm-button']");
+  66 |           await confirmButton.click();
+  67 |           console.log('Confirmed deletion.');
+  68 |       }
+  69 |   }
+  70 | }
+  71 |
+```

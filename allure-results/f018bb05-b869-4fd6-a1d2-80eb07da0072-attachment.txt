@@ -1,0 +1,4 @@
+Successfully added a Planning Onboarding to the Info list
+Successfully found and clicked the card: Planning Onboarding
+Successfully added Paused to the: Planning Onboarding
+Successfully added Task 1,Task 2,Task 3 to the  Planning Onboarding
