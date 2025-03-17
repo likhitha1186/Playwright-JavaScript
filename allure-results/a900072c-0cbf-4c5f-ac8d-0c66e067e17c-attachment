@@ -1,0 +1,364 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Select dates and submit form
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DatePicker\DateHandling.spec.js:3:1
+
+# Error details
+
+```
+Error: locator.scrollIntoViewIfNeeded: Test ended.
+Call log:
+  - attempting scroll into view action
+    - waiting for element to be stable
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DatePicker\DateHandling.spec.js:7:49
+```
+
+# Page snapshot
+
+```yaml
+- banner:
+  - heading "Automation Testing Practice" [level=1]
+  - paragraph: For Selenium, Cypress & Playwright
+- heading "GUI Elements" [level=3]:
+  - link "GUI Elements"
+- text: "Name:"
+- textbox "Enter Name"
+- text: "Email:"
+- textbox "Enter EMail"
+- text: "Phone:"
+- textbox "Enter Phone"
+- text: "Address:"
+- textbox "Address:"
+- text: "Gender:"
+- radio "Male"
+- text: Male
+- radio "Female"
+- text: "Female Days:"
+- checkbox "Sunday"
+- text: Sunday
+- checkbox "Monday"
+- text: Monday
+- checkbox "Tuesday"
+- text: Tuesday
+- checkbox "Wednesday"
+- text: Wednesday
+- checkbox "Thursday"
+- text: Thursday
+- checkbox "Friday"
+- text: Friday
+- checkbox "Saturday"
+- text: "Saturday Country:"
+- combobox "Country:":
+  - option "United States" [selected]
+  - option "Canada"
+  - option "United Kingdom"
+  - option "Germany"
+  - option "France"
+  - option "Australia"
+  - option "Japan"
+  - option "China"
+  - option "Brazil"
+  - option "India"
+- text: "Colors:"
+- listbox "Colors:":
+  - option "Red"
+  - option "Blue"
+  - option "Green"
+  - option "Yellow"
+  - option "Red"
+  - option "White"
+  - option "Green"
+- text: "Sorted List:"
+- listbox "Sorted List:":
+  - option "Cat"
+  - option "Cheetah"
+  - option "Deer"
+  - option "Dog"
+  - option "Elephant"
+  - option "Fox"
+  - option "Giraffe"
+  - option "Lion"
+  - option "Rabbit"
+  - option "Zebra"
+- paragraph:
+  - text: "Date Picker 1:"
+  - textbox
+- paragraph:
+  - text: "Date Picker 2:"
+  - textbox
+- text: "Date Picker 3: (Select a Date Range)"
+- textbox
+- text: to
+- textbox
+- button "Submit"
+- link "Home"
+- text: "Subscribe to:"
+- link "Posts (Atom)"
+- heading "Upload Files" [level=2]
+- textbox
+- button "Upload Single File"
+- paragraph
+- textbox
+- button "Upload Multiple Files"
+- paragraph
+- heading "Static Web Table" [level=2]
+- table:
+  - rowgroup:
+    - row "BookName Author Subject Price":
+      - cell "BookName"
+      - cell "Author"
+      - cell "Subject"
+      - cell "Price"
+    - row "Learn Selenium Amit Selenium 300":
+      - cell "Learn Selenium"
+      - cell "Amit"
+      - cell "Selenium"
+      - cell "300"
+    - row "Learn Java Mukesh Java 500":
+      - cell "Learn Java"
+      - cell "Mukesh"
+      - cell "Java"
+      - cell "500"
+    - row "Learn JS Animesh Javascript 300":
+      - cell "Learn JS"
+      - cell "Animesh"
+      - cell "Javascript"
+      - cell "300"
+    - row "Master In Selenium Mukesh Selenium 3000":
+      - cell "Master In Selenium"
+      - cell "Mukesh"
+      - cell "Selenium"
+      - cell "3000"
+    - row "Master In Java Amod JAVA 2000":
+      - cell "Master In Java"
+      - cell "Amod"
+      - cell "JAVA"
+      - cell "2000"
+    - row "Master In JS Amit Javascript 1000":
+      - cell "Master In JS"
+      - cell "Amit"
+      - cell "Javascript"
+      - cell "1000"
+- heading "Dynamic Web Table" [level=2]
+- table:
+  - rowgroup:
+    - row "Name CPU (%) Network (Mbps) Disk (MB/s) Memory (MB)":
+      - cell "Name"
+      - cell "CPU (%)"
+      - cell "Network (Mbps)"
+      - cell "Disk (MB/s)"
+      - cell "Memory (MB)"
+  - rowgroup:
+    - row "Firefox 2.3% 0.4 Mbps 0.36 MB/s 47.4 MB":
+      - cell "Firefox"
+      - cell "2.3%"
+      - cell "0.4 Mbps"
+      - cell "0.36 MB/s"
+      - cell "47.4 MB"
+    - row "System 0.5% 5.2 Mbps 0.55 MB/s 33.2 MB":
+      - cell "System"
+      - cell "0.5%"
+      - cell "5.2 Mbps"
+      - cell "0.55 MB/s"
+      - cell "33.2 MB"
+    - row "Internet Explorer 8.3% 1.0 Mbps 0.38 MB/s 52.3 MB":
+      - cell "Internet Explorer"
+      - cell "8.3%"
+      - cell "1.0 Mbps"
+      - cell "0.38 MB/s"
+      - cell "52.3 MB"
+    - row "Chrome 5.3% 0.5 Mbps 0.56 MB/s 69.7 MB":
+      - cell "Chrome"
+      - cell "5.3%"
+      - cell "0.5 Mbps"
+      - cell "0.56 MB/s"
+      - cell "69.7 MB"
+- paragraph:
+  - text: "CPU load of Chrome process:"
+  - strong: 5.3%
+- paragraph:
+  - text: "Memory Size of Firefox process:"
+  - strong: 47.4 MB
+- paragraph:
+  - text: "Network speed of Chrome process:"
+  - strong: 0.5 Mbps
+- paragraph:
+  - text: "Disk space of Firefox process:"
+  - strong: 0.36 MB/s
+- heading "Pagination Web Table" [level=2]
+- table:
+  - rowgroup:
+    - row "ID Name Price Select":
+      - cell "ID"
+      - cell "Name"
+      - cell "Price"
+      - cell "Select"
+  - rowgroup:
+    - row "1 Smartphone $10.99":
+      - cell "1"
+      - cell "Smartphone"
+      - cell "$10.99"
+      - cell:
+        - checkbox
+    - row "2 Laptop $19.99":
+      - cell "2"
+      - cell "Laptop"
+      - cell "$19.99"
+      - cell:
+        - checkbox
+    - row "3 Tablet $5.99":
+      - cell "3"
+      - cell "Tablet"
+      - cell "$5.99"
+      - cell:
+        - checkbox
+    - row "4 Smartwatch $7.99":
+      - cell "4"
+      - cell "Smartwatch"
+      - cell "$7.99"
+      - cell:
+        - checkbox
+    - row "5 Wireless Earbuds $8.99":
+      - cell "5"
+      - cell "Wireless Earbuds"
+      - cell "$8.99"
+      - cell:
+        - checkbox
+- list:
+  - listitem:
+    - link "1"
+  - listitem:
+    - link "2"
+  - listitem:
+    - link "3"
+  - listitem:
+    - link "4"
+- complementary
+- complementary:
+  - heading "Tabs" [level=2]
+  - link:
+    - img
+  - textbox
+  - button "Submit"
+  - heading "Dynamic Button" [level=2]
+  - button "START"
+  - heading "Alerts & Popups" [level=2]
+  - button "Simple Alert"
+  - button "Confirmation Alert"
+  - button "Prompt Alert"
+  - paragraph
+  - button "New Tab"
+  - button "Popup Windows"
+  - heading "Mouse Hover" [level=2]
+  - paragraph: Move the mouse over the button to open the dropdown menu.
+  - button "Point Me"
+  - heading "Double Click" [level=2]
+  - text: "Field1:"
+  - textbox: Hello World!
+  - text: "Field2:"
+  - textbox
+  - button "Copy Text"
+  - paragraph: Double click on button, the text from Field1 will be copied into Field2.
+  - heading "Drag and Drop" [level=2]
+  - paragraph: Drag me to my target
+  - paragraph: Drop here
+  - heading "Slider" [level=2]
+  - paragraph:
+    - text: "Price range:"
+    - textbox "Price range:": $75 - $300
+  - heading "SVG Elements" [level=2]
+  - img
+  - img
+  - img
+  - heading "Scrolling DropDown" [level=2]
+  - textbox "Select an item"
+  - heading "Labels And Links" [level=2]
+  - heading "Mobile Labels" [level=4]
+  - text: Samsung Real Me Moto
+  - heading "Laptop Links" [level=4]
+  - link "Apple"
+  - link "Lenovo"
+  - link "Dell"
+  - heading "Broken Links" [level=4]
+  - link "Errorcode 400"
+  - link "Errorcode 401"
+  - link "Errorcode 403"
+  - link "Errorcode 404"
+  - link "Errorcode 408"
+  - link "Errorcode 500"
+  - link "Errorcode 502"
+  - link "Errorcode 503"
+  - heading "Visitors" [level=2]
+- contentinfo:
+  - table:
+    - rowgroup:
+      - row "Form Section 1 This is a paragraph in Section 1. Submit Section 2 This is a paragraph in Section 2. Submit Section 3 This is a paragraph in Section 3. Submit Footer Links Home Hidden Elements & AJAX Download Files ShadowDOM Mobiles Laptops Blog Youtube":
+        - cell "Form Section 1 This is a paragraph in Section 1. Submit Section 2 This is a paragraph in Section 2. Submit Section 3 This is a paragraph in Section 3. Submit Footer Links Home Hidden Elements & AJAX Download Files":
+          - heading "Form" [level=2]
+          - heading "Section 1" [level=4]
+          - paragraph: This is a paragraph in Section 1.
+          - textbox
+          - button "Submit"
+          - heading "Section 2" [level=4]
+          - paragraph: This is a paragraph in Section 2.
+          - textbox
+          - button "Submit"
+          - heading "Section 3" [level=4]
+          - paragraph: This is a paragraph in Section 3.
+          - textbox
+          - button "Submit"
+          - heading "Footer Links" [level=2]
+          - list:
+            - listitem:
+              - link "Home"
+            - listitem:
+              - link "Hidden Elements & AJAX"
+            - listitem:
+              - link "Download Files"
+        - cell "ShadowDOM Mobiles Laptops Blog Youtube":
+          - heading "ShadowDOM" [level=2]
+          - text: Mobiles Laptops
+          - link "Blog"
+          - textbox
+          - checkbox
+          - textbox
+          - link "Youtube"
+  - text: Theme images by
+  - link "merrymoonmary"
+  - text: . Powered by
+  - link "Blogger"
+  - text: .
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Select dates and submit form', async ({ page }) => {
+   4 |   await page.goto('https://testautomationpractice.blogspot.com/');
+   5 |
+   6 |   // Select start date in 'YYYY-MM-DD' format
+>  7 |   const startDate = page.locator('#start-date').scrollIntoViewIfNeeded();
+     |                                                 ^ Error: locator.scrollIntoViewIfNeeded: Test ended.
+   8 |   await startDate.fill('2025-03-15'); // Correct format: YYYY-MM-DD
+   9 |
+  10 |   // Select end date in 'YYYY-MM-DD' format
+  11 |   const endDate = page.locator('#end-date');
+  12 |   await endDate.fill('2025-03-20');
+  13 |
+  14 |   // Click Submit
+  15 |   await page.locator('.submit-btn').click();
+  16 |
+  17 |   // Wait to observe the result
+  18 |   await page.waitForTimeout(3000);
+  19 | });
+  20 |
+```

@@ -1,0 +1,46 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Select dates and submit form
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DatePicker\DateHandling.spec.js:3:1
+
+# Error details
+
+```
+Error: locator.scrollIntoViewIfNeeded: Test ended.
+Call log:
+  - waiting for getByLabel('Date Picker 3: (Select a Date Range)')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DatePicker\DateHandling.spec.js:6:65
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Select dates and submit form', async ({ page }) => {
+   4 |   await page.goto('https://testautomationpractice.blogspot.com/');
+   5 |
+>  6 |   await page.getByLabel('Date Picker 3: (Select a Date Range)').scrollIntoViewIfNeeded();
+     |                                                                 ^ Error: locator.scrollIntoViewIfNeeded: Test ended.
+   7 |   const startDate = page.locator('#start-date');
+   8 |   await startDate.fill('2025-03-15');
+   9 |
+  10 |
+  11 |   const endDate = page.locator('#end-date');
+  12 |   await endDate.fill('2025-03-20');
+  13 |
+  14 |   // Click Submit
+  15 |   await page.locator('.submit-btn').click();
+  16 |
+  17 |
+  18 |   await page.waitForTimeout(3000);
+  19 | });
+  20 |
+```
