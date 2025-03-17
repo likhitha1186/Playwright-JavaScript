@@ -15,7 +15,7 @@ export class Login {
   }
 
   async selectWorkspace(){
-        await this.page.getByTestId('workspace-switcher').click();
+        await this.page.locator("//span[normalize-space()='Workspaces']").click();
         await this.page.locator("//ul[@data-testid='workspace-switcher-popover']//ul[1]//li[1]//a[1]").click();
   }
 

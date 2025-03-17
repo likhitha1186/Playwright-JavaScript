@@ -1,0 +1,4 @@
+Successfully added a Closed Problems to the Info list
+Successfully found and clicked the card: Closed Problems
+Successfully added FYI to the: Closed Problems
+Successfully added Task 1,Task 2,Task 3 to the  Closed Problems

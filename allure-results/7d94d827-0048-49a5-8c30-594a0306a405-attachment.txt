@@ -1,0 +1,2 @@
+Successfully clicked the card: Closed Problems
+Successfully performed specified actions on : Closed Problems
