@@ -1,0 +1,136 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Create Agile Template
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Practice\CreateAgile.spec.js:4:1
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: locator('.TaNgu9ncpvX1uL') resolved to 2 elements:
+    1) <a class="TaNgu9ncpvX1uL" href="/w/workspace17804208" data-testid="workspace-switcher-popover-tile">…</a> aka getByRole('link', { name: 'L likhitha\'s workspace' })
+    2) <a class="TaNgu9ncpvX1uL" href="/b/VACcLkXM/test-trello" data-testid="workspace-switcher-popover-tile">…</a> aka getByRole('link', { name: 'T Trello Workspace' })
+
+Call log:
+  - waiting for locator('.TaNgu9ncpvX1uL')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Practice\CreateAgile.spec.js:17:41
+```
+
+# Page snapshot
+
+```yaml
+- navigation "Primary":
+  - button "Switch to…":
+    - img "Switch to…"
+  - link "Back to home"
+  - button "Workspaces" [expanded]
+  - button "Recent boards": Recent
+  - button "Starred boards": Starred
+  - button "Templates"
+  - button "Create board or Workspace":
+    - paragraph: Create
+  - img "search"
+  - textbox "Search"
+  - button "1 Notification"
+  - button "Open information menu"
+  - button "Open member menu":
+    - img "likhitha (likhitha60)"
+- main:
+  - dialog "Atlassian cookies and tracking notice , (opens new window)":
+    - text: Atlassian uses cookies to improve your browsing experience, perform analytics and research, and conduct advertising. Accept all cookies to indicate that you agree to our use of cookies on your device.
+    - link "Atlassian cookies and tracking notice , (opens new window)"
+    - button "Preferences"
+    - button "Only necessary"
+    - button "Accept all"
+  - heading "Page not found." [level=1]
+  - paragraph: This page may be private. If someone gave you this link, you may need to be a board or Workspace member to access it.
+  - text: Not
+  - strong: likhitha
+  - text: "?"
+  - link "Switch accounts"
+- navigation:
+  - list:
+    - heading "Your Workspaces" [level=2]
+    - list:
+      - listitem:
+        - link "L likhitha's workspace":
+          - text: L
+          - paragraph: likhitha's workspace
+    - heading "Guest Workspaces" [level=2]
+    - list:
+      - listitem:
+        - link "T Trello Workspace":
+          - text: T
+          - paragraph: Trello Workspace
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { Loginpage } from '../../../Pages/LoginPage.js';
+   3 |
+   4 | test('Create Agile Template', async ({ page }) => {
+   5 |   const login = new Loginpage(page);
+   6 |
+   7 |   await login.gotoUrl();
+   8 |   await page.setViewportSize({ width: 1920, height: 1040 });
+   9 |   await login.getloginbutton1();
+  10 |   await login.getEmailid('likhithapk.1186@gmail.com');
+  11 |   await login.getRemberMeCheckbox();
+  12 |   await login.getcontinuebutton();
+  13 |   await login.getPassword('Bq,f%7N9-46JiKT');
+  14 |   await login.getLoginbutton();
+  15 |   await page.waitForTimeout(5000);
+  16 |   await page.getByText('Workspaces').click();
+> 17 |   await page.locator('.TaNgu9ncpvX1uL').click();
+     |                                         ^ Error: locator.click: Error: strict mode violation: locator('.TaNgu9ncpvX1uL') resolved to 2 elements:
+  18 |   await page.waitForTimeout(2000);
+  19 |   await page.getByTestId('templates-menu').click();
+  20 |   await page.waitForTimeout(2000);
+  21 |   // await page
+  22 |   //     .locator('.VSxlmEYC3befsX')
+  23 |   //     .getByText('Agile Board Template | Trello ')
+  24 |   //     .click();
+  25 |   await page.waitForTimeout(2000);
+  26 |   await page.getByTestId('create-board-submit-button').click();
+  27 |   await page.waitForTimeout(2000);
+  28 |   await page
+  29 |       .locator("textarea[placeholder='Enter list name…']")
+  30 |       .fill('Ticket 01');
+  31 |   await page.waitForTimeout(2000);
+  32 |   await page.getByTestId('list-composer-add-list-button').click();
+  33 |   const DoneList = await page.$$("//li[@data-testid='list-wrapper'][2]//li");
+  34 |   console.log('Number of Done List items : ', DoneList.length);
+  35 |   await page
+  36 |       .locator("//li[@data-testid='list-wrapper'][2]//li")
+  37 |       .first()
+  38 |       .click();
+  39 |   await page.locator("//span[@class='wl2C35O7dKV1wx']").click();
+  40 |   await page.waitForTimeout(2000);
+  41 |   await page
+  42 |       .locator(
+  43 |           "//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']",
+  44 |       )
+  45 |       .click();
+  46 |   await page.waitForTimeout(2000);
+  47 |   const options = await page.$$("//div[@role='option']//li");
+  48 |   console.log('Number of Move card items', options.length);
+  49 |   for (let option of options) {
+  50 |     const text = await option.textContent();
+  51 |     console.log(text);
+  52 |   }
+  53 |
+  54 |   await options[1].click();
+  55 |
+  56 |   await page.getByTestId('move-card-popover-move-button').click();
+  57 |   await page.waitForTimeout(2000);
+  58 | });
+  59 |
+```
