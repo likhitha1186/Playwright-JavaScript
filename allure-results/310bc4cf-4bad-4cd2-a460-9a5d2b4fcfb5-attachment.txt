@@ -1,0 +1,2 @@
+Successfully clicked the card: High Maintenance
+Successfully performed specified actions on : High Maintenance

@@ -36,8 +36,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install chromium
 
-      - name: Run Playwright UI Test with Debug Logs
-        run: DEBUG=pw:api npx playwright test --headed tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium
+      - name: Run Playwright UI Test with Debug Logs (Windows)
+        run: |
+          $env:DEBUG="pw:api"
+          npx playwright test --headed tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium
+        shell: pwsh
+
 
       - name: Generate Allure Report
         run: |

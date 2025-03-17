@@ -32,11 +32,13 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'],['github'],['allure-playwright']],
+  timeout : 500000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    headless:false,
     // downloadsPath: `${__dirname}/../downloads`,
     launchOptions: {
       // 1
@@ -52,10 +54,8 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      actionTimeout: 30000,
-      //  storageState : 'user.json',
+    //  storageState : 'user.json',
       viewport: { width: 1920, height: 1040},
-      headless: true,
     },
 
     // {
