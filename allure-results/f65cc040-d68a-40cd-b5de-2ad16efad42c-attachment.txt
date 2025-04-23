@@ -1,0 +1,63 @@
+Total Columns :  4
+Total Rows :  5
+Number of pages in the table :  4
+1
+Smartphone
+$10.99
+2
+Laptop
+$19.99
+3
+Tablet 
+$5.99
+4
+Smartwatch
+$7.99
+5
+Wireless Earbuds
+$8.99
+6
+Bluetooth Speaker
+$9.99
+7
+Television
+$20.99
+8
+Action Camera
+$15.99
+9
+Gaming Console
+$5.99
+10
+Digital Camera
+$16.99
+11
+Smart Home Hub
+$20.99
+12
+Router
+$24.99
+13
+Portable Charger
+$30.99
+14
+Fitness Tracker
+$19.99
+15
+Desktop Computer
+$2.99
+16
+E-Reader
+$10.99
+17
+VR Headset
+$11.99
+18
+Streaming Device
+$13.99
+19
+Soundbar
+$16.99
+20
+Wireless Mouse 20
+$17.99

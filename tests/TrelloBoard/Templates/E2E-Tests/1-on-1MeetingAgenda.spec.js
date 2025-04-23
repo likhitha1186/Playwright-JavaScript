@@ -8,11 +8,10 @@ let page, cardname;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-
+    
     const loginPage = new Login(page);
     await loginPage.login('likhithapk.1186@gmail.com', 'Bq,f%7N9-46JiKT');
     console.log('Successfully logged in as Likhitha');
-    await page.waitForTimeout(5000);
     await loginPage.selectWorkspace();
     console.log("Successfully Likhitha's workspace selected");
     await loginPage.selectTemplates()
@@ -38,6 +37,7 @@ test('Add a card in Info list', async () => {
     console.log(`Successfully found and clicked the card: ${cardname}`);
     console.log(`Successfully added ${labelName} to the: ${cardname}`);
     console.log(`Successfully added ${addChecklistItems} to the  ${cardname}`);
+    await actions.closeOpenedCard()
     await page.waitForTimeout(1000);
 
 });

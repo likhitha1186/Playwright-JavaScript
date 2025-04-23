@@ -1,0 +1,144 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: downloading files-1 
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:16:1
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: locator('//a[normalize-space()=\'Browse\']') resolved to 5 elements:
+    1) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-video-files/">Browse</a> aka getByRole('link', { name: 'Browse', exact: true }).first()
+    2) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-audio-files/">Browse</a> aka getByRole('link', { name: 'Browse', exact: true }).nth(1)
+    3) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/">Browse</a> aka getByRole('link', { name: 'Browse', exact: true }).nth(2)
+    4) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-images-download/">Browse</a> aka getByRole('link', { name: 'Browse', exact: true }).nth(3)
+    5) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/text-files-and-archives-download/">Browse</a> aka getByRole('link', { name: 'Browse', exact: true }).nth(4)
+
+Call log:
+  - waiting for locator('//a[normalize-space()=\'Browse\']')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:29:61
+```
+
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "File Examples"
+  - list:
+    - listitem:
+      - link "Sample videos"
+    - listitem:
+      - link "Sample audio files"
+    - listitem:
+      - link "Sample documents"
+    - listitem:
+      - link "Sample images"
+    - listitem:
+      - link "Other files"
+- banner:
+  - heading "file-examples.com is a service designed for developers, designers, testers. Download files in many resolution or size for test or demo use." [level=1]
+  - link "Browse files!"
+- insertion
+- heading "Most popular file formats" [level=2]
+- paragraph: If we miss any, let us know! ;-)
+- insertion
+- main:
+  - heading "Sample Files Download" [level=2]
+  - paragraph
+  - paragraph: If you need example / dummy files for testing or demo and presentation purpose, this is a great place for you.
+  - paragraph: The files might be useful for testing upload, HTML5 videos etc. All files are free to download and use.
+  - paragraph: We care for our content. All files are safe from viruses and adults-only content.
+  - paragraph
+  - separator
+  - text: 
+  - heading "Video files" [level=3]
+  - paragraph: A great collection of video files for testing and demo use. Choose file format and size to free download.
+  - link "Browse"
+  - text: 
+  - heading "Audio files" [level=3]
+  - paragraph: Do you need mp3, wav or other audio format for testing? Download free files by size and format.
+  - link "Browse"
+  - text: 
+  - heading "Documents" [level=3]
+  - paragraph: "A set of document files: doc, docx, odt, pdf, xls, ppt, pps and more. Download them for free."
+  - link "Browse"
+  - text: 
+  - heading "Images" [level=3]
+  - paragraph: A stock of images for testing. Many sizes and formats (eg. jpg, png, gif) for free download.
+  - link "Browse"
+  - text: 
+  - heading "Other files" [level=3]
+  - paragraph: A miscellany of text and archives files. Download files as html, csc, css, zip, bzip2 and more.
+  - link "Browse"
+  - insertion
+  - insertion
+- insertion
+- contentinfo:
+  - paragraph: © 2019-2024 file-examples.com | All Rights Reserved.
+  - paragraph:
+    - link "hello@file-examples.com"
+  - list:
+    - listitem:
+      - link "Sample videos"
+    - listitem:
+      - link "Sample audio files"
+    - listitem:
+      - link "Sample documents"
+    - listitem:
+      - link "Sample images"
+    - listitem:
+      - link "Other files"
+- insertion
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Downloading files', async ({ page }) => {
+   4 |   await page.goto('https://commitquality.com/practice-file-download');
+   5 |
+   6 |   let waitForDownloadEvent = page.waitForEvent('download')
+   7 |
+   8 |   await page.locator("//button[normalize-space()='Download File']").click();
+   9 |   await page.waitForTimeout(2000)
+  10 |   const download = await waitForDownloadEvent;
+  11 |
+  12 |   await download.saveAs("./"+download.suggestedFilename());
+  13 |
+  14 | });
+  15 |
+  16 | test("downloading files-1 ", async ({ page }) => {
+  17 |   await page.goto('https://file-examples.com/#google_vignette');
+  18 |   await page.setViewportSize({ width: 1920, height: 1040 });
+  19 |
+  20 |
+  21 |   await page.locator("//h3[normalize-space()='Other files']").scrollIntoViewIfNeeded();
+  22 |
+  23 |   const files = await page.$$("h3");
+  24 |   console.log("total files:", files.length);
+  25 |
+  26 |   for(const file of files) {
+  27 |     const fileNames = (await file.textContent()).trim();
+  28 |     if(fileNames.includes("Images")){
+> 29 |       await page.locator("//a[normalize-space()='Browse']").click();
+     |                                                             ^ Error: locator.click: Error: strict mode violation: locator('//a[normalize-space()=\'Browse\']') resolved to 5 elements:
+  30 |     }
+  31 |
+  32 |   }
+  33 |
+  34 |   let waitForDownload = page.waitForEvent('download')
+  35 |   await page.locator("//a[@href='https://file-examples.com/index.php/sample-images-download/sample-jpg-download/']").click();
+  36 |
+  37 |   const download = await waitForDownload;
+  38 |   await download.saveAs("./DownloadedFiles"+ download.suggestedFilename());
+  39 | })
+  40 |
+```

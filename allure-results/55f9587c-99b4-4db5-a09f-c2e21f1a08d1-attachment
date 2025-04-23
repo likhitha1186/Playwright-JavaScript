@@ -1,0 +1,162 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: downloading files-1 
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:16:1
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: locator('//a[normalize-space()=\'Select file size & download\']') resolved to 8 elements:
+    1) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-doc-download/">Select file size & download</a> aka getByRole('row', { name: 'DOC, DOCX Microsoft Word' }).getByRole('link')
+    2) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-xls-download/">Select file size & download</a> aka getByRole('row', { name: 'XLS, XLSX Microsoft Excell' }).getByRole('link')
+    3) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-ppt-file/">Select file size & download</a> aka getByRole('row', { name: 'PPT, PPTX Microsoft' }).getByRole('link')
+    4) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-pdf-download/">Select file size & download</a> aka getByRole('row', { name: 'PDF Portable Document Format' }).getByRole('link')
+    5) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-odt-download/">Select file size & download</a> aka getByRole('row', { name: 'ODT OpenDocument (text)' }).getByRole('link')
+    6) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-ods-download/">Select file size & download</a> aka getByRole('row', { name: 'ODS OpenDocument (spreadsheet' }).getByRole('link')
+    7) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-odp-download/">Select file size & download</a> aka getByRole('row', { name: 'ODP OpenDocument (' }).getByRole('link')
+    8) <a class="btn btn-orange btn-outline btn-xl page-scroll" href="https://file-examples.com/index.php/sample-documents-download/sample-rtf-download/">Select file size & download</a> aka getByRole('row', { name: 'RTF Rich Text Format (text' }).getByRole('link')
+
+Call log:
+  - waiting for locator('//a[normalize-space()=\'Select file size & download\']')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:28:78
+```
+
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "File Examples"
+  - list:
+    - listitem:
+      - link "Sample videos"
+    - listitem:
+      - link "Sample audio files"
+    - listitem:
+      - link "Sample documents"
+    - listitem:
+      - link "Sample images"
+    - listitem:
+      - link "Other files"
+- main:
+  - heading "Sample documents download" [level=2]
+  - paragraph
+  - paragraph: Test .doc, .xls or other office files for free. Don’t waste your time to create dummy files and just download these files for free.
+  - paragraph: You can just download and test it in seconds for free. Here you can find most popular size and formats.
+  - paragraph: "First choose format you need:"
+  - paragraph
+  - insertion
+  - separator
+  - text: "Search:"
+  - searchbox "Search:"
+  - grid:
+    - rowgroup:
+      - row:
+        - gridcell
+        - gridcell
+        - gridcell
+    - rowgroup:
+      - row "DOC, DOCX Microsoft Word Document, Office Open XML document Select file size & download":
+        - gridcell "DOC, DOCX"
+        - gridcell "Microsoft Word Document, Office Open XML document"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "XLS, XLSX Microsoft Excell Spreadsheet, Office Open XML worksheet sheet Select file size & download":
+        - gridcell "XLS, XLSX"
+        - gridcell "Microsoft Excell Spreadsheet, Office Open XML worksheet sheet"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "PPT, PPTX Microsoft PowerPoint Presentation, Office Open XML Presentation Select file size & download":
+        - gridcell "PPT, PPTX"
+        - gridcell "Microsoft PowerPoint Presentation, Office Open XML Presentation"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "PDF Portable Document Format Select file size & download":
+        - gridcell "PDF"
+        - gridcell "Portable Document Format"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "ODT OpenDocument (text) Select file size & download":
+        - gridcell "ODT"
+        - gridcell "OpenDocument (text)"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "ODS OpenDocument (spreadsheet) Select file size & download":
+        - gridcell "ODS"
+        - gridcell "OpenDocument (spreadsheet)"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "ODP OpenDocument (presentation) Select file size & download":
+        - gridcell "ODP"
+        - gridcell "OpenDocument (presentation)"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+      - row "RTF Rich Text Format (text document) Select file size & download":
+        - gridcell "RTF"
+        - gridcell "Rich Text Format (text document)"
+        - gridcell "Select file size & download":
+          - link "Select file size & download"
+  - status: Showing 1 to 8 of 8 entries
+  - insertion
+- insertion
+- contentinfo:
+  - paragraph: © 2019-2024 file-examples.com | All Rights Reserved.
+  - paragraph:
+    - link "hello@file-examples.com"
+  - list:
+    - listitem:
+      - link "Sample videos"
+    - listitem:
+      - link "Sample audio files"
+    - listitem:
+      - link "Sample documents"
+    - listitem:
+      - link "Sample images"
+    - listitem:
+      - link "Other files"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Downloading files', async ({ page }) => {
+   4 |   await page.goto('https://commitquality.com/practice-file-download');
+   5 |
+   6 |   let waitForDownloadEvent = page.waitForEvent('download')
+   7 |
+   8 |   await page.locator("//button[normalize-space()='Download File']").click();
+   9 |   await page.waitForTimeout(2000)
+  10 |   const download = await waitForDownloadEvent;
+  11 |
+  12 |   await download.saveAs("./"+download.suggestedFilename());
+  13 |
+  14 | });
+  15 |
+  16 | test("downloading files-1 ", async ({ page }) => {
+  17 |   await page.goto('https://file-examples.com/#google_vignette');
+  18 |   await page.setViewportSize({ width: 1920, height: 1040 });
+  19 |
+  20 |
+  21 |   await page.locator("//h3[normalize-space()='Other files']").scrollIntoViewIfNeeded();
+  22 |
+  23 |   const files = await page.$$("//*[@class='col-md-4']/*/a");
+  24 |   await files[2].click();
+  25 |   await page.locator("//div[normalize-space()='Search:']").scrollIntoViewIfNeeded()
+  26 |
+  27 |   let waitForDownload = page.waitForEvent('download')
+> 28 |   await page.locator("//a[normalize-space()='Select file size & download']").click();
+     |                                                                              ^ Error: locator.click: Error: strict mode violation: locator('//a[normalize-space()=\'Select file size & download\']') resolved to 8 elements:
+  29 |
+  30 |   const download = await waitForDownload;
+  31 |   await download.saveAs("./DownloadedFiles"+ download.suggestedFilename());
+  32 | })
+  33 |
+```

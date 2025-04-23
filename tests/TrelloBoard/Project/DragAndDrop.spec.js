@@ -10,7 +10,7 @@ test('Drag And Drop', async ({page}) => {
     await page.getByRole('button', {name: 'Log in'}).click();
     await page.waitForTimeout(5000);
     await page.getByText('Workspaces').click();
-    await page.locator('.TaNgu9ncpvX1uL').click();
+    await page.getByText("likhitha's workspace").click();
     await page.waitForTimeout(5000);
     await page.getByLabel('Practice').click();
     await page.waitForTimeout(5000)

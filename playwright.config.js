@@ -23,7 +23,7 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
-  testMatch :['/tests/API-TESTING/E2E-TESTS/*.spec.js'] ,
+  //testMatch :['/tests/API-TESTING/E2E-TESTS/*.spec.js'] ,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -31,8 +31,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  timeout : 500000,
+  reporter: [['html'],['github'],['allure-playwright']],
+  timeout : 900000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -45,7 +45,7 @@ export default defineConfig({
       args: ["--start-maximized"],
     },
     trace: 'on-first-retry',
-    //screenshot: "on",
+    screenshot: "only-on-failure",
     //video: "on",
   },
 

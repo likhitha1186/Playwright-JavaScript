@@ -10,7 +10,7 @@ test('Drag And Drop', async ({ page }) => {
   await page.getByRole('button', { name: 'Log in' }).click();
   await page.waitForTimeout(5000);
   await page.getByText('Workspaces').click();
-  await page.locator('.TaNgu9ncpvX1uL').click();
+  await page.getByText("likhitha's workspace").click();
   await page.waitForTimeout(5000);
   await page.getByLabel('Practice').click();
   await page.waitForTimeout(5000);
@@ -18,14 +18,12 @@ test('Drag And Drop', async ({ page }) => {
     .locator("//li[@data-testid='list-wrapper'][1]")
     .getByRole('button', { name: 'Add a card' })
     .click();
-  await page.getByTestId('list-card-composer-textarea').fill('TrelloBoard');
+  await page.getByTestId('list-card-composer-textarea').fill('Cucumber1');
   await page.keyboard.press('Enter');
   const first = await page
-    .locator("//li[@data-testid='list-card']")
-    .getByText('TrelloBoard');
+    .locator("//li[@data-testid='list-card']").first()
   const second = await page
-    .locator("//li[@data-testid='list-wrapper'][2]")
-    .getByRole('button', { name: 'Add a card' });
+    .locator("//li[@data-testid='list-wrapper'][2]//button[@data-testid='list-add-card-button']")
   await first.dragTo(second)
   await page.waitForTimeout(5000)
 });

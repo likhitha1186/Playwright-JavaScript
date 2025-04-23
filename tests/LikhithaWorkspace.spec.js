@@ -30,8 +30,6 @@ test('Count a board', async ()=>{
   const countBoards = new Board(page)
   const counts =await countBoards.countBoard()
   console.log('number of boards items :', counts.length);
-
-
 })
 
 test('Open a created board', async () => {

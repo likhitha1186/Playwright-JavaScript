@@ -1,0 +1,50 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: downloading files-1 
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:16:1
+
+# Error details
+
+```
+Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//a[normalize-space()=\'2025 Global Threat Report\']')
+    - waiting for" https://go.crowdstrike.com/2025-global-threat-report.html?utm_source=goog&utm_medium=dis&utm_campaign=cao&utm_term=psp_im_itdm&utm_content=crwd-cao-apj-ind-en-psp-itdm-rpt-gtr-rda_v1_c1_x-cyber-2025&…" navigation to finish...
+    - navigated to "https://go.crowdstrike.com/2025-global-threat-report.html?utm_source=goog&utm_medium=dis&utm_campaign=cao&utm_term=psp_im_itdm&utm_content=crwd-cao-apj-ind-en-psp-itdm-rpt-gtr-rda_v1_c1_x-cyber-2025&…"
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:21:76
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Downloading files', async ({ page }) => {
+   4 |   await page.goto('https://commitquality.com/practice-file-download');
+   5 |
+   6 |   let waitForDownloadEvent = page.waitForEvent('download')
+   7 |
+   8 |   await page.locator("//button[normalize-space()='Download File']").click();
+   9 |   await page.waitForTimeout(2000)
+  10 |   const download = await waitForDownloadEvent;
+  11 |
+  12 |   await download.saveAs("./"+download.suggestedFilename());
+  13 |
+  14 | });
+  15 |
+  16 | test("downloading files-1 ", async ({ page }) => {
+  17 |   await page.goto('https://file-examples.com/#google_vignette');
+  18 |   await page.setViewportSize({ width: 1920, height: 1040 });
+  19 |
+  20 |   
+> 21 |   await page.locator("//span[normalize-space()='Download']").click();
+     |                                                                      ^ Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+  22 | })
+```

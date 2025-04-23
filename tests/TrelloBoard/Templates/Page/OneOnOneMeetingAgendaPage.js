@@ -49,6 +49,7 @@ export class OneOnOneMeetingAgendaTemplate {
         this.fileAttachment = this.page.locator("//span[contains(text(), 'ScratchPaper.jpg')]");
         this.commentBox = this.page.locator("//textarea[@placeholder='Write a comment…']");
         this.hideDetailsButton = this.page.locator("//button[normalize-space()='Show details']");
+        this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
     }
 
     async addCardToInfoTopics(cardname) {
@@ -133,9 +134,9 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.page.getByTestId('card-back-due-date-button').click();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).uncheck();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(2).check();
-        await this.page.getByRole('button', { name: '2, Sunday February' }).click();
+        await this.page.getByRole('button', { name: '4, Tuesday March 2025' }).click();
         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).check();
-        await this.page.getByRole('button', { name: '26, Wednesday February' }).click();
+        await this.page.getByRole('button', { name: '3, Thursday April 2025' }).click();
         this.page.locator("//div[@class='ZLkHQZu7HZZj5h']//button[1]").click()
     }
 
@@ -162,6 +163,9 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.addCheckList(addChecklistItems)
         await this.checkTheAddedCheckList()
         await this.addDates()
+    }
+    async closeOpenedCard(){
+      await this.closeCardButton.click()
     }
 
     // selecting already existing card

@@ -1,0 +1,49 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: New tab
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\HandleMultiplePages\Blogspot.spec.js:3:1
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toHaveTitle(expected)
+
+Locator: locator(':root')
+Expected string: "Selenium automates browsers. That's it!"
+Received string: "Selenium"
+Call log:
+  - expect.toHaveTitle with timeout 5000ms
+  - waiting for locator(':root')
+    8 × locator resolved to <html lang="en" itemscope="" class="no-js" itemtype="http://schema.org/WebPage">…</html>
+      - unexpected value "Selenium"
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\HandleMultiplePages\Blogspot.spec.js:14:28
+```
+
+# Test source
+
+```ts
+   1 | import {test, expect } from '@playwright/test';
+   2 |
+   3 | test("New tab", async ({browser})=>{
+   4 |   const context = await browser.newContext();
+   5 |   const page = await context.newPage();
+   6 |   await page.goto('https://demo.automationtesting.in/Windows.html');
+   7 |   await page.setViewportSize({ width: 1920, height: 1040 });
+   8 |
+   9 |   const pagePromise =  context.waitForEvent('page');
+  10 |
+  11 |   await page.locator("//a[@href='http://www.selenium.dev']//button[@class='btn btn-info'][normalize-space()='click']").click();
+  12 |
+  13 |   const childPage = await pagePromise;
+> 14 |   await expect(childPage ).toHaveTitle("Selenium automates browsers. That's it!");
+     |                            ^ Error: Timed out 5000ms waiting for expect(locator).toHaveTitle(expected)
+  15 |   await page.waitForTimeout(2000)
+  16 | })
+```

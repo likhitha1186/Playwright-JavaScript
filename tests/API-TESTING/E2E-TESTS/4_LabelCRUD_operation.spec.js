@@ -8,7 +8,6 @@ const boardData = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
 const { boardId, boardName,cardName, listId,listName } = boardData;
 
 test.describe.serial("Label CRUD operation", () => {
-
     test("Create Label on a Board", async ({ request }) => {
        // await new Promise(resolve => setTimeout(resolve, 2000)); // Waits for 2 seconds
         const response = await request.post(`${baseURL}/labels/?name=${LabelName}&color=red&idBoard=${boardId}&key=${apiKey}&token=${token}`,
@@ -26,8 +25,5 @@ test.describe.serial("Label CRUD operation", () => {
 
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
         console.log(`Created label:${labelName} on card: ${cardName} (Board: ${boardName})`);
-
     });
-
-
 });

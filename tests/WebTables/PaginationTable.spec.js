@@ -44,7 +44,7 @@ test('Handling Pagination Tables', async ({page})=>{
              const totalColumn =row.locator('td')
              for(let c=0; c<await totalColumn.count()-1; c++)
              {
-                 console.log(await totalColumn.nth(c).textContent())
+                 console.table(await totalColumn.nth(c).textContent())
              }
              await page.waitForTimeout(2000)
          }

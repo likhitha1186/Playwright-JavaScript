@@ -1,0 +1,41 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Downloading files
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:3:1
+
+# Error details
+
+```
+Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+Call log:
+  - waiting for getByText('Upload Files')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\DownloadingFiles\DownloadFiles.spec.js:5:40
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Downloading files', async ({ page }) => {
+   4 |   await page.goto('https://commitquality.com/practice-file-download');
+>  5 |   
+     |   ^ Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+   6 |
+   7 |   let waitForDownloadEvent = page.waitForEvent('download')
+   8 |
+   9 |   await page.locator("//button[normalize-space()='Download File']").click();
+  10 |   await page.waitForTimeout(2000)
+  11 |   const download = await waitForDownloadEvent;
+  12 |
+  13 |   await download.saveAs("./"+"download");
+  14 |
+  15 | });
+```

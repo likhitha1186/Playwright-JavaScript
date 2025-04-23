@@ -22,8 +22,38 @@ test('Handling Tables', async ({page})=>{
         has : page.locator('td'),
         hasText : 'Television'
     })
-    await matchedRow.locator('input').check()
-    await page.waitForTimeout(5000)
+    for(let r=0; r< await rows.count(); r++)
+    {
+        const row = rows.nth(r);
+        const totalColumn =row.locator('td')
+        for(let c=0; c<await totalColumn.count()-1; c++)
+        {
+            console.table(await totalColumn.nth(c).textContent())
+        }
+        await page.waitForTimeout(2000)
+    }
+    let tableData = [];
+
+    for (let r = 0; r < await rows.count(); r++) {
+        const row = rows.nth(r);
+        const totalColumns = row.locator('td');
+
+        let rowData = {}; // Store data in an object format
+        for (let c = 0; c < await totalColumns.count() - 1; c++) {
+            rowData[`Column ${c + 1}`] = await totalColumns.nth(c).textContent();
+        }
+
+        tableData.push(rowData); // Add row data to the array
+    }
+
+    console.table(tableData); //  Now it will print in table format
+    await page.waitForTimeout(2000);
+
+
+
+
+    // await matchedRow.locator('input').check()
+    // await page.waitForTimeout(5000)
    //
    //  await selectProduct(rows, page, 'Laptop')
    //  await selectProduct(rows, page, 'Tablet ')

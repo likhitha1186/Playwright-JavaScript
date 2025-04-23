@@ -1,0 +1,69 @@
+name: Playwright UI Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '30 9 * * *'  # Runs daily at 09:30 UTC
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 #it will get the code from the working-directory: and it can be used in subsequent step.
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 #stes the node.js in the env
+        with:
+          node-version: 18 #install latest node.js version.[long term support]
+
+      - name: Cache Playwright Browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium
+
+      - name: Install Dependencies
+        run: npm ci  # Faster and ensures dependencies match package-lock.json
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+
+      - name: Check Playwright Version
+        run: npx playwright --version
+
+      - name: Run Playwright UI Test
+        run: npx playwright test tests/UploadFiles/UploadFiles.spec.js --config=playwright.config.js --project=chromium --debug
+
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Playwright Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report  #artifact name
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Cache Playwright Browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}
+
+      - name: Upload Playwright Trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+         name: playwright-trace
+         path: test-results/
