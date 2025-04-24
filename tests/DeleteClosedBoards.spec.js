@@ -26,7 +26,6 @@ test('Delete closed boards', async () => {
             await button.click();
             const confirmButton = page.locator("//button[@data-testid='close-board-delete-board-confirm-button']");
                 await confirmButton.click();
-                console.log('Confirmed deletion.');
         }
     console.log('Successfully deleted all closed boards.');
 });

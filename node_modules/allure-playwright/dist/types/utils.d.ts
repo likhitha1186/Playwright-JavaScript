@@ -1,0 +1,9 @@
+import type { TestStatus } from "@playwright/test";
+import type { TestStep } from "@playwright/test/reporter";
+import { Status } from "allure-js-commons";
+export declare const AFTER_HOOKS_ROOT_STEP_TITLE = "After Hooks";
+export declare const BEFORE_HOOKS_ROOT_STEP_TITLE = "Before Hooks";
+export declare const statusToAllureStats: (status: TestStatus, expectedStatus: TestStatus) => Status;
+export declare const isDescendantOfStepWithTitle: (step: TestStep, title: string) => boolean;
+export declare const isAfterHookStep: (step: TestStep) => boolean;
+export declare const isBeforeHookStep: (step: TestStep) => boolean;

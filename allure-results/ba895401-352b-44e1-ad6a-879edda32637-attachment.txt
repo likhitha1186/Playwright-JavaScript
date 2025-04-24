@@ -1,0 +1,9 @@
+John Smith
+Full Stack Developer
+Bay Area, San Francisco, CA
+Johnatan Smith
+example@example.com
+(097) 234-5678
+(098) 765-4321
+Bay Area, San Francisco, CA
+User profile page validation passed

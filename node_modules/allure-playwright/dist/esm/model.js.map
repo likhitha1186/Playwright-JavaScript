@@ -1,0 +1,1 @@
+{"version":3,"file":"model.js","names":[],"sources":["../../src/model.ts"],"sourcesContent":["import type { ReporterConfig } from \"allure-js-commons/sdk/reporter\";\n\nexport interface AllurePlaywrightReporterConfig extends ReporterConfig {\n  detail?: boolean;\n  suiteTitle?: boolean;\n}\n"],"mappings":"","ignoreList":[]}

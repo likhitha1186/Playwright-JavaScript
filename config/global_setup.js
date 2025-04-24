@@ -1,7 +1,7 @@
 import { chromium, expect } from '@playwright/test';
 
 export default async () => {
-    const browser = await chromium.launch({ headless: false });
+    const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
 
     await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');

@@ -1,0 +1,193 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: handling sliders
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\HandlingSliders\Slider.spec.js:3:1
+
+# Error details
+
+```
+Error: locator.inputValue: Error: Node is not an <input>, <textarea> or <select> element
+Call log:
+  - waiting for locator('//span[@class=\'to\']')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\HandlingSliders\Slider.spec.js:11:31
+```
+
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Automation Practice Site":
+    - img "Automation Practice Site"
+  - text: 
+  - textbox "Search"
+  - navigation:
+    - list:
+      - listitem:
+        - link "Shop"
+      - listitem:
+        - link "My Account"
+      - listitem:
+        - link "Test Cases"
+      - listitem:
+        - link "AT Site"
+      - listitem:
+        - link "Demo Site"
+      - listitem:
+        - link " 0 items -₹0.00"
+  - link ""
+- navigation:
+  - link "Home"
+  - text: / Shop
+- paragraph:
+  - insertion
+- combobox:
+  - option "Default sorting" [selected]
+  - option "Sort by popularity"
+  - option "Sort by average rating"
+  - option "Sort by newness"
+  - 'option "Sort by price: low to high"'
+  - 'option "Sort by price: high to low"'
+- list:
+  - listitem:
+    - link "Sale! Android Quick Start Guide Android Quick Start Guide ₹600.00 ₹450.00":
+      - text: Sale!
+      - img "Android Quick Start Guide"
+      - heading "Android Quick Start Guide" [level=3]
+      - deletion: ₹600.00
+      - insertion: ₹450.00
+    - link "Add to basket"
+  - listitem:
+    - link "Functional Programming in JS Functional Programming in JS ₹250.00":
+      - img "Functional Programming in JS"
+      - heading "Functional Programming in JS" [level=3]
+      - text: ₹250.00
+    - link "Add to basket"
+  - listitem:
+    - link "Mastering HTML5 Forms HTML5 Forms ₹280.00":
+      - img "Mastering HTML5 Forms"
+      - heading "HTML5 Forms" [level=3]
+      - text: ₹280.00
+    - link "Add to basket"
+  - listitem:
+    - link "HTML5 Web Application Development Beginner's guide HTML5 WebApp Develpment ₹180.00":
+      - img "HTML5 Web Application Development Beginner's guide"
+      - heading "HTML5 WebApp Develpment" [level=3]
+      - text: ₹180.00
+    - link "Add to basket"
+  - listitem:
+    - link "Learning JavaScript Data Structures and Algorith JS Data Structures and Algorithm ₹150.00":
+      - img "Learning JavaScript Data Structures and Algorith"
+      - heading "JS Data Structures and Algorithm" [level=3]
+      - text: ₹150.00
+    - link "Add to basket"
+  - listitem:
+    - link "Mastering JavaScript Mastering JavaScript ₹350.00":
+      - img "Mastering JavaScript"
+      - heading "Mastering JavaScript" [level=3]
+      - text: ₹350.00
+    - link "Add to basket"
+  - listitem:
+    - link "Selenium Ruby Selenium Ruby ₹500.00":
+      - img "Selenium Ruby"
+      - heading "Selenium Ruby" [level=3]
+      - text: ₹500.00
+    - link "Add to basket"
+  - listitem:
+    - link "Sale! Thinking in HTML Thinking in HTML ₹450.00 ₹400.00":
+      - text: Sale!
+      - img "Thinking in HTML"
+      - heading "Thinking in HTML" [level=3]
+      - deletion: ₹450.00
+      - insertion: ₹400.00
+    - link "Add to basket"
+- complementary:
+  - heading "Refine By >" [level=4]
+  - heading "Filter by price" [level=4]
+  - button "Filter"
+  - text: "Price: ₹150 — ₹500"
+  - heading "Product Categories" [level=4]
+  - list:
+    - listitem:
+      - link "Android"
+      - text: (1)
+    - listitem:
+      - link "HTML"
+      - text: (3)
+    - listitem:
+      - link "JavaScript"
+      - text: (3)
+    - listitem:
+      - link "selenium"
+      - text: (1)
+  - insertion
+  - insertion
+- contentinfo:
+  - link "Site Logo":
+    - img "Site Logo"
+  - list:
+    - listitem:
+      - link ""
+    - listitem:
+      - link ""
+    - listitem:
+      - link ""
+    - listitem:
+      - link ""
+    - listitem:
+      - link ""
+  - insertion
+  - insertion
+  - heading "Subscribe Here" [level=4]
+  - paragraph:
+    - textbox "Your email address"
+  - paragraph:
+    - button "Subscribe"
+  - text: ©
+  - link "Automation Practice Site"
+  - text: "2025"
+```
+
+# Test source
+
+```ts
+   1 | import { test } from '@playwright/test';
+   2 |
+   3 | test('handling sliders', async ({ page }) => {
+   4 |   await page.goto('https://practice.automationtesting.in/');
+   5 |   await page.waitForTimeout(2000);
+   6 |   await page.locator('#menu-item-40').click();
+   7 |   const slider = await page.locator(
+   8 |     "//div[contains(@class, 'ui-slider')]//span[2]",
+   9 |   );
+  10 |   const initValue = await page.locator("//span[@class='to']")
+> 11 |   let price = await initValue.inputValue()
+     |                               ^ Error: locator.inputValue: Error: Node is not an <input>, <textarea> or <select> element
+  12 |   console.log("init value", price);
+  13 |   const targetPrice = '350';
+  14 |   let isCompleted = false;
+  15 |  if(slider) {
+  16 |    while (!isCompleted) {
+  17 |    let bb = await slider.boundingBox();
+  18 |    if (bb) {
+  19 |        await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2); //center of locator
+  20 |        await page.mouse.down();
+  21 |        await page.mouse.move(bb.x + 20, bb.y + bb.height / 2);
+  22 |        await page.mouse.up()
+  23 |        let price = await initValue.inputValue()
+  24 |        if(price === targetPrice) {
+  25 |          isCompleted = true;
+  26 |        }
+  27 |      }
+  28 |    }
+  29 |  }
+  30 |  await page.waitForTimeout(2000)
+  31 | });
+  32 |
+```

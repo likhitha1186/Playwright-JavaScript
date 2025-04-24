@@ -1,0 +1,191 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Drag And Drop
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Project\DaD.spec.js:3:1
+
+# Error details
+
+```
+Error: locator.dragTo: Error: strict mode violation: locator('//li[@data-testid=\'list-card\']').getByText('TrelloBoard') resolved to 3 elements:
+    1) <a dir="auto" draggable="false" class="NdQKKfeqJDDdX3" data-testid="card-name" href="/c/3MK2gFGK/2-trelloboard">TrelloBoard</a> aka getByTestId('card-name').nth(1)
+    2) <a dir="auto" draggable="false" class="NdQKKfeqJDDdX3" data-testid="card-name" href="/c/HZsYxIGe/3-trelloboard">TrelloBoard</a> aka getByTestId('card-name').nth(2)
+    3) <a href="" dir="auto" draggable="false" class="NdQKKfeqJDDdX3" data-testid="card-name">TrelloBoard1</a> aka getByRole('link', { name: 'TrelloBoard1' })
+
+Call log:
+  - waiting for locator('//li[@data-testid=\'list-card\']').getByText('TrelloBoard')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Project\DaD.spec.js:29:15
+```
+
+# Page snapshot
+
+```yaml
+- navigation "Primary":
+  - button "Switch to…":
+    - img "Switch to…"
+  - link "Back to home"
+  - button "Workspaces"
+  - button "Recent boards": Recent
+  - button "Starred boards": Starred
+  - button "More"
+  - button "Create board or Workspace"
+  - img "search"
+  - textbox "Search"
+  - button "0 Notifications"
+  - button "Open information menu"
+  - button "Open member menu":
+    - img "likhitha (likhitha60)"
+- main:
+  - navigation:
+    - link "L"
+    - link "likhitha's workspace":
+      - paragraph: likhitha's workspace
+    - paragraph: Free
+    - button "Workspace navigation" [expanded]:
+      - img "Workspace navigation collapse icon"
+    - link "Boards":
+      - paragraph: Boards
+    - link "Members":
+      - paragraph: Members
+      - button
+    - button "Workspace settings"
+    - heading "Workspace views" [level=2]
+    - list:
+      - listitem:
+        - link "Table"
+        - menu:
+          - button "Workspace Actions Menu"
+      - listitem:
+        - link "Calendar"
+        - menu:
+          - button "Workspace Actions Menu"
+    - heading "Your boards with 4 items" [level=2]: Your boards
+    - button "Your boards menu"
+    - button "Add board"
+    - list:
+      - listitem:
+        - link "1-Board"
+        - menu:
+          - button "Board actions menu"
+        - button "Star Icon":
+          - img "Star Icon"
+      - listitem:
+        - link "1-on-1 Meeting Agenda"
+        - menu:
+          - button "Board actions menu"
+        - button "Star Icon":
+          - img "Star Icon"
+      - listitem:
+        - link "Kanban Template"
+        - menu:
+          - button "Board actions menu"
+        - button "Star Icon":
+          - img "Star Icon"
+      - listitem:
+        - link "Practice (currently active)": Practice
+        - menu:
+          - button "Board actions menu"
+        - button "Star Icon":
+          - img "Star Icon"
+    - button "Try Premium free"
+  - dialog "Atlassian cookies and tracking notice , (opens new window)":
+    - text: Atlassian uses cookies to improve your browsing experience, perform analytics and research, and conduct advertising. Accept all cookies to indicate that you agree to our use of cookies on your device.
+    - link "Atlassian cookies and tracking notice , (opens new window)"
+    - button "Preferences"
+    - button "Only necessary"
+    - button "Accept all"
+  - textbox "Board name":
+    - heading "Practice" [level=1]
+  - button "Star or unstar board"
+  - button "Workspace visible"
+  - button "Customize views": Board
+  - button "Power-Ups"
+  - button "Automation"
+  - button "Filter cards Filters":
+    - img "Filter cards"
+    - text: Filters
+  - button "likhitha (likhitha60) This member is an admin of this board.":
+    - img "likhitha (likhitha60)"
+  - button "Share"
+  - button "Show menu"
+  - list:
+    - listitem:
+      - textbox
+      - textbox "To"
+      - button
+      - list:
+        - listitem:
+          - button "Incomplete":
+            - img "Incomplete"
+          - link "Palywright"
+        - listitem:
+          - button "Incomplete":
+            - img "Incomplete"
+          - link "TrelloBoard"
+        - listitem:
+          - button "Incomplete":
+            - img "Incomplete"
+          - link "TrelloBoard"
+        - listitem:
+          - button "Incomplete":
+            - img "Incomplete"
+          - link "TrelloBoard1"
+          - button "Edit card":
+            - img "Edit card"
+        - listitem:
+          - textbox "Enter a title or paste a link"
+          - button "Add card"
+          - button "Cancel"
+    - listitem:
+      - textbox
+      - textbox "Doing"
+      - button
+      - list
+      - button "Add a card"
+      - button "Create from template…"
+    - button "Add another list"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Drag And Drop', async ({ page }) => {
+   4 |   await page.goto('https://trello.com/homepage');
+   5 |   // await page.waitForTimeout(5000)
+   6 |   await page.getByText('Log in').click();
+   7 |   await page.getByTestId('username').fill('likhithapk.1186@gmail.com');
+   8 |   await page.getByRole('button', { name: 'Continue' }).click();
+   9 |   await page.getByTestId('password').fill('Bq,f%7N9-46JiKT');
+  10 |   await page.getByRole('button', { name: 'Log in' }).click();
+  11 |   await page.waitForTimeout(5000);
+  12 |   await page.getByText('Workspaces').click();
+  13 |   await page.getByText("likhitha's workspace").click();
+  14 |   await page.waitForTimeout(5000);
+  15 |   await page.getByLabel('Practice').click();
+  16 |   await page.waitForTimeout(5000);
+  17 |   await page
+  18 |     .locator("//li[@data-testid='list-wrapper'][1]")
+  19 |     .getByRole('button', { name: 'Add a card' })
+  20 |     .click();
+  21 |   await page.getByTestId('list-card-composer-textarea').fill('TrelloBoard1');
+  22 |   await page.keyboard.press('Enter');
+  23 |   const first = await page
+  24 |     .locator("//li[@data-testid='list-card']")
+  25 |     .getByText('TrelloBoard1');
+  26 |   const second = await page
+  27 |     .locator("//li[@data-testid='list-wrapper'][2]")
+  28 |     .getByRole('button', { name: 'Add a card' });
+> 29 |   await first.dragTo(second)
+     |               ^ Error: locator.dragTo: Error: strict mode violation: locator('//li[@data-testid=\'list-card\']').getByText('TrelloBoard') resolved to 3 elements:
+  30 |   await page.waitForTimeout(5000)
+  31 | });
+  32 |
+```
