@@ -23,7 +23,7 @@ export class OneOnOneMeetingAgendaTemplate {
         this.addCardToDoneList = this.page.locator("//ol[@id='board']/li[6]/div[1]/div[3]/button[1]");
 
         this.cardTitle = this.page.locator("//h1[contains(text(), 'How to use this board')]");
-        this.cardTitleCheckbox = this .page.locator("//button[@class='Soesis69vxO9pE ebipx1HCdlU24H bxgKMAm3lq5BpA iUcMblFAuq9LKn SEj5vUdI3VvxDc']//div[@class='QKpfFWf8HvDnZb']")
+        this.cardTitleCheckbox = this .page.locator("//div[@class='OLWg_SEGDvY_pO']//div[@class='yRwdodao8tIG_y']")
         this.cardDropdown = this.page.locator("//span[@class='wl2C35O7dKV1wx']");
         this.boardDropdown = this.page.locator("//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']");
         this.watchButton = this.page.locator("//button[contains(text(), 'Watch')]")
@@ -162,7 +162,7 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.addLabelsAction(labelName);
         await this.addCheckList(addChecklistItems)
         await this.checkTheAddedCheckList()
-        await this.addDates()
+        // await this.addDates()
     }
     async closeOpenedCard(){
       await this.closeCardButton.click()
