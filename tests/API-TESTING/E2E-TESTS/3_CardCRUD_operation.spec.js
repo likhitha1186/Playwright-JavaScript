@@ -31,6 +31,7 @@ test.describe.serial("Cards CRUD operation", () => {
         const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the card by its ID");
     });
 
     test("Update a card", async ({request}) => {
@@ -42,6 +43,7 @@ test.describe.serial("Cards CRUD operation", () => {
             }
         });
         expect(response.status()).toBe(200);
+        console.log("Successfully updated  the card");
     });
 
     test("Get a field on a Card", async ({request}) => {
@@ -49,12 +51,14 @@ test.describe.serial("Cards CRUD operation", () => {
         const filedName = generateRandomFieldName();
         const response = await request.get(`${baseURL}/cards/${cardId}/${filedName}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the field on a Card");
     });
 
     test("Get Actions on a Card", async ({request}) => {
         const {cardId} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/cards/${cardId}/actions?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the actions on a Card");
     });
 
     test("Create Attachment On Card", async ({request}) => {
@@ -73,12 +77,14 @@ test.describe.serial("Cards CRUD operation", () => {
         let res = await response.json();
         boardData.attachmentID = res.id;
         fs.writeFileSync(boardDataFile, JSON.stringify(boardData, null, 2));
+        console.log("Successfully created the attachments on a Card");
     });
 
     test("Get an Attachment On Card", async ({request}) => {
         const {cardId, attachmentID} = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/cards/${cardId}/attachments/${attachmentID}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the attachments on a Card");
     });
 
     test("Get the Board the Card is on", async ({request}) => {
@@ -87,5 +93,6 @@ test.describe.serial("Cards CRUD operation", () => {
         expect(response.status()).toBe(200);
         let res = await response.json();
         expect(res.name).toEqual(boardName)
+        console.log("Successfully fetched the card and board");
     });
 });

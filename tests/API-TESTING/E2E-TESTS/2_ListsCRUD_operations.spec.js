@@ -40,23 +40,27 @@ test.describe.serial("List CRUD operation", () =>{
             }
         });
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the information about the List");
     });
 
-    test("Get the board a list is on", async ({ request }) => {
+    test("Get the list information", async ({ request }) => {
         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/lists/${listId}/board?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the board");
     });
 
     test("Get the Actions on a List", async ({ request }) => {
         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/lists/${listId}/actions?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the actions of a list");
     });
 
     test("List the cards in a list", async ({ request }) => {
         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/lists/${listId}/cards?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully fetched the cards list");
     });
 });
