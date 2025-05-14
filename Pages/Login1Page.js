@@ -1,3 +1,5 @@
+import { authenticator } from 'otplib';
+
 export class Login {
 
     constructor(page) {
@@ -11,7 +13,9 @@ export class Login {
       await this.page.locator('#username').fill(username);
       await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
       await this.page.locator('#password').fill(password);
-      await this.page.locator('button[type="submit"]', { hasText: 'Log In' }).click();
+      await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+      const otp = authenticator.generate(process.env.SECRETOTP)
+      await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
   }
 
   async selectWorkspace(){

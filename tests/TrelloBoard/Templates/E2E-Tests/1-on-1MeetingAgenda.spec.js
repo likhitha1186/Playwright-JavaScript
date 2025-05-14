@@ -1,3 +1,4 @@
+import { authenticator } from 'otplib';
 import { test } from '@playwright/test';
 import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
@@ -10,7 +11,7 @@ test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     
     const loginPage = new Login(page);
-    await loginPage.login('likhithapk.1186@gmail.com', 'Bq,f%7N9-46JiKT');
+    await loginPage.login(process.env.EMAIL, process.env.PASSWORD);
     console.log('Successfully logged in as Likhitha');
     await loginPage.selectWorkspace();
     console.log("Successfully Likhitha's workspace selected");

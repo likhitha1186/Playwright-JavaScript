@@ -167,9 +167,6 @@ export class OneOnOneMeetingAgendaTemplate {
     async closeOpenedCard(){
       await this.closeCardButton.click()
     }
-    async closeOpenedCard(){
-      await this.closeCardButton.click()
-    }
 
     // selecting already existing card
     async clickOldCardInInfoList(cardIndex) {
