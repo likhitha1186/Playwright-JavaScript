@@ -40,7 +40,7 @@ jobs:
         run: npx playwright --version
 
       - name: Run Playwright UI Test
-        run: npx playwright test tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium --debug
+        run: npx playwright test tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium
       - name: Generate Allure Report
         run: |
           npm install -g allure-commandline
