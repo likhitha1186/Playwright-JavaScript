@@ -29,6 +29,7 @@ test.describe.serial("List CRUD operation", () =>{
         const { listId } = JSON.parse(fs.readFileSync(boardDataFile, "utf8"));
         const response = await request.get(`${baseURL}/lists/${listId}?key=${apiKey}&token=${token}`);
         expect(response.status()).toBe(200);
+        console.log("Successfully Get information about a List");
     });
 
     test("Update the properties of a List", async ({ request }) => {
@@ -40,7 +41,7 @@ test.describe.serial("List CRUD operation", () =>{
             }
         });
         expect(response.status()).toBe(200);
-        console.log("Successfully fetched the information about the List");
+        console.log("Successfully updated the properties of List");
     });
 
     test("Get the list information", async ({ request }) => {
