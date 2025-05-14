@@ -1,0 +1,183 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Add a card in Info list
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:28:1
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//ol[@id=\'board\']/li[1]/div[1]/div[3]/button[1]')
+
+    at OneOnOneMeetingAgendaTemplate.addCardToInfoTopics (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\Page\OneOnOneMeetingAgendaPage.js:56:38)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:31:19
+```
+
+# Test source
+
+```ts
+   1 | import {HandlingCardElements, HandlingLabelsElements} from "../FeatureFiles/MultipleElements.js";
+   2 |
+   3 |
+   4 | export class OneOnOneMeetingAgendaTemplate {
+   5 |     constructor(page) {
+   6 |         this.page = page;
+   7 |         this.boardTitle = this.page.locator("//h1[contains(text(), '1-on-1 Meeting Agenda')]");
+   8 |         this.lists = this.page.locator("//li[@data-testid='list-wrapper']");
+   9 |
+   10 |         this.infoList = this.page.locator("//li[@data-testid='list-wrapper'][1]//li");
+   11 |         this.teamMemberTopicsList = this.page.locator("//li[@data-testid='list-wrapper'][2]//li");
+   12 |         this.managerTopicsList = this.page.locator("//li[@data-testid='list-wrapper'][3]//li");
+   13 |         this.goalsList = this.page.locator("//li[@data-testid='list-wrapper'][4]//li");
+   14 |         this.actionsList = this.page.locator("//li[@data-testid='list-wrapper'][5]//li");
+   15 |         this.doneList = this.page.locator("//li[@data-testid='list-wrapper'][6]//li");
+   16 |         this.newList = this.page.locator("//div[@data-testid='board-canvas']//div[@data-testid='list-composer-button-container']");
+   17 |
+   18 |         this.addCardToInfoList = this.page.locator("//ol[@id='board']/li[1]/div[1]/div[3]/button[1]");
+   19 |         this.addCardToTeamMemberTopicsList = this.page.locator("//ol[@id='board']/li[2]/div[1]/div[3]/button[1]");
+   20 |         this.addCardToManagerTopicsList = this.page.locator("//ol[@id='board']/li[3]/div[1]/div[3]/button[1]");
+   21 |         this.addCardToGoalsList = this.page.locator("//ol[@id='board']/li[4]/div[1]/div[3]/button[1]");
+   22 |         this.addCardToActionsList = this.page.locator("//ol[@id='board']/li[5]/div[1]/div[3]/button[1]");
+   23 |         this.addCardToDoneList = this.page.locator("//ol[@id='board']/li[6]/div[1]/div[3]/button[1]");
+   24 |
+   25 |         this.cardTitle = this.page.locator("//h1[contains(text(), 'How to use this board')]");
+   26 |         this.cardTitleCheckbox = this .page.locator("//div[@class='OLWg_SEGDvY_pO']//div[@class='yRwdodao8tIG_y']")
+   27 |         this.cardDropdown = this.page.locator("//span[@class='wl2C35O7dKV1wx']");
+   28 |         this.boardDropdown = this.page.locator("//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']");
+   29 |         this.watchButton = this.page.locator("//button[contains(text(), 'Watch')]")
+   30 |         this.editButton = this.page.locator("//button[contains(text(), 'Edit')]");
+   31 |         this.joinButton = this.page.locator("//button[contains(text(), 'Join')]");
+   32 |         this.leaveButton = this.page.locator("//button[contains(text(), 'Leave')]");
+   33 |         this.membersButton = this.page.locator("//button[contains(text(), 'Members')]");
+   34 |         this.labelsButton = this.page.locator("//button[contains(text(), 'Labels')]");
+   35 |         this.checklistButton = this.page.locator("//button[contains(text(), 'Checklist')]");
+   36 |         this.datesButton = this.page.locator("//button[contains(text(), 'Dates')]");
+   37 |         this.attachmentButton = this.page.locator("//button[contains(text(), 'Attachment')]");
+   38 |         this.customFieldsButton = this.page.locator("//button[contains(text(), 'Custom Fields')]");
+   39 |         this.confluenceButton = this.page.locator("//button[contains(text(), 'Confluence')]");
+   40 |         this.addPowerUpsButton = this.page.locator("//button[contains(text(), 'Add Power-Ups')]");
+   41 |         this.addButton = this.page.locator("//button[contains(text(), 'Add button')]");
+   42 |         this.moveButton = this.page.locator("//button[contains(text(), 'Move')]");
+   43 |         this.copyButton = this.page.locator("//button[contains(text(), 'Copy')]");
+   44 |         this.mirrorButton = this.page.locator("//button[contains(text(), 'Mirror')]");
+   45 |         this.makeTemplateButton = this.page.locator("//button[contains(text(), 'Make template')]");
+   46 |         this.archiveButton = this.page.locator("//button[contains(text(), 'Archive')]");
+   47 |         this.shareButton = this.page.locator("//button[contains(text(), 'Share')]");
+   48 |         this.addAttachment = this.page.locator("//button[normalize-space()='Add']");
+   49 |         this.fileAttachment = this.page.locator("//span[contains(text(), 'ScratchPaper.jpg')]");
+   50 |         this.commentBox = this.page.locator("//textarea[@placeholder='Write a comment…']");
+   51 |         this.hideDetailsButton = this.page.locator("//button[normalize-space()='Show details']");
+   52 |         this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
+   53 |     }
+   54 |
+   55 |     async addCardToInfoTopics(cardname) {
+>  56 |         await this.addCardToInfoList.click();
+      |                                      ^ Error: locator.click: Target page, context or browser has been closed
+   57 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   58 |         await this.page.waitForTimeout(2000);
+   59 |         await this.page.keyboard.press('Enter');
+   60 |     }
+   61 |
+   62 |     async addCardToTeamMemberTopics(cardname) {
+   63 |         await this.addCardToTeamMemberTopicsList.click();
+   64 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   65 |         await this.page.waitForTimeout(2000);
+   66 |         await this.page.keyboard.press('Enter');
+   67 |     }
+   68 |
+   69 |     async addCardToManagerTopics(cardname) {
+   70 |         await this.addCardToManagerTopicsList.click();
+   71 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   72 |         await this.page.waitForTimeout(2000);
+   73 |         await this.page.keyboard.press('Enter');
+   74 |     }
+   75 |
+   76 |     async addCardToGoals(cardname) {
+   77 |         await this.addCardToGoalsList.click();
+   78 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   79 |         await this.page.waitForTimeout(2000);
+   80 |         await this.page.keyboard.press('Enter');
+   81 |     }
+   82 |
+   83 |     async addCardToActions(cardname) {
+   84 |         await this.addCardToActionsList.click();
+   85 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   86 |         await this.page.waitForTimeout(2000);
+   87 |         await this.page.keyboard.press('Enter');
+   88 |     }
+   89 |
+   90 |     async addCardToDone(cardname) {
+   91 |         await this.addCardToDoneList.click();
+   92 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   93 |         await this.page.waitForTimeout(2000);
+   94 |         await this.page.keyboard.press('Enter');
+   95 |     }
+   96 |
+   97 |     async addMembersAction(){
+   98 |         await this.membersButton.click()
+   99 |       await this.page.getByLabel('Search members').fill('Likhitha');
+  100 |       await this.page.keyboard.press('Enter');
+  101 |       await this.page.locator("//button[@aria-label='Close popover']").click();
+  102 |     }
+  103 |
+  104 |     async addLabelsAction(labelName){
+  105 |         await this.labelsButton.click();
+  106 |         const CreateNewLabel = await this.page.getByText('Create a new label');
+  107 |         const TitleField = await this.page.locator("//div[@class='q2PzD_Dkq1FVX3 pt-0']//input[@type='text']")
+  108 |         const CreateButton = await this.page.locator("//button[contains(text(),'Create')]")
+  109 |         const allLabels= await this.page.locator("//ul[@class='AEgIEBHcUVGEym']//li");
+  110 |         await HandlingLabelsElements(allLabels, labelName, CreateNewLabel, TitleField, CreateButton)
+  111 |         await this.page.getByTestId('popover-close').click()
+  112 |     }
+  113 |
+  114 |     async addCheckList(addChecklistItems){
+  115 |         await this.checklistButton.click();
+  116 |         for (const item of addChecklistItems) {
+  117 |             await this.page.locator("//button[normalize-space()='Add']").click();
+  118 |             await this.page.getByLabel('Add an item').fill(item);
+  119 |             await this.page.keyboard.press('Enter');
+  120 |             await this.page.waitForTimeout(1000);
+  121 |         }
+  122 |     }
+  123 |
+  124 |     async checkTheAddedCheckList() {
+  125 |         const options = await this.page.$$("//ul[@data-testid='checklist-items']//div[@class='DqgZ76in2cc5Jp']//*[name()='svg']");
+  126 |         await options[0].click();
+  127 |         await this.page.waitForTimeout(1000);
+  128 |     }
+  129 |
+  130 |     async addDates(){
+  131 |         await this.datesButton.click();
+  132 |         await this.page.waitForTimeout(5000);
+  133 |         await this.datesButton.click();
+  134 |         await this.page.getByTestId('card-back-due-date-button').click();
+  135 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).uncheck();
+  136 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(2).check();
+  137 |         await this.page.getByRole('button', { name: '4, Tuesday March 2025' }).click();
+  138 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).check();
+  139 |         await this.page.getByRole('button', { name: '3, Thursday April 2025' }).click();
+  140 |         this.page.locator("//div[@class='ZLkHQZu7HZZj5h']//button[1]").click()
+  141 |     }
+  142 |
+  143 |     // selecting newly created card
+  144 |     async clickNewCardInInfoList(cardName) {
+  145 |         await HandlingCardElements(this.infoList, cardName, this.page)
+  146 |         await this.page.waitForTimeout(5000)
+  147 |     }
+  148 |
+  149 |     //after selecting newly created card
+  150 |     async performActionOnNewCard(cardName, labelName, addChecklistItems){
+  151 |         await this.clickNewCardInInfoList(cardName)
+  152 |         await this.cardTitleCheckbox.click();
+  153 |         await this.page.waitForTimeout(2000)
+  154 |         //await this.performMoveCardAction();
+  155 |         await this.cardTitleCheckbox.click();
+  156 |         await this.page.waitForTimeout(2000)
+```

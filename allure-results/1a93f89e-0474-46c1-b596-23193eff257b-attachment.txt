@@ -1,0 +1,2 @@
+Successfully clicked the card: Open Issues
+Successfully performed specified actions on : Open Issues

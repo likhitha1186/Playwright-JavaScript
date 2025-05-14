@@ -1,0 +1,168 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Add a card in Info list
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:28:1
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//div[@class=\'OLWg_SEGDvY_pO\']//div[@class=\'yRwdodao8tIG_y\']')
+
+    at OneOnOneMeetingAgendaTemplate.performActionOnNewCard (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\Page\OneOnOneMeetingAgendaPage.js:152:38)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:36:5
+```
+
+# Test source
+
+```ts
+   52 |         this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
+   53 |     }
+   54 |
+   55 |     async addCardToInfoTopics(cardname) {
+   56 |         await this.addCardToInfoList.click();
+   57 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   58 |         await this.page.waitForTimeout(2000);
+   59 |         await this.page.keyboard.press('Enter');
+   60 |     }
+   61 |
+   62 |     async addCardToTeamMemberTopics(cardname) {
+   63 |         await this.addCardToTeamMemberTopicsList.click();
+   64 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   65 |         await this.page.waitForTimeout(2000);
+   66 |         await this.page.keyboard.press('Enter');
+   67 |     }
+   68 |
+   69 |     async addCardToManagerTopics(cardname) {
+   70 |         await this.addCardToManagerTopicsList.click();
+   71 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   72 |         await this.page.waitForTimeout(2000);
+   73 |         await this.page.keyboard.press('Enter');
+   74 |     }
+   75 |
+   76 |     async addCardToGoals(cardname) {
+   77 |         await this.addCardToGoalsList.click();
+   78 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   79 |         await this.page.waitForTimeout(2000);
+   80 |         await this.page.keyboard.press('Enter');
+   81 |     }
+   82 |
+   83 |     async addCardToActions(cardname) {
+   84 |         await this.addCardToActionsList.click();
+   85 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   86 |         await this.page.waitForTimeout(2000);
+   87 |         await this.page.keyboard.press('Enter');
+   88 |     }
+   89 |
+   90 |     async addCardToDone(cardname) {
+   91 |         await this.addCardToDoneList.click();
+   92 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   93 |         await this.page.waitForTimeout(2000);
+   94 |         await this.page.keyboard.press('Enter');
+   95 |     }
+   96 |
+   97 |     async addMembersAction(){
+   98 |         await this.membersButton.click()
+   99 |       await this.page.getByLabel('Search members').fill('Likhitha');
+  100 |       await this.page.keyboard.press('Enter');
+  101 |       await this.page.locator("//button[@aria-label='Close popover']").click();
+  102 |     }
+  103 |
+  104 |     async addLabelsAction(labelName){
+  105 |         await this.labelsButton.click();
+  106 |         const CreateNewLabel = await this.page.getByText('Create a new label');
+  107 |         const TitleField = await this.page.locator("//div[@class='q2PzD_Dkq1FVX3 pt-0']//input[@type='text']")
+  108 |         const CreateButton = await this.page.locator("//button[contains(text(),'Create')]")
+  109 |         const allLabels= await this.page.locator("//ul[@class='AEgIEBHcUVGEym']//li");
+  110 |         await HandlingLabelsElements(allLabels, labelName, CreateNewLabel, TitleField, CreateButton)
+  111 |         await this.page.getByTestId('popover-close').click()
+  112 |     }
+  113 |
+  114 |     async addCheckList(addChecklistItems){
+  115 |         await this.checklistButton.click();
+  116 |         for (const item of addChecklistItems) {
+  117 |             await this.page.locator("//button[normalize-space()='Add']").click();
+  118 |             await this.page.getByLabel('Add an item').fill(item);
+  119 |             await this.page.keyboard.press('Enter');
+  120 |             await this.page.waitForTimeout(1000);
+  121 |         }
+  122 |     }
+  123 |
+  124 |     async checkTheAddedCheckList() {
+  125 |         const options = await this.page.$$("//ul[@data-testid='checklist-items']//div[@class='DqgZ76in2cc5Jp']//*[name()='svg']");
+  126 |         await options[0].click();
+  127 |         await this.page.waitForTimeout(1000);
+  128 |     }
+  129 |
+  130 |     async addDates(){
+  131 |         await this.datesButton.click();
+  132 |         await this.page.waitForTimeout(5000);
+  133 |         await this.datesButton.click();
+  134 |         await this.page.getByTestId('card-back-due-date-button').click();
+  135 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).uncheck();
+  136 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(2).check();
+  137 |         await this.page.getByRole('button', { name: '4, Tuesday March 2025' }).click();
+  138 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).check();
+  139 |         await this.page.getByRole('button', { name: '3, Thursday April 2025' }).click();
+  140 |         this.page.locator("//div[@class='ZLkHQZu7HZZj5h']//button[1]").click()
+  141 |     }
+  142 |
+  143 |     // selecting newly created card
+  144 |     async clickNewCardInInfoList(cardName) {
+  145 |         await HandlingCardElements(this.infoList, cardName, this.page)
+  146 |         await this.page.waitForTimeout(5000)
+  147 |     }
+  148 |
+  149 |     //after selecting newly created card
+  150 |     async performActionOnNewCard(cardName, labelName, addChecklistItems){
+  151 |         await this.clickNewCardInInfoList(cardName)
+> 152 |         await this.cardTitleCheckbox.click();
+      |                                      ^ Error: locator.click: Target page, context or browser has been closed
+  153 |         await this.page.waitForTimeout(2000)
+  154 |         //await this.performMoveCardAction();
+  155 |         await this.cardTitleCheckbox.click();
+  156 |         await this.page.waitForTimeout(2000)
+  157 |         await this.watchButton.click();
+  158 |         await this.page.waitForTimeout(2000)
+  159 |         await this.joinButton.click();
+  160 |         await this.page.waitForTimeout(2000)
+  161 |         await this.addMembersAction();
+  162 |         await this.addLabelsAction(labelName);
+  163 |         await this.addCheckList(addChecklistItems)
+  164 |         await this.checkTheAddedCheckList()
+  165 |         await this.addDates()
+  166 |     }
+  167 |     async closeOpenedCard(){
+  168 |       await this.closeCardButton.click()
+  169 |     }
+  170 |
+  171 |     // selecting already existing card
+  172 |     async clickOldCardInInfoList(cardIndex) {
+  173 |         await this.infoList.nth(cardIndex).click();
+  174 |         await this.page.waitForTimeout(2000);
+  175 |     }
+  176 |
+  177 |     //after selecting already existing card
+  178 |     async performMoveCardAction(){
+  179 |         await this.cardDropdown.click();
+  180 |         await this.boardDropdown.click();
+  181 |         const options = await this.page.$$("//div[@role='option']//li");
+  182 |         await options[0].click()
+  183 |         await this.page.getByTestId('move-card-popover-move-button').click()
+  184 |     }
+  185 |
+  186 |     async performActionOnOldCard(cardIndex){
+  187 |         await this.clickOldCardInInfoList(cardIndex);
+  188 |         await this.cardTitleCheckbox.click();
+  189 |         await this.performMoveCardAction();
+  190 |     }
+  191 | }
+  192 |
+```

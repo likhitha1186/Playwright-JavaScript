@@ -1,11 +1,11 @@
 {
-  "boardId": "6824750cd86a2a3bb62ebf6c",
-  "boardName": "Scrum Sprints",
-  "listId": "6824750e322bfdb286005b40",
-  "listName": "Current Sprint",
-  "cardId": "68247513d9442af03129420d",
-  "cardName": "Blocked Support",
-  "attachmentID": "68247516e4ec7b92060f372f",
-  "labelId": "682475175b776829c19361e4",
-  "labelName": "FYI"
+  "boardId": "682484939e3a1b807ce2d1e1",
+  "boardName": "Sprint Ideas",
+  "listId": "68248495dbce2e9821e7d0b3",
+  "listName": "Completed",
+  "cardId": "6824849acb0529de688931a1",
+  "cardName": "Sales Support",
+  "attachmentID": "6824849db643a104a5184488",
+  "labelId": "6824849fa00812b574eb5c14",
+  "labelName": "Paused"
 }
