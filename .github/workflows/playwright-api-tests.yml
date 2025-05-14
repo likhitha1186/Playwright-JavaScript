@@ -33,11 +33,6 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test tests/API-TESTING --config=playwright.config.js --project=chromium
 
-      - name: Generate Allure Report
-        run: |
-              npm install -g allure-commandline
-              allure generate allure-results --clean -o allure-report
-
       - name: Upload Playwright Test Report
         if: always()
         uses: actions/upload-artifact@v4
