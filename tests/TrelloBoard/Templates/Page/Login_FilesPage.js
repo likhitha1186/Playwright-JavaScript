@@ -1,35 +1,30 @@
-import { expect } from '@playwright/test';
+import { authenticator } from 'otplib';
 
-export class Login {
+export class LoginPage {
+
     constructor(page) {
         this.page = page;
-        this.url = 'https://trello.com/homepage';
-        this.loginButton = this.page.getByText('Log in');
-        this.usernameField = this.page.locator('#username');
-        this.continueButton = this.page.locator('button[type="submit"]', { hasText: 'Continue' });
-        this.passwordField = this.page.locator('#password');
-        this.submitButton = this.page.locator('button[type="submit"]', { hasText: 'Log In' });
-        this.workspaceButton = this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']");
-        this.templatesMenu = this.page.getByTestId('templates-menu');
     }
 
-    async login(username, password) {
-        await this.page.goto(this.url);
+    async login(username, password){
+        await this.page.goto('https://trello.com/homepage');
         await this.page.setViewportSize({ width: 1920, height: 1040 });
-        await this.loginButton.click();
-        await this.usernameField.fill(username);
-        await this.continueButton.click();
-        await this.passwordField.fill(password);
-        await this.submitButton.click();
+        await this.page.getByText('Log in').click();
+        await this.page.locator('#username').fill(username);
+        await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
+        await this.page.locator('#password').fill(password);
+        await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+        const otp = authenticator.generate(process.env.SECRETOTP)
+        await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
     }
 
-    async selectWorkspace() {
-        await this.workspaceButton.click();
+    async selectWorkspace(){
+        await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
         await this.page.getByText("likhitha's workspace").click();
     }
 
-    async selectTemplates() {
-        await this.templatesMenu.click();
-        await this.page.waitForTimeout(2000);
+    async selectTemplates(){
+        await this.page.getByTestId('templates-menu').click();
+        await this.page.waitForTimeout(2000)
     }
 }

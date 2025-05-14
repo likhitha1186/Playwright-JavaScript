@@ -28,3 +28,4 @@ export class Login {
         await this.page.waitForTimeout(2000)
   }
 }
+//C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\Login1Page.js

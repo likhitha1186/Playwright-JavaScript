@@ -4,13 +4,14 @@ import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
 import {OneOnOneMeetingAgendaTemplate} from "../Page/OneOnOneMeetingAgendaPage.js";
 import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.js"
+import { LoginPage } from '../Page/Login_FilesPage.js';
 
 let page, cardname;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     
-    const loginPage = new Login(page);
+    const loginPage = new LoginPage(page);
     await loginPage.login(process.env.EMAIL, process.env.PASSWORD);
     console.log('Successfully logged in as Likhitha');
     await loginPage.selectWorkspace();
