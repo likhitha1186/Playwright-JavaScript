@@ -8,7 +8,7 @@ export function createBoards() {
         BoardName: generateRandomBoardName(),
         apiKey: process.env.API_KEY,
         token: process.env.TOKEN,
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASEURL,
     };
 }
 export function createLists() {
@@ -16,7 +16,7 @@ export function createLists() {
         ListName: generateRandomListName(),
         apiKey: process.env.API_KEY,
         token: process.env.TOKEN,
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASEURL,
     };
 }
 export function createCards() {
@@ -24,7 +24,7 @@ export function createCards() {
         CardName: generateRandomCardName(),
         apiKey: process.env.API_KEY,
         token: process.env.TOKEN,
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASEURL,
     };
 }
 export function createLabels() {
@@ -32,13 +32,13 @@ export function createLabels() {
         LabelName: generateRandomLabelName(),
         apiKey: process.env.API_KEY,
         token: process.env.TOKEN,
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASEURL,
     };
 }
 export function deleteTrello() {
     return {
         apiKey: process.env.API_KEY,
         token: process.env.TOKEN,
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASEURL,
     };
 }

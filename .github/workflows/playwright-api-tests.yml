@@ -15,6 +15,15 @@ jobs:
   test:
     runs-on: windows-latest
 
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      BASEURL: ${{ secrets.BASEURL }}
+      EMAIL: ${{ secrets.EMAIL }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      SECRET: ${{ secrets.SECRET }}
+      SECRETOTP: ${{ secrets.SECRETOTP }}
+      TOKEN: ${{ secrets.TOKEN }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4 #it will get the code from the working-directory: and it can be used in subsequent step.
