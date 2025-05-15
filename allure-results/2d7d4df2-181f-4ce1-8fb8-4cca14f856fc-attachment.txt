@@ -1,0 +1,4 @@
+[Add a card in Info list] Successfully added a Completed Tasks to the Info list
+[Add a card in Info list] Successfully found and clicked the card: Completed Tasks
+[Add a card in Info list] Successfully added Paused to the: Completed Tasks
+[Add a card in Info list] Successfully added Task 1,Task 2,Task 3 to the  Completed Tasks

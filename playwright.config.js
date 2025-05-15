@@ -20,7 +20,7 @@ config({
  */
 export default defineConfig({
   //globalSetup : path.resolve('./config/global_setup') ,
-  testDir: './tests',
+  testDir: 'src/tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
   //testMatch :['/tests/API-TESTING/E2E-TESTS/*.spec.js'] ,

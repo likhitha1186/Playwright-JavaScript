@@ -1,0 +1,4 @@
+[Setup] Successfully logged in as Likhitha
+[Setup] Successfully selected Likhitha's workspace
+[Setup] Successfully selected Template menu
+[Select 1-on-1 Meeting Agenda Template] Successfully selected template: 1-on-1 Meeting Agenda
