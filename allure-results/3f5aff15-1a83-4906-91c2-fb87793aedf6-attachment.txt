@@ -1,0 +1,4 @@
+Successfully added a Retrospective Bugs to the Info list
+Successfully found and clicked the card: Retrospective Bugs
+Successfully added Paused to the: Retrospective Bugs
+Successfully added Task 1,Task 2,Task 3 to the  Retrospective Bugs

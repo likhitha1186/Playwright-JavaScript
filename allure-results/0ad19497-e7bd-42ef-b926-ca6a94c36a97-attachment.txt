@@ -1,0 +1,4 @@
+Successfully added a Development Goals to the Info list
+Successfully found and clicked the card: Development Goals
+Successfully added Goal to the: Development Goals
+Successfully added Task 1,Task 2,Task 3 to the  Development Goals

@@ -1,12 +1,11 @@
-import { authenticator } from 'otplib';
 import { test } from '@playwright/test';
-import { Login } from '../../../../Pages/Login1Page.js'
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
 import {OneOnOneMeetingAgendaTemplate} from "../Page/OneOnOneMeetingAgendaPage.js";
 import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.js"
 import { LoginPage } from '../Page/Login_FilesPage.js';
+import { LogoutPage } from '../Page/Logout_FilesPage.js';
 
-let page, cardname;
+let page, cardname,templateName;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
@@ -22,7 +21,8 @@ test.beforeAll(async ({ browser }) => {
 
 test('Select 1-on-1 Meeting Agenda Template ', async ()=>{
     const selectTemp = new TemplatesPage(page);
-    await selectTemp.OneOnOneMeetingAgenda("1-on-1 Meeting Agenda");
+    templateName = "1-on-1 Meeting Agenda";
+    await selectTemp.OneOnOneMeetingAgenda(templateName);
     console.log("Successfully selected 1-on-1 Meeting Agenda Template");
     await page.waitForTimeout(2000)
 })
@@ -52,3 +52,12 @@ test('Click existing card', async () => {
     console.log(`Successfully performed specified actions on : ${cardname}`);
 });
 
+test.afterAll(async ({ browser }) => {
+     const deleteAction= new OneOnOneMeetingAgendaTemplate(page);
+     await deleteAction.deleteCreatedBoard(templateName);
+     console.log(`Successfully deleted ${templateName}`);
+
+     const logout= new LogoutPage(page);
+     await logout.logout();
+     console.log(`Successfully logged out`);
+});

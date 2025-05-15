@@ -1,0 +1,6 @@
+Successfully logged in as Likhitha
+2
+locator('//div[@class=\'jv7QDCKI8FPToj\']//li').nth(1)
+Successfully Likhitha's workspace selected
+Successfully Template-menu selected
+Successfully selected 1-on-1 Meeting Agenda Template

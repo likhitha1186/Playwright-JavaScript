@@ -1,4 +1,4 @@
-import {HandlingCardElements, HandlingLabelsElements} from "../FeatureFiles/MultipleElements.js";
+import {  HandlingCardElements, HandlingLabelsElements } from '../FeatureFiles/MultipleElements.js';
 
 
 export class OneOnOneMeetingAgendaTemplate {
@@ -50,8 +50,9 @@ export class OneOnOneMeetingAgendaTemplate {
         this.commentBox = this.page.locator("//textarea[@placeholder='Write a comment…']");
         this.hideDetailsButton = this.page.locator("//button[normalize-space()='Show details']");
         this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
-    }
+        this.myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
 
+    }
     async addCardToInfoTopics(cardname) {
         await this.addCardToInfoList.click();
         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
@@ -148,9 +149,7 @@ export class OneOnOneMeetingAgendaTemplate {
 
     //after selecting newly created card
     async performActionOnNewCard(cardName, labelName, addChecklistItems){
-        await this.clickNewCardInInfoList(cardName)
-        await this.cardTitleCheckbox.click();
-        await this.page.waitForTimeout(2000)
+        await this.clickNewCardInInfoList(cardName);
         //await this.performMoveCardAction();
         await this.cardTitleCheckbox.click();
         await this.page.waitForTimeout(2000)
@@ -187,5 +186,17 @@ export class OneOnOneMeetingAgendaTemplate {
         await this.clickOldCardInInfoList(cardIndex);
         await this.cardTitleCheckbox.click();
         await this.performMoveCardAction();
+    }
+
+    async deleteCreatedBoard(templateName){
+        await this.page.reload()
+        const latestBoard = this.page.locator(`//a[contains(@title, '${templateName}')]`);
+        await latestBoard.click();
+        const boardContainer = latestBoard.locator("xpath=ancestor::li");    // Find the parent container of the board and then locate the button inside it
+        const deleteButton = boardContainer.locator("button[aria-label='Board actions menu']").last();
+        await deleteButton.click();
+        await this.page.waitForTimeout(2000)
+        await this.page.getByRole('button', { name: 'Close board' }).click();
+        await this.page.getByTestId('popover-close-board-confirm').click();
     }
 }

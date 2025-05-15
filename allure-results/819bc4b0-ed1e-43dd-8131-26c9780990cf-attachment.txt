@@ -1,0 +1,4 @@
+Successfully added a New Opportunities to the Info list
+Successfully found and clicked the card: New Opportunities
+Successfully added Paused to the: New Opportunities
+Successfully added Task 1,Task 2,Task 3 to the  New Opportunities

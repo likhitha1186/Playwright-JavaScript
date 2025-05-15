@@ -1,0 +1,4 @@
+Successfully added a Completed Analysis to the Info list
+Successfully found and clicked the card: Completed Analysis
+Successfully added Paused to the: Completed Analysis
+Successfully added Task 1,Task 2,Task 3 to the  Completed Analysis

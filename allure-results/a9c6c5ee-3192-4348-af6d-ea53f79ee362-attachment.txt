@@ -1,0 +1,4 @@
+Successfully added a Medium Testing to the Info list
+Successfully found and clicked the card: Medium Testing
+Successfully added Name to the: Medium Testing
+Successfully added Task 1,Task 2,Task 3 to the  Medium Testing
