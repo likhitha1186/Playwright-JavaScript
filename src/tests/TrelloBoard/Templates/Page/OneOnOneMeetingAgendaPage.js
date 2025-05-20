@@ -109,7 +109,7 @@ export class OneOnOneMeetingAgendaTemplate {
         const CreateButton = await this.page.locator("//button[contains(text(),'Create')]")
         const allLabels= await this.page.locator("//ul[@class='AEgIEBHcUVGEym']//li");
         await HandlingLabelsElements(allLabels, labelName, CreateNewLabel, TitleField, CreateButton)
-        await this.page.getByTestId('popover-close').click()
+        await this.page.getByLabel("Close popover").click()
     }
 
     async addCheckList(addChecklistItems){

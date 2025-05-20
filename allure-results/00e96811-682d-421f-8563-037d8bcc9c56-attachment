@@ -1,0 +1,75 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Click existing card
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:47:1
+
+# Error details
+
+```
+Error: page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://trello.com/homepage", waiting until "load"
+
+    at LoginPage.login (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\Page\Login_FilesPage.js:9:21)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:14:21
+```
+
+# Test source
+
+```ts
+   1 | import { authenticator } from 'otplib';
+   2 |
+   3 | export class LoginPage {
+   4 |   constructor(page) {
+   5 |     this.page = page;
+   6 |   }
+   7 |
+   8 |   async login(username, password) {
+>  9 |     await this.page.goto('https://trello.com/homepage');
+     |                     ^ Error: page.goto: Target page, context or browser has been closed
+  10 |     await this.page.setViewportSize({ width: 1920, height: 1040 });
+  11 |     await this.page.getByText('Log in').click();
+  12 |     await this.page.locator('#username').fill(username);
+  13 |     await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
+  14 |     await this.page.locator('#password').fill(password);
+  15 |     await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+  16 |     const otp = authenticator.generate(process.env.SECRETOTP);
+  17 |     await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
+  18 |   }
+  19 |
+  20 |   async selectWorkspace() {
+  21 |     await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+  22 |     await this.page.getByText("likhitha's workspace").click();
+  23 |     await this.deleteTemplates()
+  24 |   }
+  25 |
+  26 |   async deleteTemplates() {
+  27 |     const myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
+  28 |     const allBoards = await myBoards.all();
+  29 |     if(allBoards.length > 1) {
+  30 |       for (let i = 1; i < allBoards.length; i++) {
+  31 |         const board = allBoards[i];
+  32 |         await board.hover();
+  33 |         await board.click();
+  34 |         const deleteButton = myBoards.locator("button[aria-label='Board actions menu']").last();
+  35 |         await deleteButton.click();
+  36 |         await this.page.waitForTimeout(2000)
+  37 |         await this.page.getByRole('button', { name: 'Close board' }).click();
+  38 |         await this.page.getByTestId('popover-close-board-confirm').click();
+  39 |       }
+  40 |     }
+  41 |   }
+  42 |
+  43 |   async selectTemplates() {
+  44 |     await this.page.getByTestId('templates-menu').click();
+  45 |     await this.page.waitForTimeout(2000);
+  46 |   }
+  47 | }
+  48 |
+```

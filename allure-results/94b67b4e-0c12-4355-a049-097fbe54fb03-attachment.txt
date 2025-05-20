@@ -1,0 +1,1 @@
+Successfully fetched the card by its ID

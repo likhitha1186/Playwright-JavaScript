@@ -1,11 +1,11 @@
 {
-  "boardId": "682486ac2c9f4098d5ce05b2",
-  "boardName": "Review Planning",
-  "listId": "682486ae067a46be92e563b7",
-  "listName": "Backlog",
-  "cardId": "682486b4131ddbab6b9a2daa",
-  "cardName": "Review Issues",
-  "attachmentID": "682486b7023f7be4f91dedfb",
-  "labelId": "682486b9ecf251c2ec799b1a",
+  "boardId": "682c57d2e6d735d6e57adaf1",
+  "boardName": "Marketing Planning",
+  "listId": "682c57d4b7420d3313fec9bc",
+  "listName": "Deployment",
+  "cardId": "682c57da90958f8b868a8f47",
+  "cardName": "Low Opportunities",
+  "attachmentID": "682c57dd195ccc3107497409",
+  "labelId": "682c57df0a105591808a24b7",
   "labelName": " Discuss"
 }

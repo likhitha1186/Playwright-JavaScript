@@ -1,0 +1,4 @@
+Successfully added a Open Sprints to the Info list
+Successfully found and clicked the card: Open Sprints
+Successfully added FYI to the: Open Sprints
+Successfully added Task 1,Task 2,Task 3 to the  Open Sprints
