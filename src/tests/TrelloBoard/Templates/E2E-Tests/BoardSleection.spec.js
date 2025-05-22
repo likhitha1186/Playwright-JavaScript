@@ -1,11 +1,7 @@
 import { test } from '@playwright/test';
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
-import {OneOnOneMeetingAgendaTemplate} from "../Page/OneOnOneMeetingAgendaPage.js";
-import {generateRandomCardName, generateRandomLabelName} from "../FeatureFiles/RandomName.js"
 import { LoginPage } from '../Page/Login_FilesPage.js';
-import { LogoutPage } from '../Page/Logout_FilesPage.js';
-
-let page, cardname,templateName;
+let page,templateName;
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();

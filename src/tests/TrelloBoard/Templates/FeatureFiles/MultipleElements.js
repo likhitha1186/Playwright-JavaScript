@@ -8,6 +8,7 @@ export async function HandlingBoardElements(allBoards, boardName) {
     }
     return null;
 }
+
 export async function HandlingBoardLength(BoardList) {
     const boardTitles = [];
     for (let board of BoardList) {
@@ -31,7 +32,6 @@ export async function HandlingCardElements(allCards, cardName, page) {
     return null;
 }
 
-
 export async function HandlingTemplateElements(templates, targetTitle) {
     for (let temp of templates) {
         const tempTitle = await temp.textContent();
@@ -54,7 +54,6 @@ export async function HandlingVisibilityElements(visibilityList, target) {
     }
     throw new Error(`Visibility option "${target}" not found.`);
 }
-
 
 export async  function HandlingLabelsElements(allLabels, targetLabel, CreateNewLabel, TitleField, CreateButton){
     for (const label of await allLabels.all()) {
