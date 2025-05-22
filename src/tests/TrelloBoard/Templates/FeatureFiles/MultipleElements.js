@@ -44,6 +44,18 @@ export async function HandlingTemplateElements(templates, targetTitle) {
     return null;
 }
 
+export async function HandlingVisibilityElements(visibilityList, target) {
+    for (let temp of visibilityList) {
+        const VisibilityTitle = await temp.textContent();
+        if (VisibilityTitle && VisibilityTitle.trim().startsWith(target)) {
+            await temp.click();
+            return temp;
+        }
+    }
+    throw new Error(`Visibility option "${target}" not found.`);
+}
+
+
 export async  function HandlingLabelsElements(allLabels, targetLabel, CreateNewLabel, TitleField, CreateButton){
     for (const label of await allLabels.all()) {
         if ((await label.textContent()) === targetLabel) {

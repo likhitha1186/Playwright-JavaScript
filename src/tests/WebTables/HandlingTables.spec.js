@@ -41,6 +41,7 @@ test('Handling Tables', async ({page})=>{
         let rowData = {}; // Store data in an object format
         for (let c = 0; c < await totalColumns.count() - 1; c++) {
             rowData[`Column ${c + 1}`] = await totalColumns.nth(c).textContent();
+            console.log("********", await totalColumns.nth(c).textContent(),"############")
         }
 
         tableData.push(rowData); // Add row data to the array
