@@ -1,0 +1,88 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Select 1-on-1 Meeting Agenda Template 
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:22:6
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByText('Show more')
+
+    at LoginPage.deleteTemplates (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\Page\Login_FilesPage.js:28:44)
+    at LoginPage.selectWorkspace (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\Page\Login_FilesPage.js:24:16)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1MeetingAgenda.spec.js:16:5
+```
+
+# Test source
+
+```ts
+   1 | import { authenticator } from 'otplib';
+   2 |
+   3 | export class LoginPage {
+   4 |   constructor(page) {
+   5 |     this.page = page;
+   6 |   }
+   7 |
+   8 |   async login(username, password) {
+   9 |     await this.page.goto('https://trello.com/homepage');
+  10 |     await this.page.setViewportSize({ width: 1920, height: 1040 });
+  11 |     await this.page.getByText('Log in').click();
+  12 |     await this.page.locator('#username').fill(username);
+  13 |     await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
+  14 |     await this.page.locator('#password').fill(password);
+  15 |     await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+  16 |     const otp = authenticator.generate(process.env.SECRETOTP);
+  17 |     await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
+  18 |   }
+  19 |
+  20 |   async selectWorkspace() {
+  21 |     await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+  22 |     await this.page.getByText("likhitha's workspace").click();
+  23 |     await this.page.reload();
+  24 |     await this.deleteTemplates()
+  25 |   }
+  26 |
+  27 |   async deleteTemplates() {
+> 28 |     await this.page.getByText("Show more").click();
+     |                                            ^ Error: locator.click: Target page, context or browser has been closed
+  29 |     await this.page.waitForSelector("//div[@class='jv7QDCKI8FPToj']//li");
+  30 |
+  31 |     const myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
+  32 |     const boardCount = await myBoards.count();
+  33 |     console.log("Board count:", boardCount);
+  34 |
+  35 |     if (boardCount > 1) {
+  36 |       for (let i = 1; i < boardCount; i++) {
+  37 |         const board = myBoards.nth(i);
+  38 |         await board.click();
+  39 |
+  40 |         const deleteButton = this.page.locator("button[aria-label='Board actions menu']").nth(i);
+  41 |         await deleteButton.click();
+  42 |
+  43 |         await this.page.waitForTimeout(2000); // optional: consider replacing with explicit wait
+  44 |
+  45 |         await this.page.getByRole('button', { name: 'Close board' }).click();
+  46 |         await this.page.getByTestId('popover-close-board-confirm').click();
+  47 |
+  48 |         // Optional: Wait for redirect or modal to disappear before next loop
+  49 |         await this.page.waitForTimeout(2000);
+  50 |       }
+  51 |     }
+  52 |   }
+  53 |
+  54 |
+  55 |   async selectTemplates() {
+  56 |     await this.page.getByTestId('templates-menu').click();
+  57 |     await this.page.waitForTimeout(2000);
+  58 |   }
+  59 | }
+  60 |
+```

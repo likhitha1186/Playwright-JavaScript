@@ -1,0 +1,7 @@
+Successfully logged in as Likhitha
+Board count: 2
+Successfully Likhitha's workspace selected
+Successfully Template-menu selected
+Successfully selected 1-on-1 Meeting Agenda Template
+Successfully deleted 1-on-1 Meeting Agenda
+Successfully logged out

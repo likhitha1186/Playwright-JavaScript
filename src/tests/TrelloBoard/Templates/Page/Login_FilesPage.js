@@ -20,25 +20,38 @@ export class LoginPage {
   async selectWorkspace() {
     await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
     await this.page.getByText("likhitha's workspace").click();
+    await this.page.reload();
     await this.deleteTemplates()
   }
 
   async deleteTemplates() {
+    const showMore = this.page.getByText("Show more");
+    if (await showMore.isVisible()) {
+      await showMore.click();
+    }
+    await this.page.waitForSelector("//div[@class='jv7QDCKI8FPToj']//li");
+
     const myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
-    const allBoards = await myBoards.all();
-    if(allBoards.length > 1) {
-      for (let i = 1; i < allBoards.length; i++) {
-        const board = allBoards[i];
-        await board.hover();
+    const boardCount = await myBoards.count();
+    console.log("Board count:", boardCount);
+
+    if (boardCount > 1) {
+      for (let i = 1; i < boardCount; i++) {
+        const board = myBoards.nth(i);
         await board.click();
-        const deleteButton = myBoards.locator("button[aria-label='Board actions menu']").last();
+
+        const deleteButton = this.page.locator("button[aria-label='Board actions menu']").nth(i);
         await deleteButton.click();
-        await this.page.waitForTimeout(2000)
+        await this.page.waitForTimeout(2000);
+
         await this.page.getByRole('button', { name: 'Close board' }).click();
         await this.page.getByTestId('popover-close-board-confirm').click();
+
+        await this.page.waitForTimeout(2000);
       }
     }
   }
+
 
   async selectTemplates() {
     await this.page.getByTestId('templates-menu').click();
