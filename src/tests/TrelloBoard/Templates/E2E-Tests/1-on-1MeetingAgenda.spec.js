@@ -19,7 +19,7 @@ test.beforeAll(async ({ browser }) => {
     console.log("Successfully Template-menu selected")
 });
 
-test.only('Select 1-on-1 Meeting Agenda Template ', async ()=>{
+test('Select 1-on-1 Meeting Agenda Template ', async ()=>{
     const selectTemp = new TemplatesPage(page);
     templateName = "1-on-1 Meeting Agenda";
     await selectTemp.OneOnOneMeetingAgenda(templateName);
