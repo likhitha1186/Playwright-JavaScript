@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Delete closed boards
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeleteClosedBoards.spec.js:17:1
+
+# Error details
+
+```
+Error: elementHandle.click: Element is not attached to the DOM
+Call log:
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeleteClosedBoards.spec.js:26:26
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { Login } from '../../Pages/Login1Page.js';
+   3 |
+   4 | let page;
+   5 |
+   6 | test.beforeAll(async ({ browser }) => {
+   7 |     page = await browser.newPage();
+   8 |
+   9 |     const loginPage = new Login(page);
+  10 |     await loginPage.login('likhithapk.1186@gmail.com', 'Bq,f%7N9-46JiKT');
+  11 |     console.log('Successfully logged in');
+  12 |     await page.waitForTimeout(5000);
+  13 |     await loginPage.selectWorkspace();
+  14 |     console.log("Successfully Likhitha's workspace selected");
+  15 | });
+  16 |
+  17 | test('Delete closed boards', async () => {
+  18 |     await page.getByTestId('open-boards-link').click();
+  19 |     await page.waitForTimeout(2000);
+  20 |     await page.locator("//button[normalize-space()='View closed boards']").click();
+  21 |     await page.waitForTimeout(2000);
+  22 |
+  23 |     const  deleteButtons = await page.$$('//button[contains(text(), "Delete")]');
+  24 |     console.log(`Total  closed boards: ${deleteButtons.length}`)
+  25 |         for (const button of deleteButtons) {
+> 26 |             await button.click();
+     |                          ^ Error: elementHandle.click: Element is not attached to the DOM
+  27 |             const confirmButton = page.locator("//button[@data-testid='close-board-delete-board-confirm-button']");
+  28 |                 await confirmButton.click();
+  29 |         }
+  30 |     console.log('Successfully deleted all closed boards.');
+  31 | });
+  32 |
+```

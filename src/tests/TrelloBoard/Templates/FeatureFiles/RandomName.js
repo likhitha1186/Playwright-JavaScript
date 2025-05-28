@@ -9,7 +9,7 @@ export function generateRandomBoardName() {
 }
 export function generateRandomListName(){
     const listNames = ["To Do", "Doing", "Done", "In Progress", "Current Sprint", "On Hold", "Next", "Review", "Backlog", "Icebox", "Blocked", "Waiting",
-        "Research", "Development", "Testing", "Deployment", "Completed", "Archived", "Ideas", "Brainstorming",];
+        "Research", "Development", "Testing", "Deployment", "Completed", "Archived", "Ideas", "Brainstorming"];
     const randomIndex = Math.floor(Math.random() * listNames.length);
     return listNames[randomIndex];
 }
