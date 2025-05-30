@@ -40,7 +40,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Playwright Tests
-        run: npx playwright test tests/API-TESTING --config=playwright.config.js --project=chromium
+        run: npx playwright test src/tests/API-TESTING --config=playwright.config.js --project=chromium
 
       - name: Upload Playwright Test Report
         if: always()
