@@ -1,0 +1,4 @@
+Successfully added a Inactive Backlog to the Info list
+Successfully found and clicked the card: Inactive Backlog
+Successfully added Goal to the: Inactive Backlog
+Successfully added  Task 1 , Task 2 , Task 3  to the  Inactive Backlog

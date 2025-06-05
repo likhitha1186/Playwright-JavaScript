@@ -34,7 +34,7 @@ test('Add a card in Info list', async () => {
     console.log(`Successfully added a ${cardname} to the Info list`);
 
     const labelName = generateRandomLabelName()
-    const addChecklistItems= ["Task 1 ", "Task 2 ", "Task 3 "];
+    const addChecklistItems= [" Task 1 ", " Task 2 ", " Task 3 "];
     await actions.performActionOnNewCard(cardname,labelName, addChecklistItems);
     console.log(`Successfully found and clicked the card: ${cardname}`);
     console.log(`Successfully added ${labelName} to the: ${cardname}`);

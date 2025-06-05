@@ -49,7 +49,7 @@ export class OneOnOneMeetingAgendaTemplate {
         this.fileAttachment = this.page.locator("//span[contains(text(), 'ScratchPaper.jpg')]");
         this.commentBox = this.page.locator("//textarea[@placeholder='Write a comment…']");
         this.hideDetailsButton = this.page.locator("//button[normalize-space()='Show details']");
-        this.closeCardButton = this.page.locator("//span[@class='nch-icon A3PtEe1rGIm_yL BKkTHQrUsCkzXR fAvkXZrzkeHLoc']//span[@class='css-snhnyn']")
+        this.closeCardButton = this.page.locator("//button[@aria-label='Close dialog']//span[@data-testid='CloseIcon']")
         this.myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
 
     }
