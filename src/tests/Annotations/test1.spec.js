@@ -55,7 +55,3 @@ test.fail('fail() - Annotations', async ({ page }) => {
 
   await expect(page).toHaveTitle('Products');
 });
-
-test("fixme() - Annotations", async ({ page }) => {
-
-})
