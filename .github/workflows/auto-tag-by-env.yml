@@ -33,13 +33,16 @@ jobs:
           echo "ENVIRONMENT=$branchName" >> $env:GITHUB_OUTPUT
 
       - name: Generate and push tag
+        shell: pwsh
         run: |
-          ENV=${{ steps.set-env.outputs.ENVIRONMENT }}
-          VERSION="${ENV}-v$(date +%Y%m%d%H%M%S)"
+          $envName = "${{ steps.set-env.outputs.ENVIRONMENT }}"
+          $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+          $version = "$envName-v$timestamp"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "$VERSION"
-          git push origin "$VERSION"
+          git tag "$version"
+          git push origin "$version"
+
 
   run-tests:
     needs: tag-version
