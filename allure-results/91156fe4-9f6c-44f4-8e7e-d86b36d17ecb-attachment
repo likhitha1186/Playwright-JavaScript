@@ -1,0 +1,133 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Login ParaBank - DEV
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\ParaBankLogin.spec.js:6:1
+
+# Error details
+
+```
+Error: expect.toHaveText: Error: strict mode violation: locator('h1') resolved to 2 elements:
+    1) <h1 class="title">↵⇆⇆⇆Accounts Overview↵⇆⇆</h1> aka getByRole('heading', { name: 'Accounts Overview' })
+    2) <h1 class="title">↵⇆⇆⇆Error!↵⇆⇆</h1> aka getByText('Error!')
+
+Call log:
+  - expect.toHaveText with timeout 5000ms
+  - waiting for locator('h1')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\ParaBankLogin.spec.js:13:36
+```
+
+# Page snapshot
+
+```yaml
+- link:
+  - img
+- link "ParaBank":
+  - img "ParaBank"
+- paragraph: Experience the difference
+- list:
+  - listitem: Solutions
+  - listitem:
+    - link "About Us"
+  - listitem:
+    - link "Services"
+  - listitem:
+    - link "Products"
+  - listitem:
+    - link "Locations"
+  - listitem:
+    - link "Admin Page"
+- list:
+  - listitem:
+    - link "home"
+  - listitem:
+    - link "about"
+  - listitem:
+    - link "contact"
+- paragraph: Welcome John Smith
+- heading "Account Services" [level=2]
+- list:
+  - listitem:
+    - link "Open New Account"
+  - listitem:
+    - link "Accounts Overview"
+  - listitem:
+    - link "Transfer Funds"
+  - listitem:
+    - link "Bill Pay"
+  - listitem:
+    - link "Find Transactions"
+  - listitem:
+    - link "Update Contact Info"
+  - listitem:
+    - link "Request Loan"
+  - listitem:
+    - link "Log Out"
+- heading "Accounts Overview" [level=1]
+- table:
+  - rowgroup:
+    - row "Account Balance* Available Amount":
+      - cell "Account"
+      - cell "Balance*"
+      - cell "Available Amount"
+  - rowgroup
+  - rowgroup:
+    - row "*Balance includes deposits that may be subject to holds":
+      - cell "*Balance includes deposits that may be subject to holds"
+- list:
+  - listitem:
+    - link "Home"
+    - text: "|"
+  - listitem:
+    - link "About Us"
+    - text: "|"
+  - listitem:
+    - link "Services"
+    - text: "|"
+  - listitem:
+    - link "Products"
+    - text: "|"
+  - listitem:
+    - link "Locations"
+    - text: "|"
+  - listitem:
+    - link "Forum"
+    - text: "|"
+  - listitem:
+    - link "Site Map"
+    - text: "|"
+  - listitem:
+    - link "Contact Us"
+- paragraph: © Parasoft. All rights reserved.
+- list:
+  - listitem: "Visit us at:"
+  - listitem:
+    - link "www.parasoft.com"
+```
+
+# Test source
+
+```ts
+   1 | import {test, expect} from "@playwright/test";
+   2 | import {getParaBankCredentials} from "./ParaBankCredential.js";
+   3 |
+   4 | const creds = getParaBankCredentials(process.env.NODE_ENV || 'dev');
+   5 |
+   6 | test(`Login ParaBank - ${creds.env}`, async ({ page }) => {
+   7 |   await page.goto(creds.url);
+   8 |
+   9 |   await page.fill('input[name="username"]', creds.username);
+  10 |   await page.fill('input[name="password"]', creds.password);
+  11 |   await page.click('input[type="submit"]');
+  12 |
+> 13 |   await expect(page.locator('h1')).toHaveText('Accounts Overview');
+     |                                    ^ Error: expect.toHaveText: Error: strict mode violation: locator('h1') resolved to 2 elements:
+  14 | });
+  15 |
+```

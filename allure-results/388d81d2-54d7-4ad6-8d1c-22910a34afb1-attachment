@@ -1,0 +1,89 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Annotations
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\Annotations\test1.spec.js:29:6
+
+# Error details
+
+```
+Error: page.click: Test ended.
+Call log:
+  - waiting for locator('#add-to-cart-sauce-labs-backpack')
+
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\Annotations\test1.spec.js:41:14
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Playwright Annotations', async ({ page }) => {
+   4 |   await page.goto('https://www.saucedemo.com/ ');
+   5 |   await page.waitForTimeout(1000);
+   6 |
+   7 |   await expect(page).toHaveTitle('Swag Labs');
+   8 |
+   9 |   await page.fill('#user-name', 'standard_user');
+  10 |   await page.fill('#password', 'secret_sauce');
+  11 |   await page.click('#login-button');
+  12 |
+  13 |   await page.waitForTimeout(1000);
+  14 | });
+  15 |
+  16 | test.skip('skip() - Annotations', async ({ page }) => {
+  17 |   await page.goto('https://www.saucedemo.com/ ');
+  18 |   await page.waitForTimeout(1000);
+  19 |
+  20 |   await expect(page).toHaveTitle('Swag Labs');
+  21 |
+  22 |   await page.fill('#user-name', 'standard_user');
+  23 |   await page.fill('#password', 'secret_sauce');
+  24 |   await page.click('#login-button');
+  25 |
+  26 |   await page.waitForTimeout(1000);
+  27 | });
+  28 |
+  29 | test.fail('Annotations', async ({ page }) => {
+  30 |   await page.goto('https://www.saucedemo.com/ ');
+  31 |   await page.waitForTimeout(1000);
+  32 |
+  33 |   await expect(page).toHaveTitle('Swag Labs');
+  34 |
+  35 |   await page.fill('#user-name', 'locked_out_user');
+  36 |   await page.fill('#password', 'secret_sauce');
+  37 |   await page.click('#login-button');
+  38 |
+  39 |   await page.waitForTimeout(1000);
+  40 |
+> 41 |   await page.click('#add-to-cart-sauce-labs-backpack');
+     |              ^ Error: page.click: Test ended.
+  42 | });
+  43 |
+  44 | test.fail('fail() - Annotations', async ({ page }) => {
+  45 |   await page.goto('https://www.saucedemo.com/ ');
+  46 |   await page.waitForTimeout(1000);
+  47 |
+  48 |   await expect(page).toHaveTitle('Swag Labs');
+  49 |
+  50 |   await page.fill('#user-name', 'locked_out_user');
+  51 |   await page.fill('#password', 'secret_sauce');
+  52 |   await page.click('#login-button');
+  53 |
+  54 |   await page.waitForTimeout(1000);
+  55 |
+  56 |   await expect(page).toHaveTitle('Products');
+  57 | });
+  58 |
+  59 | test("fixme() - Annotations", async ({ page }) => {
+  60 |   test.fixme('This test is flaky and needs fixing');
+  61 |
+  62 |   await page.goto('https://www.saucedemo.com/');
+  63 | })
+```
