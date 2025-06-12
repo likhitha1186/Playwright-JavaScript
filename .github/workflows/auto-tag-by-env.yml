@@ -46,7 +46,7 @@ jobs:
 
   run-tests:
     needs: tag-version
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       PARABANK_URL: ${{ secrets.PARABANK_URL }}
       DEV_USERNAME1: ${{ secrets.DEV_USERNAME1 }}
@@ -60,6 +60,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 #stes the node.js in the env
+        with:
+           node-version: 18 #install latest node.js version.[long term support]
 
       - name: Install dependencies
         run: npm ci
