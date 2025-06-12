@@ -1,0 +1,1 @@
+ Running test with username: alice in environment: STG

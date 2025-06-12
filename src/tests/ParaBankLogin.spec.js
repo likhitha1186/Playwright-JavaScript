@@ -4,6 +4,8 @@ import {getParaBankCredentials} from "./ParaBankCredential.js";
 const creds = getParaBankCredentials(process.env.NODE_ENV || 'dev');
 
 test(`Login ParaBank`, async ({ page }) => {
+  console.log(` Running test with username: ${creds.username} in environment: ${creds.env}`);
+
   await page.goto(creds.url);
 
   await page.fill('input[name="username"]', creds.username);
