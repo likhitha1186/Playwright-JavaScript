@@ -3,7 +3,7 @@ name: Auto Tag and Test by Environment
 on:
   push:
     branches:
-      - -main
+      - main
       - dev
       - stage
       - prod
@@ -27,9 +27,10 @@ jobs:
 
       - name: Set environment name
         id: set-env
+        shell: pwsh
         run: |
-          BRANCH_NAME="${GITHUB_REF##*/}"
-          echo "ENVIRONMENT=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          $branchName = "${env:GITHUB_REF}" -split "/" | Select-Object -Last 1
+          echo "ENVIRONMENT=$branchName" >> $env:GITHUB_OUTPUT
 
       - name: Generate and push tag
         run: |
