@@ -1,4 +1,4 @@
-name: Auto Tag by Environment
+name: Auto Tag and Test by Environment
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
   tag-version:
     runs-on: windows-latest
     permissions:
-      contents: write  # required to push tags
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -32,3 +32,34 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "$VERSION"
           git push origin "$VERSION"
+
+  run-tests:
+    needs: tag-version
+    runs-on: ubuntu-latest
+    env:
+      PARABANK_URL: ${{ secrets.PARABANK_URL }}
+      DEV_USERNAME1: ${{ secrets.DEV_USERNAME1 }}
+      DEV_PASSWORD1: ${{ secrets.DEV_PASSWORD1 }}
+      STG_USERNAME1: ${{ secrets.STG_USERNAME1 }}
+      STG_PASSWORD1: ${{ secrets.STG_PASSWORD1 }}
+      TEST_USERNAME1: ${{ secrets.TEST_USERNAME1 }}
+      TEST_PASSWORD1: ${{ secrets.TEST_PASSWORD1 }}
+      NODE_ENV: ${{ github.ref_name }}  # sets NODE_ENV as branch name
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        run: npx playwright test src/tests/ParaBankLogin.spec.js --config=playwright.config.js --project=chromium
+
+      - name: Upload Playwright Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report  #artifact name
+          path: playwright-report/
+          retention-days: 7
