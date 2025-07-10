@@ -1,0 +1,4 @@
+Successfully added a Pending Tasks to the Info list
+Successfully found and clicked the card: Pending Tasks
+Successfully added Goal to the: Pending Tasks
+Successfully added  Task 1 , Task 2 , Task 3  to the  Pending Tasks

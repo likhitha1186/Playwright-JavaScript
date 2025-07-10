@@ -3,7 +3,7 @@ import { HandlingTemplateElements, HandlingVisibilityElements } from '../Feature
 export class TemplatesPage {
     constructor(page) {
         this.page = page;
-        this.templateSelector = "//div[@class='JsF1KJCvp3JW_5']//li";
+        this.templateSelector = "//div[@class='ZPNPKvXkXoTQdp']//li";
         this.createButton = this.page.getByTestId('create-board-submit-button');
         this.listsSelectors = "//li[@data-testid='list-wrapper']";
         this.visibiltyButton="//div[@data-testid='create-board-select-visibility-select--indicators-container']"

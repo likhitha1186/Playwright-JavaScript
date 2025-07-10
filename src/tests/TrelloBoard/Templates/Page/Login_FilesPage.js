@@ -18,7 +18,7 @@ export class LoginPage {
   }
 
   async selectWorkspace() {
-    await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+    await this.page.locator("button[data-testid='workspace-switcher']").click();
     await this.page.getByText("likhitha's workspace").click();
     await this.page.reload();
     await this.deleteTemplates()
@@ -29,9 +29,10 @@ export class LoginPage {
     if (await showMore.isVisible()) {
       await showMore.click();
     }
-    await this.page.waitForSelector("//div[@class='jv7QDCKI8FPToj']//li");
 
-    const myBoards = this.page.locator("//div[@class='jv7QDCKI8FPToj']//li");
+    await this.page.waitForSelector("//div[@class='VAeDK5VtVrr0pK']//li");
+
+    const myBoards = this.page.locator("//div[@class='VAeDK5VtVrr0pK']//li");
     const boardCount = await myBoards.count();
     console.log("Board count:", boardCount);
 

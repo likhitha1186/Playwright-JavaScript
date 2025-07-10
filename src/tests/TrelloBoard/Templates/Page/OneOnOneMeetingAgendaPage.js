@@ -23,8 +23,8 @@ export class OneOnOneMeetingAgendaTemplate {
         this.addCardToDoneList = this.page.locator("//ol[@id='board']/li[6]/div[1]/div[3]/button[1]");
 
         this.cardTitle = this.page.locator("//h1[contains(text(), 'How to use this board')]");
-        this.cardTitleCheckbox = this .page.locator("//div[@class='OLWg_SEGDvY_pO']//div[@class='yRwdodao8tIG_y']");
-        this.cardDropdown = this.page.locator("//span[@class='wl2C35O7dKV1wx']");
+        this.cardTitleCheckbox = this .page.locator("//div[@class='wBFwq_fvok3GAp']//div[@class='NoOONODMSFVVz7']");
+        this.cardDropdown = this.page.locator("//span[@class='nch-icon hChYpzFshATQo8 D6VmBk1nhYjP6x sC4KNuI7OLhJia']");
         this.boardDropdown = this.page.locator("//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']");
         this.watchButton = this.page.locator("//button[contains(text(), 'Watch')]")
         this.editButton = this.page.locator("//button[contains(text(), 'Edit')]");
@@ -104,8 +104,9 @@ export class OneOnOneMeetingAgendaTemplate {
 
     async addLabelsAction(labelName){
         await this.labelsButton.click();
+        await this.page.waitForTimeout(2000);
         const CreateNewLabel = await this.page.getByText('Create a new label');
-        const TitleField = await this.page.locator("//div[@class='q2PzD_Dkq1FVX3 pt-0']//input[@type='text']")
+        const TitleField = await this.page.locator("//input[@type='text']")
         const CreateButton = await this.page.locator("//button[contains(text(),'Create')]")
         const allLabels= await this.page.locator("//ul[@class='AEgIEBHcUVGEym']//li");
         await HandlingLabelsElements(allLabels, labelName, CreateNewLabel, TitleField, CreateButton)
@@ -123,7 +124,7 @@ export class OneOnOneMeetingAgendaTemplate {
     }
 
     async checkTheAddedCheckList() {
-        const options = await this.page.$$("//ul[@data-testid='checklist-items']//div[@class='DqgZ76in2cc5Jp']//*[name()='svg']");
+        const options = await this.page.$$("//ul[@data-testid='checklist-items']//div[@class='YkivUYixygZz1r']//*[name()='svg']");
         await options[0].click();
         await this.page.waitForTimeout(1000);
     }
