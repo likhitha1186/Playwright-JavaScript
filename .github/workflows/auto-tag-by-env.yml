@@ -1,84 +1,84 @@
-name: Auto Tag and Test by Environment
-
-on:
-  push:
-    branches:
-      - main
-      - dev
-      - stage
-      - prod
-      - test
-  pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: '30 9 * * *'  # Runs daily at 09:30 UTC
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
-
-jobs:
-  tag-version:
-    runs-on: windows-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set environment name
-        id: set-env
-        shell: pwsh
-        run: |
-          $branchName = "${env:GITHUB_REF}" -split "/" | Select-Object -Last 1
-          echo "ENVIRONMENT=$branchName" >> $env:GITHUB_OUTPUT
-
-      - name: Generate and push tag
-        shell: pwsh
-        run: |
-          $envName = "${{ steps.set-env.outputs.ENVIRONMENT }}"
-          $timestamp = Get-Date -Format "yyyyMMddHHmmss"
-          $version = "$envName-v$timestamp"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "$version"
-          git push origin "$version"
-
-
-  run-tests:
-    needs: tag-version
-    runs-on: windows-latest
-    env:
-      PARABANK_URL: ${{ secrets.PARABANK_URL }}
-      DEV_USERNAME1: ${{ secrets.DEV_USERNAME1 }}
-      DEV_PASSWORD1: ${{ secrets.DEV_PASSWORD1 }}
-      STG_USERNAME1: ${{ secrets.STG_USERNAME1 }}
-      STG_PASSWORD1: ${{ secrets.STG_PASSWORD1 }}
-      TEST_USERNAME1: ${{ secrets.TEST_USERNAME1 }}
-      TEST_PASSWORD1: ${{ secrets.TEST_PASSWORD1 }}
-      NODE_ENV: ${{ github.ref_name }}  # sets NODE_ENV as branch name
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4 #stes the node.js in the env
-        with:
-           node-version: 18 #install latest node.js version.[long term support]
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium
-
-      - name: Run Playwright tests
-        run: npx playwright test src/tests/ParaBankLogin.spec.js --config=playwright.config.js --project=chromium
-
-      - name: Upload Playwright Test Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report  #artifact name
-          path: playwright-report/
-          retention-days: 7
+#name: Auto Tag and Test by Environment
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#      - dev
+#      - stage
+#      - prod
+#      - test
+#  pull_request:
+#    branches:
+#      - main
+#  schedule:
+#    - cron: '30 9 * * *'  # Runs daily at 09:30 UTC
+#  workflow_dispatch:  # Allows manual triggering from GitHub UI
+#
+#jobs:
+#  tag-version:
+#    runs-on: windows-latest
+#    permissions:
+#      contents: write
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#
+#      - name: Set environment name
+#        id: set-env
+#        shell: pwsh
+#        run: |
+#          $branchName = "${env:GITHUB_REF}" -split "/" | Select-Object -Last 1
+#          echo "ENVIRONMENT=$branchName" >> $env:GITHUB_OUTPUT
+#
+#      - name: Generate and push tag
+#        shell: pwsh
+#        run: |
+#          $envName = "${{ steps.set-env.outputs.ENVIRONMENT }}"
+#          $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+#          $version = "$envName-v$timestamp"
+#          git config user.name "github-actions[bot]"
+#          git config user.email "github-actions[bot]@users.noreply.github.com"
+#          git tag "$version"
+#          git push origin "$version"
+#
+#
+#  run-tests:
+#    needs: tag-version
+#    runs-on: windows-latest
+#    env:
+#      PARABANK_URL: ${{ secrets.PARABANK_URL }}
+#      DEV_USERNAME1: ${{ secrets.DEV_USERNAME1 }}
+#      DEV_PASSWORD1: ${{ secrets.DEV_PASSWORD1 }}
+#      STG_USERNAME1: ${{ secrets.STG_USERNAME1 }}
+#      STG_PASSWORD1: ${{ secrets.STG_PASSWORD1 }}
+#      TEST_USERNAME1: ${{ secrets.TEST_USERNAME1 }}
+#      TEST_PASSWORD1: ${{ secrets.TEST_PASSWORD1 }}
+#      NODE_ENV: ${{ github.ref_name }}  # sets NODE_ENV as branch name
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v4 #stes the node.js in the env
+#        with:
+#           node-version: 18 #install latest node.js version.[long term support]
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Install Playwright Browsers
+#        run: npx playwright install chromium
+#
+#      - name: Run Playwright tests
+#        run: npx playwright test src/tests/ParaBankLogin.spec.js --config=playwright.config.js --project=chromium
+#
+#      - name: Upload Playwright Test Report
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: playwright-report  #artifact name
+#          path: playwright-report/
+#          retention-days: 7
