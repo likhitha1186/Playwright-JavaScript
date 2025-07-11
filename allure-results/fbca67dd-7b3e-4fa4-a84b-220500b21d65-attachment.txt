@@ -1,2 +1,0 @@
-Successfully clicked the card: Retrospective Bugs
-Successfully performed specified actions on : Retrospective Bugs

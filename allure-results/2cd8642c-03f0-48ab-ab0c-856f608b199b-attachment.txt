@@ -1,8 +1,0 @@
-John Smith
-Full Stack Developer
-Full Name: Johnatan Smith
-Email: example@example.com
-Phone: (097) 234-5678
-Mobile: (098) 765-4321
-Address: Bay Area, San Francisco, CA
-User profile page validation passed

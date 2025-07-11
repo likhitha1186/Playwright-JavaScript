@@ -1,4 +1,0 @@
-Successfully added a Low Risks to the Info list
-Successfully found and clicked the card: Low Risks
-Successfully added Blocker to the: Low Risks
-Successfully added Task 1,Task 2,Task 3 to the  Low Risks

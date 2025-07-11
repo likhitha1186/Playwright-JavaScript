@@ -1,4 +1,0 @@
-Successfully added a Team Support to the Info list
-Successfully found and clicked the card: Team Support
-Successfully added Goal to the: Team Support
-Successfully added Task 1,Task 2,Task 3 to the  Team Support

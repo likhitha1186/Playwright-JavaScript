@@ -1,4 +1,0 @@
-Successfully clicked the card: Marketing Sprints
-Successfully performed specified actions on : Marketing Sprints
-1-on-1 Meeting Agenda
-Successfully deleted 1-on-1 Meeting Agenda

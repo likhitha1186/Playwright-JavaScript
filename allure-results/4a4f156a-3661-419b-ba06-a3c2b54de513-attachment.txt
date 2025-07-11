@@ -1,2 +1,0 @@
-Successfully clicked the card: Blocked Bugs
-Successfully performed specified actions on : Blocked Bugs

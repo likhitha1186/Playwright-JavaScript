@@ -1,2 +1,0 @@
-Successfully clicked the card: Team Support
-Successfully performed specified actions on : Team Support

@@ -1,2 +1,0 @@
-Successfully clicked the card: Task Onboarding
-Successfully performed specified actions on : Task Onboarding

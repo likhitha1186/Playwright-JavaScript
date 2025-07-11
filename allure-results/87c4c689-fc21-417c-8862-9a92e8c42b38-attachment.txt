@@ -1,4 +1,0 @@
-Successfully logged in
-Successfully Likhitha's workspace selected
-Total  closed boards: 10
-Successfully deleted all closed boards.

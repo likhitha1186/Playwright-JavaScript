@@ -1,4 +1,0 @@
-Successfully added a Support Retrospective to the Info list
-Successfully found and clicked the card: Support Retrospective
-Successfully added Name to the: Support Retrospective
-Successfully added Task 1,Task 2,Task 3 to the  Support Retrospective

@@ -1,3 +1,0 @@
-[Add a card in Info list] Added card: Idea Opportunities to Info list
-[Add a card in Info list] Added label: FYI
-[Add a card in Info list] Added checklist: Task 1, Task 2, Task 3

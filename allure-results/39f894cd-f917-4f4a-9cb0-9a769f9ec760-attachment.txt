@@ -1,3 +1,0 @@
-Successfully clicked the card: Inactive Sprints
-Successfully performed specified actions on : Inactive Sprints
-Successfully deleted undefined

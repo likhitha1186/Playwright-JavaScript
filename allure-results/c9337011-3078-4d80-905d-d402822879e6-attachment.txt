@@ -1,2 +1,0 @@
-Successfully clicked the card: Closed Bugs
-Successfully performed specified actions on : Closed Bugs

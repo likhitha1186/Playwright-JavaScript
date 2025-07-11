@@ -1,3 +1,0 @@
-[Click existing card] Clicked existing card: Idea Opportunities
-[Cleanup] Deleted board: 1-on-1 Meeting Agenda
-[Cleanup] Logged out successfully

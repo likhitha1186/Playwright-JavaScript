@@ -1,7 +1,0 @@
-Successfully logged in as Likhitha
-Successfully Likhitha's workspace selected
-Successfully Template-menu selected
-PrivateOnly board members can see this board. Workspace admins can close the board or remove members.
-WorkspaceAll members of the likhitha's workspace Workspace can see and edit this board.
-PublicAnyone on the internet can see this board. Only board members can edit.
-Successfully selected 1-on-1 Meeting Agenda Template

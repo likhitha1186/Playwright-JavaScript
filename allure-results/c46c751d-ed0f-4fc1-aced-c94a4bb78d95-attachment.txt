@@ -1,2 +1,0 @@
-Successfully clicked the card: Medium Testing
-Successfully performed specified actions on : Medium Testing

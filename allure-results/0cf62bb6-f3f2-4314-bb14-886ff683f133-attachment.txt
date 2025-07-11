@@ -1,4 +1,0 @@
-Successfully clicked the card: Weekly Actions
-Successfully performed specified actions on : Weekly Actions
-Successfully deleted 1-on-1 Meeting Agenda
-Successfully logged out

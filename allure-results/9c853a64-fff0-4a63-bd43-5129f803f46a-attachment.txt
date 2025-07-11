@@ -1,4 +1,0 @@
-Successfully added a Task Onboarding to the Info list
-Successfully found and clicked the card: Task Onboarding
-Successfully added Goal to the: Task Onboarding
-Successfully added Task 1,Task 2,Task 3 to the  Task Onboarding

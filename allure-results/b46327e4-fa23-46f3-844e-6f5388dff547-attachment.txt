@@ -1,2 +1,0 @@
-Successfully clicked the card: Development Goals
-Successfully performed specified actions on : Development Goals

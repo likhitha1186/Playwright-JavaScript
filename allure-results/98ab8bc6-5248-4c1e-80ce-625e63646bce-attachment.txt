@@ -1,5 +1,0 @@
-Successfully logged in as Likhitha
-Successfully Likhitha's workspace selected
-Successfully Template-menu selected
-Dropdown option: PrivateOnly board members can see this board. Workspace admins can close the board or remove members.
-Successfully selected 1-on-1 Meeting Agenda Template

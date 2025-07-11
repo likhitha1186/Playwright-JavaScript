@@ -1,2 +1,0 @@
-Successfully clicked the card: Critical Tasks
-Successfully performed specified actions on : Critical Tasks

@@ -51,6 +51,11 @@ jobs:
       - name: Run Playwright UI Test
         run:  npx playwright test tests/TrelloBoard/Templates/E2E-Tests/1-on-1MeetingAgenda.spec.js --config=playwright.config.js --project=chromium
 
+      - name: Clean previous Allure results
+        shell: pwsh
+        run: |
+          Remove-Item .\allure-results\* -Recurse -Force        
+
       - name: Generate Allure Report
         run: |
           npm install -g allure-commandline
@@ -63,12 +68,3 @@ jobs:
           name: allure-report
           path: allure-report/
           retention-days: 7
-
-      - name: Run Playwright tests and generate JUnit report
-        run: npx playwright test --reporter=junit --output=test-results
-
-      - name: Upload JUnit test result artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results/

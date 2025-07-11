@@ -1,4 +1,0 @@
-Successfully added a Inactive Sprints to the Info list
-Successfully found and clicked the card: Inactive Sprints
-Successfully added Blocker to the: Inactive Sprints
-Successfully added Task 1,Task 2,Task 3 to the  Inactive Sprints

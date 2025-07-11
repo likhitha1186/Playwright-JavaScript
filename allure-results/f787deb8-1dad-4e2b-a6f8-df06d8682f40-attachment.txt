@@ -1,4 +1,0 @@
-Successfully added a Closed Bugs to the Info list
-Successfully found and clicked the card: Closed Bugs
-Successfully added Blocker to the: Closed Bugs
-Successfully added Task 1,Task 2,Task 3 to the  Closed Bugs

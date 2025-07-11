@@ -1,4 +1,0 @@
-Successfully added a Medium Sprints to the Info list
-Successfully found and clicked the card: Medium Sprints
-Successfully added FYI to the: Medium Sprints
-Successfully added Task 1,Task 2,Task 3 to the  Medium Sprints

@@ -1,4 +1,0 @@
-Successfully added a Weekly Actions to the Info list
-Successfully found and clicked the card: Weekly Actions
-Successfully added Blocker to the: Weekly Actions
-Successfully added Task 1,Task 2,Task 3 to the  Weekly Actions

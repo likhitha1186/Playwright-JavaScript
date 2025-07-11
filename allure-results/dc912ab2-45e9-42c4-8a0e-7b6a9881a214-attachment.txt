@@ -1,4 +1,0 @@
-[Click existing card] Successfully clicked the card: Completed Tasks
-[Click existing card] Successfully performed specified actions on : Completed Tasks
-[Click existing card] Successfully deleted 1-on-1 Meeting Agenda
-[Click existing card] Successfully logged out
