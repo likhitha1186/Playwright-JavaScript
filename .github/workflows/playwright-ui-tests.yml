@@ -54,7 +54,7 @@ jobs:
       - name: Clean previous Allure results
         shell: pwsh
         run: |
-          Remove-Item .\allure-results\* -Recurse -Force        
+          Remove-Item ./allure-results/* -Recurse -Force        
 
       - name: Generate Allure Report
         run: |
