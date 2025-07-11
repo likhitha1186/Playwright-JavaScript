@@ -64,12 +64,11 @@ jobs:
           path: allure-report/
           retention-days: 7
 
-      - name: Run Playwright tests with HTML reporter
-        run: npx playwright test --reporter=list,html --output=playwright-report
+      - name: Run Playwright tests and generate JUnit report
+        run: npx playwright test --reporter=junit --output=test-results
 
-      - name: Upload Playwright HTML Report
-        if: always()
+      - name: Upload JUnit test result artifact
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report
-          path: playwright-report/
+          name: test-results
+          path: test-results/
