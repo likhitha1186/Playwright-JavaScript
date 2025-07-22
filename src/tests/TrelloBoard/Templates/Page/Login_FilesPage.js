@@ -18,10 +18,9 @@ export class LoginPage {
   }
 
   async selectWorkspace() {
-    await this.page.locator("button[data-testid='workspace-switcher']").click();
-    await this.page.getByText("likhitha's workspace").click();
+    await this.page.locator("//div[@class='zuxsFaeM1tjiri']//*[name()='svg']").click()
     await this.page.reload();
-    await this.deleteTemplates()
+    //await this.deleteTemplates()
   }
 
   async deleteTemplates() {
@@ -55,7 +54,7 @@ export class LoginPage {
 
 
   async selectTemplates() {
-    await this.page.getByTestId('templates-menu').click();
+    await this.page.locator("//span[normalize-space()='Templates']").click();
     await this.page.waitForTimeout(2000);
   }
 }

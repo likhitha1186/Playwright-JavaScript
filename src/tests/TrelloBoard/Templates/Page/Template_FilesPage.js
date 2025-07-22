@@ -3,6 +3,8 @@ import { HandlingTemplateElements, HandlingVisibilityElements } from '../Feature
 export class TemplatesPage {
     constructor(page) {
         this.page = page;
+        this.projectManagementSelector=this.page.locator("//span[normalize-space()='Project management']");
+        this.findTemplates= this.page.locator("//div[@class='TFhk4NNdyXWUeP css-bxfvr9']");
         this.templateSelector = "//div[@class='ZPNPKvXkXoTQdp']//li";
         this.createButton = this.page.getByTestId('create-board-submit-button');
         this.listsSelectors = "//li[@data-testid='list-wrapper']";
@@ -11,7 +13,9 @@ export class TemplatesPage {
     }
 
     async OneOnOneMeetingAgenda(templateName){
-        await this.page.waitForTimeout(2000);
+       // await this.page.waitForTimeout(2000);
+        await this.projectManagementSelector.click();
+        await this.findTemplates().click();
         const templates = await this.page.$$(this.templateSelector);
         await HandlingTemplateElements(templates, templateName);
         await this.createButton.click();
