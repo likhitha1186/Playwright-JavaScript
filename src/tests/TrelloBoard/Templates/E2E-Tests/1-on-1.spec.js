@@ -61,3 +61,7 @@ test('Click existing card', async () => {
 //   await logout.logout();
 //   console.log(`Successfully logged out`);
 // });
+
+//  schedule:
+//     - cron: '30 9 * * *'  # Runs daily at 09:30 UTC
+//   workflow_dispatch:  # Allows manual triggering from GitHub UI

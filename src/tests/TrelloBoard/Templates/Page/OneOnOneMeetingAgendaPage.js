@@ -23,7 +23,7 @@ export class OneOnOneMeetingAgendaTemplate {
         this.addCardToDoneList = this.page.locator("//ol[@id='board']/li[6]/div[1]/div[3]/button[1]");
 
         this.cardTitle = this.page.locator("//h1[contains(text(), 'How to use this board')]");
-        this.cardTitleCheckbox = this .page.locator("//div[@class='wBFwq_fvok3GAp']//div[@class='NoOONODMSFVVz7']");
+        this.cardTitleCheckbox = this .page.locator("div[class='zcJspViscG5bVF NYIHAreWw6Ga8y'] div[class='YGgOKiGOXJp93L']");
         this.cardDropdown = this.page.locator("//span[@class='nch-icon hChYpzFshATQo8 D6VmBk1nhYjP6x sC4KNuI7OLhJia']");
         this.boardDropdown = this.page.locator("//div[@data-testid='move-card-popover-select-board-destination']//span[@class = 'css-17zzl5o']");
         this.watchButton = this.page.locator("//button[contains(text(), 'Watch')]")
