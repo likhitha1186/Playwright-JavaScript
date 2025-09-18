@@ -3,12 +3,13 @@ import { HandlingTemplateElements, HandlingVisibilityElements } from '../Feature
 export class TemplatesPage {
   constructor(page) {
     this.page = page;
-    this.projectManagementSelector = this.page.locator("//span[normalize-space()='Project management']",);
-    this.findTemplates = this.page.locator("//div[@class='MR6FSx_xyuFObZ css-1vrwmt7-control']",);
+    //this.projectManagementSelector = this.page.locator("//span[normalize-space()='Project management']");
+    this.findTemplates = this.page.locator(".TFhk4NNdyXWUeP");
     this.templateSelector = "//div[@class='ZPNPKvXkXoTQdp']//li";
-    this.useTemplate= "//div[@class='lD77IIJevxUsk5']//button[2]";
+    //this.useTemplate= this.page.locator("//div[@class='lD77IIJevxUsk5']//button[2]");
+    this.useTemplate= this.page.locator("//button[normalize-space()='Use template']")
     this.createButton = this.page.getByTestId('create-board-submit-button');
-    this.listsSelectors = "//li[@data-testid='list-wrapper']";
+    //this.listsSelectors = "//li[@data-testid='list-wrapper']";
     this.visibiltyButton = "//div[@data-testid='create-board-select-visibility-select--indicators-container']";
     this.visibilitySelector = "//div[@class='tONJvKrAZwZgEq']";
   }
@@ -18,8 +19,8 @@ export class TemplatesPage {
     await this.findTemplates.click()
     await this.findTemplates.type(templateName);
     await this.page.getByRole('option', { name: '1-on-1 Meeting Agenda by' }).locator('div').first().click();
-    await this.useTemplate.click();
-    //await this.page.getByRole('button', { name: 'Use template' }).click();
+    await this.useTemplate.waitFor({ state: 'visible' });
+    await this.useTemplate.click({ force: true });    //await this.page.getByRole('button', { name: 'Use template' }).click();
     await this.page.getByRole('button', { name: 'Create', exact: true }).click();
   }
 

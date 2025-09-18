@@ -1,0 +1,177 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Add a card in Info list
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1.spec.js:30:1
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('div[class=\'zcJspViscG5bVF NYIHAreWw6Ga8y\'] div[class=\'YGgOKiGOXJp93L\']')
+
+    at OneOnOneMeetingAgendaTemplate.performActionOnNewCard (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\Page\OneOnOneMeetingAgendaPage.js:155:38)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\TrelloBoard\Templates\E2E-Tests\1-on-1.spec.js:38:3
+```
+
+# Test source
+
+```ts
+   55 |     }
+   56 |     async addCardToInfoTopics(cardname) {
+   57 |         await this.addCardToInfoList.click();
+   58 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   59 |         await this.page.waitForTimeout(2000);
+   60 |         await this.page.keyboard.press('Enter');
+   61 |     }
+   62 |
+   63 |     async addCardToTeamMemberTopics(cardname) {
+   64 |         await this.addCardToTeamMemberTopicsList.click();
+   65 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   66 |         await this.page.waitForTimeout(2000);
+   67 |         await this.page.keyboard.press('Enter');
+   68 |     }
+   69 |
+   70 |     async addCardToManagerTopics(cardname) {
+   71 |         await this.addCardToManagerTopicsList.click();
+   72 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   73 |         await this.page.waitForTimeout(2000);
+   74 |         await this.page.keyboard.press('Enter');
+   75 |     }
+   76 |
+   77 |     async addCardToGoals(cardname) {
+   78 |         await this.addCardToGoalsList.click();
+   79 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   80 |         await this.page.waitForTimeout(2000);
+   81 |         await this.page.keyboard.press('Enter');
+   82 |     }
+   83 |
+   84 |     async addCardToActions(cardname) {
+   85 |         await this.addCardToActionsList.click();
+   86 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   87 |         await this.page.waitForTimeout(2000);
+   88 |         await this.page.keyboard.press('Enter');
+   89 |     }
+   90 |
+   91 |     async addCardToDone(cardname) {
+   92 |         await this.addCardToDoneList.click();
+   93 |         await this.page.getByPlaceholder('Enter a title or paste a link').fill(cardname);
+   94 |         await this.page.waitForTimeout(2000);
+   95 |         await this.page.keyboard.press('Enter');
+   96 |     }
+   97 |
+   98 |     async addMembersAction(){
+   99 |         await this.membersButton.click()
+  100 |       await this.page.getByLabel('Search members').fill('Likhitha');
+  101 |       await this.page.keyboard.press('Enter');
+  102 |       await this.page.locator("//button[@aria-label='Close popover']").click();
+  103 |     }
+  104 |
+  105 |     async addLabelsAction(labelName){
+  106 |         await this.labelsButton.click();
+  107 |         await this.page.waitForTimeout(2000);
+  108 |         const CreateNewLabel = await this.page.getByText('Create a new label');
+  109 |         const TitleField = await this.page.locator("//input[@type='text']")
+  110 |         const CreateButton = await this.page.locator("//button[contains(text(),'Create')]")
+  111 |         const allLabels= await this.page.locator("//ul[@class='AEgIEBHcUVGEym']//li");
+  112 |         await HandlingLabelsElements(allLabels, labelName, CreateNewLabel, TitleField, CreateButton)
+  113 |         await this.page.getByLabel("Close popover").click()
+  114 |     }
+  115 |
+  116 |     async addCheckList(addChecklistItems){
+  117 |         await this.checklistButton.click();
+  118 |         for (const item of addChecklistItems) {
+  119 |             await this.page.locator("//button[normalize-space()='Add']").click();
+  120 |             await this.page.getByLabel('Add an item').fill(item);
+  121 |             await this.page.keyboard.press('Enter');
+  122 |             await this.page.waitForTimeout(1000);
+  123 |         }
+  124 |     }
+  125 |
+  126 |     async checkTheAddedCheckList() {
+  127 |         const options = await this.page.$$("//ul[@data-testid='checklist-items']//div[@class='YkivUYixygZz1r']//*[name()='svg']");
+  128 |         await options[0].click();
+  129 |         await this.page.waitForTimeout(1000);
+  130 |     }
+  131 |
+  132 |     async addDates(){
+  133 |         await this.datesButton.click();
+  134 |         await this.page.waitForTimeout(5000);
+  135 |         await this.datesButton.click();
+  136 |         await this.page.getByTestId('card-back-due-date-button').click();
+  137 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).uncheck();
+  138 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(2).check();
+  139 |         await this.page.getByRole('button', { name: '4, Tuesday March 2025' }).click();
+  140 |         await this.page.getByTestId('date-range-picker-with-ads').locator('svg').nth(3).check();
+  141 |         await this.page.getByRole('button', { name: '3, Thursday April 2025' }).click();
+  142 |         this.page.locator("//div[@class='ZLkHQZu7HZZj5h']//button[1]").click()
+  143 |     }
+  144 |
+  145 |     // selecting newly created card
+  146 |     async clickNewCardInInfoList(cardName) {
+  147 |         await HandlingCardElements(this.infoList, cardName, this.page)
+  148 |         await this.page.waitForTimeout(5000)
+  149 |     }
+  150 |
+  151 |     //after selecting newly created card
+  152 |     async performActionOnNewCard(cardName, labelName, addChecklistItems){
+  153 |         await this.clickNewCardInInfoList(cardName);
+  154 |         //await this.performMoveCardAction();
+> 155 |         await this.cardTitleCheckbox.click();
+      |                                      ^ Error: locator.click: Target page, context or browser has been closed
+  156 |         await this.page.waitForTimeout(2000)
+  157 |         await this.watchButton.click();
+  158 |         await this.page.waitForTimeout(2000)
+  159 |         await this.joinButton.click();
+  160 |         await this.page.waitForTimeout(2000)
+  161 |         await this.addMembersAction();
+  162 |         await this.addLabelsAction(labelName);
+  163 |         await this.addCheckList(addChecklistItems)
+  164 |         await this.checkTheAddedCheckList()
+  165 |       //  await this.addDates()
+  166 |     }
+  167 |     async closeOpenedCard(){
+  168 |       await this.closeCardButton.click()
+  169 |     }
+  170 |
+  171 |     // selecting already existing card
+  172 |     async clickOldCardInInfoList(cardIndex) {
+  173 |         await this.infoList.nth(cardIndex).click();
+  174 |         await this.page.waitForTimeout(2000);
+  175 |     }
+  176 |
+  177 |     //after selecting already existing card
+  178 |     async performMoveCardAction(){
+  179 |         await this.cardDropdown.click();
+  180 |         await this.boardDropdown.click();
+  181 |         const options = await this.page.$$("//div[@role='option']//li");
+  182 |         await options[0].click()
+  183 |         await this.page.getByTestId('move-card-popover-move-button').click()
+  184 |     }
+  185 |
+  186 |     async performActionOnOldCard(cardIndex){
+  187 |         await this.clickOldCardInInfoList(cardIndex);
+  188 |         await this.cardTitleCheckbox.click();
+  189 |         await this.performMoveCardAction();
+  190 |     }
+  191 |
+  192 |     async deleteCreatedBoard(templateName){
+  193 |         await this.page.reload()
+  194 |         const latestBoard = this.page.locator(`//a[contains(@title, '${templateName}')]`);
+  195 |         await latestBoard.click();
+  196 |         const boardContainer = latestBoard.locator("xpath=ancestor::li");    // Find the parent container of the board and then locate the button inside it
+  197 |         const deleteButton = boardContainer.locator("button[aria-label='Board actions menu']").last();
+  198 |         await deleteButton.click();
+  199 |         await this.page.waitForTimeout(2000)
+  200 |         await this.page.getByRole('button', { name: 'Close board' }).click();
+  201 |         await this.page.getByTestId('popover-close-board-confirm').click();
+  202 |     }
+  203 | }
+  204 |
+```

@@ -1,0 +1,58 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Delete closed boards
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeleteClosedBoards.spec.js:17:1
+
+# Error details
+
+```
+Error: locator.fill: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('#username')
+
+    at Login.login (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\Login1Page.js:13:44)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeleteClosedBoards.spec.js:10:5
+```
+
+# Test source
+
+```ts
+   1 | import { authenticator } from 'otplib';
+   2 |
+   3 | export class Login {
+   4 |
+   5 |     constructor(page) {
+   6 |         this.page = page;
+   7 |     }
+   8 |
+   9 |   async login(username, password){
+  10 |       await this.page.goto('https://trello.com/homepage');
+  11 |       await this.page.setViewportSize({ width: 1920, height: 1040 });
+  12 |       await this.page.getByText('Log in').click();
+> 13 |       await this.page.locator('#username').fill(username);
+     |                                            ^ Error: locator.fill: Target page, context or browser has been closed
+  14 |       await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
+  15 |       await this.page.locator('#password').fill(password);
+  16 |       await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+  17 |       const otp = authenticator.generate(process.env.SECRETOTP)
+  18 |       await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
+  19 |   }
+  20 |
+  21 |   async selectWorkspace(){
+  22 |         await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+  23 |         await this.page.getByText("likhitha's workspace").click();
+  24 |   }
+  25 |
+  26 |   async selectTemplates(){
+  27 |         await this.page.getByTestId('templates-menu').click();
+  28 |         await this.page.waitForTimeout(2000)
+  29 |   }
+  30 | }
+  31 | //C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\Login1Page.js
+```

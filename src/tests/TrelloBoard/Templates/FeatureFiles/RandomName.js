@@ -1,7 +1,6 @@
 export function generateRandomBoardName() {
     const adjectives = ["Agile", "Kanban", "Scrum", "Project", "Daily", "Weekly", "Sprint", "Design", "Development", "Marketing", "Sales",
-        "Support", "Personal", "Team", "Idea", "Task", "Meeting", "Planning", "Review", "Retrospective",
-    ];
+        "Support", "Personal", "Team", "Idea", "Task", "Meeting", "Planning", "Review", "Retrospective"];
     const nouns = ["Board", "Project", "Tasks", "Goals", "Ideas", "Meetings", "Sprints", "Workflow", "Roadmap", "Planning","Review","Retrospective",];
     const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
@@ -33,7 +32,7 @@ export function generateRandomCardName(){
 }
 
 export function generateRandomLabelName(){
-    const labelNames =[  "Goal", "Name"," Discuss" , "Blocker", "FYI", "Paused" ]
+    const labelNames = [  "Goal", "Name"," Discuss" , "Blocker", "FYI", "Paused" ]
     const randomLabelNames = Math.floor(Math.random()*labelNames.length);
     return labelNames[randomLabelNames];
 }

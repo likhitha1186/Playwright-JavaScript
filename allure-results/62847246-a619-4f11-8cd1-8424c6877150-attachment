@@ -1,0 +1,79 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Board CRUD operation >> Create Trello Board
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\API-TESTING\E2E-TESTS\1_BoardCRUD_operation.spec.js:9:3
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 400
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\API-TESTING\E2E-TESTS\1_BoardCRUD_operation.spec.js:15:31
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { createBoards } from '../HelpersFile/Helpers.js';
+   3 | import fs from 'fs';
+   4 |
+   5 | const { baseURL, BoardName, apiKey, token } = createBoards();
+   6 | const boardDataFile = './boardData.json';
+   7 |
+   8 | test.describe.serial('Board CRUD operation', () => {
+   9 |   test('Create Trello Board', async ({ request }) => {
+  10 |     const response = await request.post(`${baseURL}/boards/?name=${BoardName}&key=${apiKey}&token=${token}`,
+  11 |       {
+  12 |         headers: { Accept: 'application/json' },
+  13 |       },
+  14 |     );
+> 15 |     expect(response.status()).toBe(200);
+     |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  16 |     let res = await response.json();
+  17 |     const boardName = res.name;
+  18 |     const boardId = res.id;
+  19 |
+  20 |     fs.writeFileSync(boardDataFile, JSON.stringify({ boardId, boardName }, null, 2));
+  21 |     console.log(`Created Board: ${boardId}, ${boardName}`);
+  22 |   });
+  23 |
+  24 |   test('Get Trello Board', async ({ request }) => {
+  25 |     const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  26 |     const response = await request.get(`${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`);
+  27 |     expect(response.status()).toBe(200);
+  28 |     console.log('Successfully fetched the Trello Board');
+  29 |   });
+  30 |
+  31 |   test('Get Actions of a Board', async ({ request }) => {
+  32 |     const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  33 |     const response = await request.get(`${baseURL}/boards/${boardId}/actions?key=${apiKey}&token=${token}`);
+  34 |     expect(response.status()).toBe(200);
+  35 |     console.log('Successfully fetched the Get Actions of Trello Board');
+  36 |   });
+  37 |
+  38 |   test('Update a Board', async ({ request }) => {
+  39 |     const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  40 |     const response = await request.put(
+  41 |       `${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`,
+  42 |       {
+  43 |         headers: { 'Content-Type': 'application/json' },
+  44 |         data: {
+  45 |           'prefs/background': 'purple',
+  46 |         },
+  47 |       },
+  48 |     );
+  49 |     expect(response.status()).toBe(200);
+  50 |     console.log('Successfully Updated the  Board');
+  51 |   });
+  52 | });
+  53 |
+```

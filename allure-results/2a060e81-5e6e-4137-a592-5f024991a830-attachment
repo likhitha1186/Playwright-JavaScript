@@ -1,0 +1,68 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Delete CRUD operation >> Delete a Label
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\API-TESTING\E2E-TESTS\5_DeleteCRUD_operation.spec.js:9:3
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\API-TESTING\E2E-TESTS\5_DeleteCRUD_operation.spec.js:15:31
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { deleteTrello } from '../HelpersFile/Helpers.js';
+   3 | import fs from 'fs';
+   4 |
+   5 | const { baseURL, apiKey, token } = deleteTrello();
+   6 | const boardDataFile = './boardData.json';
+   7 |
+   8 | test.describe.serial('Delete CRUD operation', () => {
+   9 |   test('Delete a Label', async ({ request }) => {
+  10 |     const { labelId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  11 |
+  12 |     const response = await request.delete(
+  13 |       `${baseURL}/labels/${labelId}?key=${apiKey}&token=${token}`,
+  14 |     );
+> 15 |     expect(response.status()).toBe(200);
+     |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  16 |
+  17 |     console.log(`Successfully Deleted Label`);
+  18 |   });
+  19 |
+  20 |   test('Delete a Card', async ({ request }) => {
+  21 |     const { cardId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  22 |
+  23 |     const response = await request.delete(
+  24 |       `${baseURL}/cards/${cardId}?key=${apiKey}&token=${token}`,
+  25 |     );
+  26 |     expect(response.status()).toBe(200);
+  27 |
+  28 |     console.log(`Successfully Deleted Card`);
+  29 |   });
+  30 |
+  31 |   test('Delete a Board', async ({ request }) => {
+  32 |     const { boardId } = JSON.parse(fs.readFileSync(boardDataFile, 'utf8'));
+  33 |
+  34 |     const response = await request.delete(
+  35 |       `${baseURL}/boards/${boardId}?key=${apiKey}&token=${token}`,
+  36 |     );
+  37 |     expect(response.status()).toBe(200);
+  38 |
+  39 |     console.log(`Successfully Deleted Board`);
+  40 |   });
+  41 | });
+  42 |
+```

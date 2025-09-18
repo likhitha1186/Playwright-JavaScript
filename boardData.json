@@ -1,11 +1,11 @@
 {
-  "boardId": "682c57d2e6d735d6e57adaf1",
-  "boardName": "Marketing Planning",
-  "listId": "682c57d4b7420d3313fec9bc",
-  "listName": "Deployment",
-  "cardId": "682c57da90958f8b868a8f47",
-  "cardName": "Low Opportunities",
-  "attachmentID": "682c57dd195ccc3107497409",
-  "labelId": "682c57df0a105591808a24b7",
-  "labelName": " Discuss"
+  "boardId": "68cbaf72e57414768d51ec83",
+  "boardName": "Planning Review",
+  "listId": "68cbaf75e57e0a44b929c970",
+  "listName": "On Hold",
+  "cardId": "68cbaf7e4c2386c78608670a",
+  "cardName": "Ongoing Threats",
+  "attachmentID": "68cbaf8191decc5057e3ebe7",
+  "labelId": "68cbaf829a639516827bd27c",
+  "labelName": "Goal"
 }
