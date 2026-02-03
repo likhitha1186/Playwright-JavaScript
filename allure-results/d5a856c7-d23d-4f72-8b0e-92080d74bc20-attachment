@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Delete a closed boards
+- Location: C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeletingClosedBoards.spec.js:19:1
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('button[title=\'Workspaces\'] span[class=\'kpv7OitsgQTIxo\']')
+    - waiting for" https://trello.com/SetCST/initiate?redirectTo=https%3A%2F%2Fid.atlassian.com%2Flogin%2Fauthorize%3Fcontinue%3Dhttps%253A%252F%252Ftrello.com%252Fauth%252Fatlassian%252Fcallback%253FreturnUrl%253D%252…" navigation to finish...
+    - navigated to "https://id.atlassian.com/login/authorize?continue=https%3A%2F%2Ftrello.com%2Fauth%2Fatlassian%2Fcallback%3FreturnUrl%3D%252Fhomepage%26display%3D%26aaOnboarding%3D%26updateEmail%3D%26traceId%3D%26sso…"
+    - waiting for" https://trello.com/homepage" navigation to finish...
+    - navigated to "https://trello.com/homepage"
+
+    at Login.selectWorkspace (C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\Login1Page.js:22:92)
+    at C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\src\tests\DeletingClosedBoards.spec.js:15:21
+```
+
+# Test source
+
+```ts
+   1 | import { authenticator } from 'otplib';
+   2 |
+   3 | export class Login {
+   4 |
+   5 |     constructor(page) {
+   6 |         this.page = page;
+   7 |     }
+   8 |
+   9 |   async login(username, password){
+  10 |     await this.page.goto('https://trello.com/homepage');
+  11 |     await this.page.setViewportSize({ width: 1920, height: 1040 });
+  12 |     await this.page.getByText('Log in').click();
+  13 |     await this.page.locator('#username-uid1').fill(username);
+  14 |     await this.page.locator('button[type="submit"]', { hasText: 'Continue' }).click();
+  15 |     await this.page.locator('#password').fill(password);
+  16 |     await this.page.locator('button[type="submit"]', { hasText: 'Log in' }).click();
+  17 |     const otp = authenticator.generate(process.env.SECRETOTP);
+  18 |     await this.page.locator('#two-step-verification-otp-code-input').fill(otp);
+  19 |   }
+  20 |
+  21 |   async selectWorkspace(){
+> 22 |         await this.page.locator("button[title='Workspaces'] span[class='kpv7OitsgQTIxo']").click();
+     |                                                                                            ^ Error: locator.click: Target page, context or browser has been closed
+  23 |         await this.page.getByText("likhitha's workspace").click();
+  24 |   }
+  25 |
+  26 |   async selectTemplates(){
+  27 |         await this.page.getByTestId('templates-menu').click();
+  28 |         await this.page.waitForTimeout(2000)
+  29 |   }
+  30 | }
+  31 | //C:\Users\likhithap\WebstormProjects\PlaywrightAutomation\Pages\Login1Page.js
+```

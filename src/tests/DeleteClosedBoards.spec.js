@@ -15,9 +15,9 @@ test.beforeAll(async ({ browser }) => {
 });
 
 test('Delete closed boards', async () => {
-    await page.getByTestId('open-boards-link').click();
+    //await page.getByTestId('open-boards-link').click();
     await page.waitForTimeout(2000);
-    await page.locator("//button[normalize-space()='View closed boards']").click();
+    await page.locator("//button[normalize-space()='View all closed boards']").click();
     await page.waitForTimeout(2000);
 
     const  deleteButtons = await page.$$('//button[contains(text(), "Delete")]');
