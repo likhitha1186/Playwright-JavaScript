@@ -1,6 +1,6 @@
 import { authenticator } from 'otplib';
 
-export class LoginPage {
+export default class LoginPage {
   constructor(page) {
     this.page = page;
   }

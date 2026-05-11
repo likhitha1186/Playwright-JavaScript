@@ -1,0 +1,98 @@
+[33me163e0c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: pull --rebase origin main: Fast-forward
+[33mad607ce[m HEAD@{1}: pull --rebase origin main (finish): returning to refs/heads/main
+[33mad607ce[m HEAD@{2}: pull --rebase origin main (pick): Add Allure results and update board data
+[33mc69fdfd[m HEAD@{3}: pull --rebase origin main (start): checkout c69fdfd21b1de0491c7fc29b14e1dfb79158d1fd
+[33m4e3d580[m HEAD@{4}: commit: Add Allure results and update board data
+[33m0ad632f[m HEAD@{5}: pull origin main: Fast-forward
+[33mbda891c[m HEAD@{6}: commit: Add Allure results and update board data
+[33m3fcd017[m HEAD@{7}: commit: Removed some unused files
+[33m5864d87[m HEAD@{8}: pull origin main: Fast-forward
+[33me5d8e9a[m HEAD@{9}: checkout: moving from main to main
+[33me5d8e9a[m HEAD@{10}: commit: Your commit message here
+[33m0bf0e19[m HEAD@{11}: rebase (abort): returning to refs/heads/main
+[33m0bf0e19[m HEAD@{12}: rebase (abort): returning to refs/heads/main
+[33m2717f8b[m HEAD@{13}: commit: updated tests
+[33m7b2a7d4[m HEAD@{14}: commit: updated tests
+[33m4cc3bf4[m HEAD@{15}: commit: updated tests
+[33m30f8a30[m HEAD@{16}: commit: updated tests
+[33md34c4dc[m HEAD@{17}: commit: updated
+[33m187472b[m HEAD@{18}: commit (merge): updated
+[33mbe113cd[m HEAD@{19}: commit: updated
+[33m24bdc11[m HEAD@{20}: commit (merge): updated
+[33mddb5c92[m HEAD@{21}: commit: updated
+[33m5fff770[m HEAD@{22}: commit: added new tests
+[33m7bb3307[m HEAD@{23}: commit: modified tests
+[33m198591d[m HEAD@{24}: commit: modified tests
+[33m17956ba[m HEAD@{25}: commit: modified tests
+[33m3342a72[m HEAD@{26}: commit: modified tests
+[33m8b24616[m HEAD@{27}: commit: updated the .yml files
+[33mf663c8e[m HEAD@{28}: commit: added timeout
+[33m32cd967[m HEAD@{29}: commit: updated the .yml files
+[33m0a8023a[m HEAD@{30}: commit: updated the .yml files
+[33me131640[m HEAD@{31}: commit: updated the .yml files
+[33mac4edda[m HEAD@{32}: commit: updated the .yml files
+[33m173ee7f[m HEAD@{33}: commit: modified tests
+[33m18bc9cf[m HEAD@{34}: commit: modified tests
+[33m02e1fbf[m HEAD@{35}: commit: modified tests
+[33m74343b3[m HEAD@{36}: commit: modified tests
+[33mcddfb48[m HEAD@{37}: commit: modified tests
+[33m229a561[m HEAD@{38}: commit: updated cofig.js
+[33me836242[m HEAD@{39}: commit: added new tests
+[33m8f74046[m HEAD@{40}: commit: updates tests
+[33mdbaeea8[m HEAD@{41}: commit: fixed failures
+[33m2ae88ed[m HEAD@{42}: commit: congif.js fix
+[33mcdb85c4[m HEAD@{43}: commit: minor fix
+[33mcf74265[m HEAD@{44}: commit: minor fix
+[33m2813378[m HEAD@{45}: pull origin main: Fast-forward
+[33mb1862de[m HEAD@{46}: commit: minor changes
+[33m337a809[m HEAD@{47}: commit (merge): updated tests
+[33m2a31468[m HEAD@{48}: commit: updated the tests
+[33m0bf0e19[m HEAD@{49}: checkout: moving from update/logging-tests to main
+[33m089cbd2[m HEAD@{50}: checkout: moving from update/logging-tests to update/logging-tests
+[33m089cbd2[m HEAD@{51}: checkout: moving from 089cbd28647f5550b6145a7a27dfb406d69c7d8e to update/logging-tests
+[33m089cbd2[m HEAD@{52}: commit: Updated the tests
+[33me872636[m HEAD@{53}: pull --rebase origin main (start): checkout e872636fab19be6fe15740e1c838e05ba15e5c81
+[33m0bf0e19[m HEAD@{54}: rebase (abort): returning to refs/heads/main
+[33m0bf0e19[m HEAD@{55}: rebase (abort): returning to refs/heads/main
+[33mfcd9ca8[m HEAD@{56}: commit: Added new files
+[33mbf50e7b[m HEAD@{57}: commit: Updated tests during rebase
+[33m0bf0e19[m HEAD@{58}: checkout: moving from id to main
+[33mbd3900e[m HEAD@{59}: reset: moving to HEAD
+[33mbd3900e[m HEAD@{60}: checkout: moving from id to id
+[33mbd3900e[m HEAD@{61}: checkout: moving from e872636fab19be6fe15740e1c838e05ba15e5c81 to id
+[33me872636[m HEAD@{62}: pull origin main --rebase (start): checkout e872636fab19be6fe15740e1c838e05ba15e5c81
+[33m0bf0e19[m HEAD@{63}: commit (merge): Resolved merge conflicts between fix and main
+[33mb5de80c[m HEAD@{64}: commit: Saved local changes before merging fix branch
+[33me305bbe[m HEAD@{65}: merge fix: updating HEAD
+[33me305bbe[m HEAD@{66}: checkout: moving from main to main
+[33me305bbe[m HEAD@{67}: checkout: moving from main to main
+[33me305bbe[m HEAD@{68}: pull origin main --rebase (finish): returning to refs/heads/main
+[33me305bbe[m HEAD@{69}: pull origin main --rebase (pick): Added new test
+[33m8ebbe95[m HEAD@{70}: pull origin main --rebase (pick): added new tests
+[33m18b2138[m HEAD@{71}: pull origin main --rebase (pick): added new tests
+[33mcdb7519[m HEAD@{72}: pull origin main --rebase (pick): updated tests
+[33m3bb8c41[m HEAD@{73}: pull origin main --rebase (start): checkout 3bb8c415673a1e6ce2fae86e2819faaf8b97ac4b
+[33mbd3900e[m HEAD@{74}: checkout: moving from main to main
+[33mbd3900e[m HEAD@{75}: merge fix: Fast-forward
+[33m69e96df[m HEAD@{76}: checkout: moving from fix to main
+[33mbd3900e[m HEAD@{77}: commit: Added new test
+[33m8a8df24[m HEAD@{78}: commit: added new tests
+[33m51e674b[m HEAD@{79}: commit: added new tests
+[33m71dd4fe[m HEAD@{80}: checkout: moving from chore/skipped-some-tests to fix
+[33m71dd4fe[m HEAD@{81}: commit: updated tests
+[33m489affb[m HEAD@{82}: commit: updated tests
+[33m0dceacf[m HEAD@{83}: commit: skipped tests
+[33m69e96df[m HEAD@{84}: checkout: moving from main to chore/skipped-some-tests
+[33m69e96df[m HEAD@{85}: pull origin main --rebase (finish): returning to refs/heads/main
+[33m69e96df[m HEAD@{86}: pull origin main --rebase (pick): Fix line endings issue
+[33m8c40601[m HEAD@{87}: pull origin main --rebase (pick): Add GitHub Actions workflow for Playwright tests
+[33m9901ba4[m HEAD@{88}: pull origin main --rebase (start): checkout 9901ba41a7758a32c2232d6d0bb10fb7a077e76f
+[33m389ba17[m HEAD@{89}: commit: Fix line endings issue
+[33md519af0[m HEAD@{90}: commit: Add GitHub Actions workflow for Playwright tests
+[33m155fa3a[m HEAD@{91}: rebase (abort): returning to refs/heads/main
+[33m67f99ee[m HEAD@{92}: pull --rebase origin main (start): checkout 67f99eebc468be9fd4ae4d334d6015a84d6e13eb
+[33m155fa3a[m HEAD@{93}: commit: added new files
+[33md8f61f0[m HEAD@{94}: commit (amend): Updated CreateBoardPage and added/deleted test files
+[33m67f99ee[m HEAD@{95}: commit: Pages/CreateBoardPage.js
+[33m262f9b2[m HEAD@{96}: Branch: renamed refs/heads/main to refs/heads/main
+[33m262f9b2[m HEAD@{98}: commit (initial): first commit

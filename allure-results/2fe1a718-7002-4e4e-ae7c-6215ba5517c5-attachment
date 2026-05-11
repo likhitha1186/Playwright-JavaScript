@@ -1,0 +1,59 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: C:\Users\likhithap\Desktop\PlaywrightAutomation\src\tests\RecordAndPlayScripts\SauceDemo.spec.js:3:1
+
+# Error details
+
+```
+Error: page.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('#add-to-cart-sauce-labs-bolt-t-shirt')
+    - locator resolved to <button id="add-to-cart-sauce-labs-bolt-t-shirt" name="add-to-cart-sauce-labs-bolt-t-shirt" data-test="add-to-cart-sauce-labs-bolt-t-shirt" class="btn btn_primary btn_small btn_inventory ">Add to cart</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+
+    at C:\Users\likhithap\Desktop\PlaywrightAutomation\src\tests\RecordAndPlayScripts\SauceDemo.spec.js:21:16
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |     await page.goto('https://www.saucedemo.com/');
+   5 |
+   6 |     await page.fill('#user-name','standard_user');
+   7 |
+   8 |     await page.fill('#password' , 'secret_sauce');
+   9 |
+  10 |     await page.click('#login-button');
+  11 |
+  12 |     await page.click('#add-to-cart-sauce-labs-backpack');
+  13 |
+  14 |
+  15 |     await page.click('#remove-sauce-labs-backpack');
+  16 |     await page.click('#add-to-cart-sauce-labs-bolt-t-shirt');
+  17 |     await page.click('[data-test="shopping-cart-badge"]');
+  18 |     await page.click('#remove-sauce-labs-bolt-t-shirt');
+  19 |     await page.click('#continue-shopping');
+  20 |     await page.click('#add-to-cart-sauce-labs-backpack');
+> 21 |     await page.click('#add-to-cart-sauce-labs-bolt-t-shirt');
+     |                ^ Error: page.click: Target page, context or browser has been closed
+  22 |     await page.click('#add-to-cart-sauce-labs-fleece-jacket');
+  23 |     await page.click('#add-to-cart-sauce-labs-bike-light');
+  24 |     await page.click('[data-test="shopping-cart-link"]');
+  25 |     await page.click('#checkout');
+  26 |     await page.click('#cancel');
+  27 |
+  28 |
+  29 |
+  30 | });
+```

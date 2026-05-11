@@ -21,7 +21,7 @@ import{test, expect} from '@playwright/test'
 //     }
 //     await page.waitForTimeout(2000)
 // })
-test.only("Auto Suggest Dropdown- Blogspot", async ({page})=>{
+test("Auto Suggest Dropdown- Blogspot", async ({page})=>{
     await page.goto('https://testautomationpractice.blogspot.com/')
     await page.setViewportSize({ width: 1920, height: 1040 });
     await page.waitForTimeout(2000);

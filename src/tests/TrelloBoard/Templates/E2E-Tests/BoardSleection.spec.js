@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import {TemplatesPage} from "../Page/Template_FilesPage.js";
-import { LoginPage } from '../Page/Login_FilesPage.js';
+import  LoginPage  from '../Page/Login_FilesPage.js';
 let page,templateName;
 
 test.beforeAll(async ({ browser }) => {
